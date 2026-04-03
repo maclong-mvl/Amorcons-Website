@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amorcons – Kiến tạo không gian chạm cảm xúc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="/" class="nav-logo-link">
+        <img class="nav-logo desktop-only"
+          src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
+        <img class="nav-logo mobile-only" src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce"
+          alt="Amorcons" />
+      </a>
+
+      <ul class="nav-tabs">
+        <li class="nav-item"><a class="nav-tab active" href="#" aria-current="page">Trang chủ</a></li>
+        <li class="nav-item"><a class="nav-tab" href="#services">Services Page</a></li>
+        <li class="nav-item"><a class="nav-tab" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-tab" href="#contact-us">Liên hệ</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="#" class="nav-btn lang-btn" aria-label="Chọn ngôn ngữ: Tiếng Việt">
+          <img src="https://www.figma.com/api/mcp/asset/c236d5f4-5ec3-420b-854f-2898bedfa44a" alt=""
+            aria-hidden="true" />
+          <span class="nav-btn-label">VN</span>
+        </a>
+        <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
+          <img src="https://www.figma.com/api/mcp/asset/c8bbff4a-f8d6-4430-bf45-7c4032ecbac3" alt="" aria-hidden="true"
+            class="desktop-only" />
+          <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true" class="mobile-only" />
+          <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <img src="./images/header/header-mobile/button-open-menu.svg" alt="" class="mobile-only" />
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Menu — Figma 295:756 (match screenshot) -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-menu-accent" aria-hidden="true">
+      <span class="mobile-menu-accent-line"></span>
+      <div class="mobile-menu-accent-dots">
+        <span></span>
+        <span class="mobile-menu-accent-dot-mid"></span>
+        <span></span>
+      </div>
+      <span class="mobile-menu-accent-line"></span>
+    </div>
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-links">
+        <a class="mobile-menu-link active" href="#" onclick="closeMobileMenu()">Trang Chủ</a>
+        <a class="mobile-menu-link" href="#services" onclick="closeMobileMenu()">Services Page</a>
+        <a class="mobile-menu-link" href="#about" onclick="closeMobileMenu()">About Us</a>
+        <a class="mobile-menu-link" href="#contact-us" onclick="closeMobileMenu()">Liên Hệ</a>
+      </div>
+      <div class="mobile-menu-lang-row">
+        <span class="mobile-menu-lang-label">Langue</span>
+        <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
+          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="en" aria-pressed="true">Eng</button>
+          <button type="button" class="mobile-menu-lang-btn" data-lang="vi" aria-pressed="false">Vi</button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-follow-row">
+        <span class="mobile-menu-follow">Follow us</span>
+        <span class="mobile-menu-follow-line" aria-hidden="true"></span>
+      </div>
+      <ul class="mobile-menu-social-list">
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Instagram" onclick="closeMobileMenu()">
+            <img src="./images/footer/intal.svg" alt="Instagram" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Facebook" onclick="closeMobileMenu()">
+            <img src="./images/footer/facebook.svg" alt="Facebook" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on YouTube" onclick="closeMobileMenu()">
+            <img src="./images/footer/youtube.svg" alt="YouTube" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on X" onclick="closeMobileMenu()">
+            <img src="./images/footer/x.svg" alt="X" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg">
+        <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
+          aria-hidden="true"></video>
+        <div class="hero-overlay-top"></div>
+      </div>
+
+      <div class="hero-text">
+        <h1 id="hero-title" class="hero-title">Kiến tạo không gian <br class="mobile-only"> chạm cảm xúc</h1>
+        <p class="hero-subtitle">
+          Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được cân nhắc và mỗi trải nghiệm đều mang đến
+          đẳng
+          cấp riêng biệt
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================= -->
+    <section class="about-wrap" id="about">
+      <!-- Divider -->
+      <div class="divider-icon-block" aria-hidden="true">
+        <div class="divider-line-gold"></div>
+        <img class="divider-award" src="https://www.figma.com/api/mcp/asset/c5975cbf-c278-459c-a243-bc21ba2e2c25"
+          alt="" />
+      </div>
+
+      <!-- 2 cols -->
+      <div class="about-cols">
+        <!-- Left: image mosaic -->
+        <article class="about-mosaic">
+          <figure class="about-img-area">
+            <div class="about-backdrop" aria-hidden="true"></div>
+            <video src="./video/Minotti_2025_HP.mp4" class="about-main-img" autoplay loop muted playsinline></video>
+            <figcaption class="about-backdrop-two">
+              <p class="about-backdrop-text">We design spaces that unite function and beauty, creating
+                interiors and architecture that bring your lifestyle and vision to life</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <!-- Right: text -->
+        <div class="about-text">
+          <h2 class="about-headline">
+            <img class="srv-award" src="https://www.figma.com/api/mcp/asset/47347c27-a9ea-4444-aeee-44b34a44b0ac" alt=""
+              aria-hidden="true" />
+            <span> We help to bring your <em>dream home</em> to reality</span>
+          </h2>
+
+          <div class="timeline-wrap">
+            <!-- Bar trái -->
+            <div class="timeline-bar-outer" aria-hidden="true">
+              <div class="timeline-bar-gold"></div>
+            </div>
+
+            <ul class="timeline-items">
+              <!-- Item 01: active -->
+              <li class="timeline-item active" data-video="./video/Minotti_2025_HP.mp4" data-index="0">
+                <div class="timeline-item-row">
+                  <span class="t-num">01</span>
+                  <span class="t-name">Westonstad</span>
+                </div>
+                <p class="t-desc">We design spaces that unite function and beauty, creating interiors and architecture
+                  that bring your lifestyle and vision to life.</p>
+              </li>
+
+              <!-- Item 02 -->
+              <li class="timeline-item" data-video="./video/10135156-uhd_3840_2160_30fps.mp4" data-index="1">
+                <div class="timeline-item-row">
+                  <span class="t-num">02</span>
+                  <span class="t-name">Modern Living</span>
+                </div>
+                <p class="t-desc">Crafting contemporary environments that reflect innovation and comfort, tailored to
+                  your unique needs.</p>
+              </li>
+
+              <!-- Item 03 -->
+              <li class="timeline-item" data-video="./video/7578552-uhd_3840_2160_30fps.mp4" data-index="2">
+                <div class="timeline-item-row">
+                  <span class="t-num">03</span>
+                  <span class="t-name">Timeless Design</span>
+                </div>
+                <p class="t-desc">Creating lasting impressions with classic aesthetics and premium materials that stand
+                  the test of time.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICES
+    ========================================================= -->
+    <section class="services-wrap" id="services" aria-labelledby="services-title">
+      <div class="services-header">
+        <img class="srv-award" src="https://www.figma.com/api/mcp/asset/47347c27-a9ea-4444-aeee-44b34a44b0ac" alt=""
+          aria-hidden="true" />
+        <h2 id="services-title" class="srv-title">Dịch vụ</h2>
+        <p class="srv-sub">At Inteo, we create inspiring spaces that blend timeless design with modern innovation.</p>
+      </div>
+
+      <!-- 2×2 grid — mỗi ô là liên kết sang trang dịch vụ (đổi href khi có URL thật) -->
+      <div class="services-grid">
+        <a class="srv-cell" href="./thiet-ke-khong-gian.html"
+          aria-label="Thiết kế không gian — xem chi tiết dịch vụ">
+          <img src="./images/home/services/services-1.jpg" alt="" class="srv-cell-bg" />
+          <video src="./video/7578552-uhd_3840_2160_30fps.mp4" class="srv-cell-video" muted loop playsinline></video>
+          <div class="srv-cell-overlay">
+            <div class="srv-cell-content">
+              <img class="srv-cell-icon" src="./images/home/services/logo-services.svg" alt="" />
+              <h3 class="srv-cell-title">Thiết kế không gian</h3>
+              <p class="srv-cell-desc">At Inteo, we create inspiring spaces that blend timeless design with modern
+                innovation.</p>
+            </div>
+          </div>
+        </a>
+        <a class="srv-cell" href="./thiet-ke-noi-that.html"
+          aria-label="Thiết kế nội thất — xem chi tiết dịch vụ">
+          <img src="./images/home/services/services-2.jpg" alt="" class="srv-cell-bg" />
+          <video src="./video/6580022-uhd_4096_2160_25fps.mp4" class="srv-cell-video" muted loop playsinline></video>
+          <div class="srv-cell-overlay">
+            <div class="srv-cell-content">
+              <img class="srv-cell-icon" src="./images/home/services/logo-services.svg" alt="" />
+              <h3 class="srv-cell-title">Thiết kế nội thất</h3>
+              <p class="srv-cell-desc">At Inteo, we create inspiring spaces that blend timeless design with modern
+                innovation.</p>
+            </div>
+          </div>
+        </a>
+        <a class="srv-cell" href="./thiet-ke-xay-dung.html"
+          aria-label="Thiết kế xây dựng — xem chi tiết dịch vụ">
+          <img src="./images/home/services/services-3.png" alt="" class="srv-cell-bg" />
+          <video src="./video/5384823-uhd_4096_2160_30fps.mp4" class="srv-cell-video" muted loop playsinline></video>
+          <div class="srv-cell-overlay">
+            <div class="srv-cell-content">
+              <img class="srv-cell-icon" src="./images/home/services/logo-services.svg" alt="" />
+              <h3 class="srv-cell-title">Thiết kế xây dựng</h3>
+              <p class="srv-cell-desc">At Inteo, we create inspiring spaces that blend timeless design with modern
+                innovation.</p>
+            </div>
+          </div>
+        </a>
+        <a class="srv-cell" href="./tu-van-quy-hoach.html"
+          aria-label="Tư vấn và quy hoạch — xem chi tiết dịch vụ">
+          <img src="./images/home/services/services-4.png" alt="" class="srv-cell-bg" />
+          <video src="./video/18531413-uhd_3840_2160_60fps.mp4" class="srv-cell-video" muted loop playsinline></video>
+          <div class="srv-cell-overlay">
+            <div class="srv-cell-content">
+              <img class="srv-cell-icon" src="./images/home/services/logo-services.svg" alt="" />
+              <h3 class="srv-cell-title">Tư vấn & Quy hoạch</h3>
+              <p class="srv-cell-desc">At Inteo, we create inspiring spaces that blend timeless design with modern
+                innovation.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA MID
+    ========================================================= -->
+    <section class="cta-mid" aria-labelledby="cta-text">
+      <div class="cta-mid-top" aria-hidden="true">
+        <div class="divider-line-gold"></div>
+        <img class="divider-award" src="https://www.figma.com/api/mcp/asset/e9cdb30b-87a7-4339-8ef4-31d20eb039bb"
+          alt="" />
+      </div>
+      <p id="cta-text" class="cta-mid-text">We help to bring your <em>dream home</em> to reality</p>
+      <p class="srv-sub">At Inteo, we create inspiring spaces that blend timeless design with modern innovation.</p>
+    </section>
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================= -->
+    <section class="contact-us-section" id="contact-us" aria-labelledby="contact-title">
+      <div class="contact-us">
+        <div class="contact-us-container">
+          <div class="contact-left">
+            <div class="contact-subtitle"><span class="line" aria-hidden="true"></span> Contact us</div>
+            <h2 id="contact-title" class="contact-hero-title">We help to bring your <span>dream home</span><br>to
+              reality
+            </h2>
+            <p class="contact-desc">At Inteo, we create inspiring spaces that blend timeless design with<br>modern
+              innovation.</p>
+          </div>
+
+          <div class="contact-form-box">
+            <p class="form-pre-title">Liên lạc với chúng tôi</p>
+            <h3 class="contact-us-title">Contact us</h3>
+            <p class="form-post-title">Fill out the form below and we'll get back to<br>you with next steps within 24
+              hours.</p>
+
+            <div class="form-dots" aria-hidden="true">
+              <img src="./images/home/contact-us/dot.svg" alt="" />
+            </div>
+
+            <form class="contact-form" action="#" method="POST">
+              <div class="form-group">
+                <label for="name" class="sr-only">Tên*</label>
+                <input type="text" id="name" name="name" placeholder="Tên*" required />
+              </div>
+              <div class="form-group">
+                <label for="email" class="sr-only">Email*</label>
+                <input type="email" id="email" name="email" placeholder="Email*" required />
+              </div>
+              <div class="form-group">
+                <label for="phone" class="sr-only">Điện thoại</label>
+                <input type="tel" id="phone" name="phone" placeholder="Điện thoại" />
+              </div>
+              <div class="form-group">
+                <label for="company" class="sr-only">Công ty</label>
+                <input type="text" id="company" name="company" placeholder="Công ty" />
+              </div>
+              <div class="form-group">
+                <label for="message" class="sr-only">Lời nhắn</label>
+                <textarea id="message" name="message" placeholder="Lời nhắn" rows="4"></textarea>
+              </div>
+              <button type="submit" class="submit-btn">SUBMIT &rarr;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer-bar">
+    <div class="footer-bar-inner">
+      <!-- Logo -->
+      <div class="footer-logo">
+        <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
+      </div>
+
+      <!-- Social -->
+      <div class="footer-social">
+        <span class="footer-follow-text">Follow us</span>
+        <span class="footer-follow-line" aria-hidden="true"></span>
+        <ul class="footer-social-list">
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on Instagram">
+              <img src="./images/footer/intal.svg" alt="Instagram" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on Facebook">
+              <img src="./images/footer/facebook.svg" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on YouTube">
+              <img src="./images/footer/youtube.svg" alt="YouTube" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on X">
+              <img src="./images/footer/x.svg" alt="X" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Services Hover Video play/pause
+    document.querySelectorAll('.srv-cell').forEach(cell => {
+      const video = cell.querySelector('.srv-cell-video');
+      if (video) {
+        cell.addEventListener('mouseenter', () => {
+          video.play().catch(e => console.error("Video play failed:", e));
+        });
+        cell.addEventListener('mouseleave', () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
+    });
+
+    // Timeline Switcher Logic
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const mainVideo = document.querySelector('.about-main-img');
+    const mainText = document.querySelector('.about-backdrop-text');
+    const goldBar = document.querySelector('.timeline-bar-gold');
+    const TIMELINE_VIDEO_FADE_MS = 420;
+    const TIMELINE_TEXT_FADE_MS = 380;
+    let timelineVideoGen = 0;
+
+    function syncTimeline(item) {
+      if (!item || !goldBar) return;
+
+      // 1. Toggle Active State
+      timelineItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      // 2. Change Video — crossfade: mờ → đổi src → chờ load → hiện (tránh cắt đột ngột)
+      const newVideoSrc = item.getAttribute('data-video');
+      if (mainVideo && newVideoSrc && mainVideo.getAttribute('src') !== newVideoSrc) {
+        const gen = ++timelineVideoGen;
+        const vid = mainVideo;
+
+        vid.style.transitionDuration = `${TIMELINE_VIDEO_FADE_MS}ms`;
+        vid.style.transitionTimingFunction = 'cubic-bezier(0.33, 0, 0.2, 1)';
+        vid.style.opacity = '0';
+
+        window.setTimeout(() => {
+          if (gen !== timelineVideoGen) return;
+          vid.src = newVideoSrc;
+          vid.load();
+
+          const showVideo = () => {
+            if (gen !== timelineVideoGen) return;
+            vid.play().catch(() => {});
+            requestAnimationFrame(() => {
+              if (gen !== timelineVideoGen) return;
+              vid.style.opacity = '1';
+            });
+          };
+
+          vid.addEventListener('canplay', showVideo, { once: true });
+          vid.addEventListener('error', showVideo, { once: true });
+          window.setTimeout(() => {
+            if (gen === timelineVideoGen && vid.style.opacity === '0') showVideo();
+          }, 4500);
+        }, TIMELINE_VIDEO_FADE_MS);
+      }
+
+      // 3. Sync Mosaic Description (chậm hơn một chút, khớp nhịp với video)
+      const newText = item.querySelector('.t-desc').textContent;
+      if (mainText && newText && mainText.textContent !== newText) {
+        mainText.style.opacity = '0';
+        window.setTimeout(() => {
+          mainText.textContent = newText;
+          requestAnimationFrame(() => {
+            mainText.style.opacity = '1';
+          });
+        }, Math.round(TIMELINE_TEXT_FADE_MS * 0.55));
+      }
+
+      // 4. Move and Resize Gold Bar
+      function updateBar() {
+        const barOuter = document.querySelector('.timeline-bar-outer');
+        if (barOuter && item) {
+          const barRect = barOuter.getBoundingClientRect();
+          const itemRect = item.getBoundingClientRect();
+          let relativeTop = itemRect.top - barRect.top;
+          if (item.getAttribute('data-index') === "0") {
+            // relativeTop += 24;
+          } else {
+            relativeTop -= 30;
+          }
+          goldBar.style.transform = `translateY(${relativeTop}px)`;
+          goldBar.style.height = `${itemRect.height}px`;
+        }
+      }
+
+      updateBar();
+      window.setTimeout(updateBar, 100);
+      window.setTimeout(updateBar, 220);
+      window.setTimeout(updateBar, 520);
+    }
+
+    timelineItems.forEach((item) => {
+      item.addEventListener('click', () => syncTimeline(item));
+    });
+
+    // Initial sync for active item
+    const initialActive = document.querySelector('.timeline-item.active');
+    if (initialActive) {
+      // Small delay to ensure styles are loaded
+      setTimeout(() => syncTimeline(initialActive), 100);
+    }
+
+    // Handle Mosaic Text Transition
+    if (mainText) {
+      mainText.style.transition =
+        `opacity ${TIMELINE_TEXT_FADE_MS}ms cubic-bezier(0.33, 0, 0.2, 1)`;
+    }
+
+    // ─── Site header: nền + blur sau khi scroll qua chiều cao header ───
+    const siteHeaderEl = document.querySelector('.site-header');
+
+    function getNavScrollThreshold() {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--nav-h').trim();
+      const n = parseFloat(raw);
+      return Number.isFinite(n) ? n : 80;
+    }
+
+    function updateSiteHeaderScroll() {
+      if (!siteHeaderEl) return;
+      siteHeaderEl.classList.toggle('site-header--scrolled', window.scrollY > getNavScrollThreshold());
+    }
+
+    window.addEventListener('scroll', updateSiteHeaderScroll, { passive: true });
+    window.addEventListener('resize', updateSiteHeaderScroll);
+    updateSiteHeaderScroll();
+
+    // ─── Hamburger Menu Toggle ────────────────────────────────────────
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbarEl = document.querySelector('.navbar');
+    const mqMobileNav = window.matchMedia('(max-width: 768px)');
+    const hamburgerIcon = hamburgerBtn ? hamburgerBtn.querySelector('img') : null;
+    const hamburgerIconOpenSrc = './images/header/header-mobile/button-open-menu.svg';
+    const hamburgerIconCloseSrc = './images/header/header-mobile/button-open-menu.svg';
+
+    function syncNavbarMenuSurface(isOpen) {
+      if (!navbarEl) return;
+      if (!mqMobileNav.matches) {
+        navbarEl.style.removeProperty('background');
+        return;
+      }
+      if (isOpen) {
+        navbarEl.style.setProperty('background', 'var(--menu-surface)');
+      } else {
+        navbarEl.style.removeProperty('background');
+      }
+    }
+
+    function closeMobileMenu() {
+      if (!hamburgerBtn || !mobileMenu) return;
+      hamburgerBtn.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      if (hamburgerIcon) hamburgerIcon.src = hamburgerIconOpenSrc;
+      document.body.style.overflow = '';
+      syncNavbarMenuSurface(false);
+    }
+
+    if (hamburgerBtn && mobileMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        if (hamburgerIcon) hamburgerIcon.src = isOpen ? hamburgerIconCloseSrc : hamburgerIconOpenSrc;
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        syncNavbarMenuSurface(isOpen);
+      });
+
+      mqMobileNav.addEventListener('change', () => {
+        if (!mqMobileNav.matches) syncNavbarMenuSurface(false);
+        else syncNavbarMenuSurface(mobileMenu.classList.contains('open'));
+      });
+
+      // Close when clicking the panel edge (nav element itself, not children)
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) closeMobileMenu();
+      });
+
+      const langBtns = mobileMenu.querySelectorAll('.mobile-menu-lang-btn');
+      langBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          langBtns.forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+        });
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileMenu();
+      });
+    }
+  </script>
+</body>
+
+</html>

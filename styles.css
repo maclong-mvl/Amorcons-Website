@@ -1,0 +1,2048 @@
+/* =====================================================================
+   RESET
+===================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header,
+main,
+section,
+article,
+aside,
+figure,
+figcaption,
+footer,
+nav {
+  display: block;
+}
+
+/* Content Width Limit */
+header,
+main,
+footer {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: block !important;
+}
+
+span.desktop-only {
+  display: inline !important;
+}
+
+li.desktop-only {
+  display: flex !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+textarea {
+  resize: none;
+}
+
+/* =====================================================================
+   DESIGN TOKENS
+===================================================================== */
+:root {
+  --gold: #b18151;
+  --gold-red: #b16151;
+  --gold-muted: #a27760;
+  --gold-light: #d2b79b;
+  --cream: #f0e4d4;
+
+  /* Neutrals */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Surfaces */
+  --dark-nav: rgba(33, 27, 27, 0.70);
+  --dark-nav-mobile: rgba(33, 27, 27, 0.55);
+  --dark-bg: #1e1e1e;
+  --dark-card: #302c28;
+  --dark-input: #1c1b18;
+  --mobile-menu-bg: rgba(24, 19, 16, 0.98);
+  --menu-surface: #1a1a1a;
+
+  /* Text */
+  --text-primary: #fafaf9;
+  --text-on-dark: rgba(255, 255, 255, 1);
+  --text-on-dark-80: rgba(255, 255, 255, 0.80);
+  --text-on-dark-75: rgba(255, 255, 255, 0.75);
+  --text-on-dark-65: rgba(255, 255, 255, 0.65);
+  --text-on-dark-55: rgba(255, 255, 255, 0.55);
+  --text-on-dark-34: rgba(255, 255, 255, 0.34);
+  --text-on-dark-30: rgba(255, 255, 255, 0.30);
+
+  /* Borders / shadows */
+  --border-white-06: rgba(255, 255, 255, 0.06);
+  --border-white-05: rgba(255, 255, 255, 0.05);
+  --shadow-gold-25: rgba(177, 129, 81, 0.25);
+
+  /* Typography families */
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* Typography scales (used in mobile overrides) */
+  --hero-title-mobile-size: 32px;
+  --hero-title-mobile-line: 45px;
+  --hero-title-mobile-tracking: -0.64px;
+
+  --nav-h: 80px;
+}
+
+/* =====================================================================
+   NAVBAR
+   Figma: flex gap-[290px] h-[80px] px-[48px] backdrop-blur-[20px]
+   Children: logo | tabs-group (flex-1 justify-center gap-48px) | right-group
+===================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  height: var(--nav-h);
+  width: 100%;
+  max-width: 1920px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  /* practical gap — Figma's 290px is for 1920px canvas */
+  padding: 0 48px;
+  background: var(--dark-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  height: 30.861px;
+  width: 131.514px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Figma: flex-[1_0_0] gap-[48px] h-full items-center justify-center */
+.nav-tabs {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  height: 100%;
+  list-style: none;
+}
+
+.nav-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Figma: px-[12px] py-[14px] flex flex-col h-full items-center justify-center */
+.nav-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 14px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .2s;
+  position: relative;
+}
+
+/* Active tab: border-b border-solid border-white */
+.nav-tab.active {
+  border-bottom: 1px solid #fff;
+}
+
+.nav-tab:hover:not(.active) {
+  color: #b18151;
+}
+
+h2.about-headline img.srv-award {
+  margin-bottom: 32px;
+}
+
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: #b18151;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-tab:hover:not(.active)::after {
+  transform: scaleX(1);
+}
+
+/* Right group: flex gap-[12px] items-center */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Figma: rounded-[100px] p-[12px] flex gap-[4px] items-center
+   background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)) */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #fafaf9;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s;
+  background: rgba(0, 0, 0, 0.20);
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, .35);
+}
+
+.nav-btn img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* =====================================================================
+   HERO
+===================================================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Radial image composition — simplified using key group images as layers */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main interior photo layer */
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark gradient overlays */
+.hero-overlay-top {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(18, 13, 13, .72) 0%,
+      rgba(18, 13, 13, .35) 35%,
+      rgba(18, 13, 13, .35) 60%,
+      rgba(18, 13, 13, .80) 100%);
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1216px;
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 96px;
+  color: #fff;
+  letter-spacing: -1.44px;
+  font-feature-settings: 'liga' 0, 'lnum' 1, 'pnum' 1;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, .75);
+  max-width: 539px;
+}
+
+/* =====================================================================
+   ABOUT / SECTION 1
+===================================================================== */
+.about-wrap {
+  background: var(--dark-bg);
+  background-repeat: no-repeat !important;
+  padding: 80px 0 200px;
+}
+
+#about {
+  background-image: url('./images/home/hero/bg-hero.png');
+}
+
+/* Gold line + icon divider */
+.divider-icon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 80px;
+}
+
+.divider-line-gold {
+  width: 1px;
+  height: 46px;
+  background: var(--gold);
+}
+
+.divider-award {
+  width: 48px;
+  height: 48px;
+}
+
+/* 2-column about layout — Figma: flex gap-[80px] items-center pr-[80px] */
+.about-cols {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding-right: 80px;
+  width: 100%;
+  position: relative;
+}
+
+/* =====================================================================
+   ABOUT IMAGE AREA (left column)
+   Figma: large image/video, dark overlay, caption text at bottom
+===================================================================== */
+.about-mosaic {
+  flex: 2 0 0;
+  min-width: 0;
+  position: relative;
+  min-height: 680px;
+  align-self: stretch;
+}
+
+.about-img-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Overlay tối phủ lên video/ảnh */
+.about-backdrop {
+  position: absolute;
+  background: rgba(48, 44, 40, 1);
+  pointer-events: none;
+  width: 100%;
+  height: 70%;
+  bottom: 0;
+}
+
+/* Video / ảnh chính lấp đầy cột trái */
+.about-main-img {
+  position: absolute;
+  inset: 0;
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.42s cubic-bezier(0.33, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+/* Overlay dưới cùng — gradient + text caption */
+.about-backdrop-two {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(48, 44, 40, 1);
+  padding: 43px 37px 35px;
+}
+
+.about-backdrop-text {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+/*
+ * RIGHT COLUMN — Figma node 191:587
+ * flex flex-col gap-[80px] flex-[1_0_0] items-start
+ * Children: headline → timeline-block
+ */
+.about-text {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  /* gap giữa headline và timeline */
+}
+
+/*
+ * Figma: Playfair Display Regular, 30.133px, line-height 36.16px,
+ * color #b18151, tracking -0.6027px
+ * "dream home" = Playfair Display Italic
+ */
+.about-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30.133px;
+  line-height: 36.16px;
+  color: #b18151;
+  letter-spacing: -0.6027px;
+  font-feature-settings: 'liga' 0, 'lnum' 1, 'pnum' 1;
+}
+
+.about-headline em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/*
+ * Figma node 229:1139: flex gap-[32px] items-end w-full
+ * items-end → bar + items đều bottom-align trong hàng ngang
+ */
+.timeline-wrap {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+/*
+ * Figma node 229:1138:
+ * bg-[rgba(255,255,255,0.1)] flex h-[250px] items-start shrink-0
+ * Bên trong: div bg-[#b18151] h-[57px] w-px (gold top bar)
+ */
+.timeline-bar-outer {
+  position: relative;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.timeline-bar-gold {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 57px;
+  background: #b18151;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), height 0.5s ease;
+  transform-origin: top;
+  will-change: transform, height;
+}
+
+/*
+ * Figma node 191:1035:
+ * flex-[1_0_0] flex-col gap-[24px] items-start
+ */
+.timeline-items {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*
+ * Item 01 (active): flex-col gap-[12px]
+ * Item 02-03 (inactive): chỉ có row, không có subtitle
+ */
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-item.active {
+  opacity: 1;
+}
+
+.t-num {
+  font-size: 15px;
+  font-weight: 600;
+  color: #b16151;
+  width: 16px;
+  height: 18px;
+  line-height: normal;
+  flex-shrink: 0;
+  font-variant-numeric: lining-nums;
+  margin-right: 8px;
+}
+
+/*
+ * Tên: Google Sans Medium, 20px, uppercase, leading-40px
+ * active = white | inactive = rgba(255,255,255,0.3)
+ * w-234px, h-18px
+ */
+.t-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: normal;
+  width: auto;
+  transition: color 0.3s ease;
+}
+
+.timeline-item.active .t-name {
+  color: #fff;
+}
+
+.t-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #d4d4d8;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.timeline-item.active .t-desc {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+/* =====================================================================
+   SERVICES  (Dịch vụ)
+===================================================================== */
+.services-wrap {
+  background: var(--dark-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Figma node 223:340: flex-col gap-[24px] items-center
+ * Children: imgAbstract206 (50×50) → title → subtitle
+ * Không có gold line trước icon (khác about section)
+ * Outer gap với grid: 80px (node 273:1665 gap-[80px])
+ */
+.services-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 80px 48px 80px;
+}
+
+.srv-award {
+  width: 50px;
+  height: 50px;
+}
+
+.srv-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 33.273px;
+  line-height: 39.927px;
+  color: var(--gold);
+  letter-spacing: -.6655px;
+  font-feature-settings: 'liga' 0, 'lnum' 1, 'pnum' 1;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.srv-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: .25px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* 2×2 grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 673px 673px;
+  gap: 4px;
+}
+
+.srv-cell {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+a.srv-cell {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a.srv-cell:focus {
+  outline: none;
+}
+
+a.srv-cell:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  z-index: 2;
+}
+
+.srv-cell.hover-cell {
+  /* The "hover" side — shows dark overlay / empty on default state */
+  background: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.srv-cell-bg,
+.srv-cell-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform .6s ease, opacity .6s ease;
+}
+
+.srv-cell-video {
+  opacity: 0;
+  z-index: 1;
+}
+
+.srv-cell:hover .srv-cell-bg {
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.srv-cell:hover .srv-cell-video {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.srv-cell-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(30, 24, 21, 0.95) 0%, rgba(30, 24, 21, 0.4) 40%, rgba(30, 24, 21, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 60px 48px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.srv-cell:hover .srv-cell-overlay {
+  opacity: 1;
+}
+
+.srv-cell-content {
+  transform: translateY(30px);
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+
+.srv-cell:hover .srv-cell-content {
+  transform: translateY(0);
+}
+
+.srv-cell-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-left: -5px;
+}
+
+.srv-cell-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 33.27px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+  line-height: 39.93px;
+  letter-spacing: -0.02em;
+}
+
+.srv-cell-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(255, 255, 255, 1);
+  max-width: 800px;
+  margin: 0;
+}
+
+/* =====================================================================
+   CTA MID
+===================================================================== */
+.cta-mid {
+  background: var(--dark-bg);
+  padding: 80px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cta-mid-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+.cta-mid-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 30.133px;
+  line-height: 36.16px;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: -.6027px;
+  font-feature-settings: 'liga' 0, 'lnum' 1, 'pnum' 1;
+}
+
+.cta-mid-text em {
+  font-style: italic;
+}
+
+/* =====================================================================
+   CONTACT
+===================================================================== */
+.contact-us {
+  position: relative;
+  padding: 120px 48px;
+  background-image: url('./images/home/contact-us/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  min-height: 800px;
+}
+
+.contact-us::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+.contact-us-container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-left {
+  max-width: 600px;
+  color: #fff;
+  padding-left: 5%;
+}
+
+.contact-subtitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: rgba(177, 129, 81, 1);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.contact-subtitle .line {
+  width: 48px;
+  height: 1px;
+  background: rgba(177, 129, 81, 1);
+}
+
+.contact-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30.13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 36.16px;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px 0;
+  color: rgba(255, 255, 255, 1);
+}
+
+.contact-hero-title span {
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+.contact-desc {
+  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+}
+
+.contact-form-box {
+  background: rgba(36, 34, 31, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 64px 56px;
+  width: 576px;
+  text-align: center;
+  margin-right: 5%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.form-pre-title {
+  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 13.63px;
+  letter-spacing: 0.34px;
+  text-align: center;
+  color: rgba(210, 183, 155, 0.5);
+  margin: 0 0 12px 0;
+}
+
+h2.contact-us-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30.13px;
+  line-height: 36.16px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: rgba(177, 129, 81, 1);
+
+}
+
+section.contact-us-section .center-icon {
+  margin: 0 0 16px 0;
+}
+
+section.contact-us-section {
+  margin-top: 80px;
+}
+
+.contact-us-header {
+  margin-bottom: 80px;
+}
+
+.contact-form-box .contact-us-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 38.99px;
+  letter-spacing: -0.43px;
+  text-align: center;
+  color: rgba(240, 228, 212, 1);
+  margin: 0 0 13px 0;
+}
+
+.form-post-title {
+  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 13.63px;
+  letter-spacing: 0.34px;
+  text-align: center;
+  color: rgba(210, 183, 155, 0.55);
+  margin: 0 0 24px 0;
+}
+
+.form-dots {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-dots img {
+  height: 6px;
+  opacity: 0.6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: #1b1917;
+  border: 1px solid transparent;
+  padding: 16px 20px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(210, 183, 155, 1);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(177, 129, 81, 0.5);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #d3b48f 0%, #a4764b 100%);
+  color: #1a1a1a;
+  border: none;
+  padding: 16px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: filter 0.3s ease;
+  margin-top: 8px;
+  border-radius: 8px;
+}
+
+.submit-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* =====================================================================
+   FOOTER
+===================================================================== */
+.footer-bar {
+  background: rgba(37, 37, 37, 1);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-bar-inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo img {
+  height: 2.5rem;
+  width: auto;
+  display: block;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-follow-text {
+  font-family: 'Google Sans Flex', 'Google Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(132, 132, 132, 1);
+  white-space: nowrap;
+}
+
+.footer-follow-line {
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: rgba(132, 132, 132, 1);
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.footer-social-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  border-color: rgba(177, 129, 81, 1);
+  background: rgba(177, 129, 81, 0.1);
+  box-shadow: 0 0 10px rgba(177, 129, 81, 0.25);
+}
+
+.footer-social-icon:hover img {
+  opacity: 1;
+}
+
+.footer-social-list {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.form-group {
+  width: 100%;
+}
+
+/* =====================================================================
+   HAMBURGER & MOBILE MENU (hidden on desktop by default)
+===================================================================== */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.hamburger-btn .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s;
+  transform-origin: center;
+}
+
+.hamburger-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.hamburger-btn.open .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn.open .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Figma 295:756 — tokens từ design: nền #1A1A1A, cam đất #A0482B, vàng mờ #8E7B67 */
+.mobile-menu {
+  --menu-accent: #a0482b;
+  --menu-muted-gold: #8e7b67;
+  --menu-text: #ffffff;
+  --menu-font: 'Montserrat', 'Inter', system-ui, sans-serif;
+
+  display: none;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--menu-surface);
+  z-index: 199;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+
+.mobile-menu.open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gạch ngang + 3 chấm giữa (chấm giữa nhấn mạnh vàng mờ) */
+.mobile-menu-accent {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 28px 18px;
+  box-sizing: border-box;
+}
+
+.mobile-menu-accent-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: rgba(142, 123, 103, 0.4);
+  min-width: 12px;
+}
+
+.mobile-menu-accent-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 14px;
+  flex-shrink: 0;
+}
+
+.mobile-menu-accent-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(142, 123, 103, 0.55);
+}
+
+.mobile-menu-accent-dot-mid {
+  width: 5px !important;
+  height: 5px !important;
+  background: var(--menu-muted-gold) !important;
+  box-shadow: 0 0 0 1px rgba(142, 123, 103, 0.35);
+}
+
+.mobile-menu-inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  width: 100%;
+}
+
+.mobile-menu-link {
+  display: block;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--menu-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: var(--menu-text);
+  text-align: left;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-link:hover {
+  opacity: 0.92;
+}
+
+.mobile-menu-link.active {
+  color: var(--menu-accent);
+  font-weight: 500;
+}
+
+/* Hàng Langue + Eng | Vi */
+.mobile-menu-lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 36px;
+  width: 100%;
+}
+
+.mobile-menu-lang-label {
+  font-family: var(--menu-font);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--menu-text);
+}
+
+.mobile-menu-lang {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 4px 6px;
+  min-height: 40px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.09);
+  gap: 2px;
+}
+
+.mobile-menu-lang-btn {
+  min-width: 44px;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--menu-font);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--menu-text);
+  background: transparent;
+  transition: color 0.2s ease;
+}
+
+/* Figma: Eng chọn = cam đất; Vi = trắng */
+.mobile-menu-lang-btn.is-active {
+  color: var(--menu-accent);
+}
+
+.mobile-menu-lang-btn:not(.is-active) {
+  color: var(--menu-text);
+}
+
+.mobile-menu-lang-btn:focus-visible {
+  outline: 2px solid var(--menu-accent);
+  outline-offset: 2px;
+}
+
+/* Footer — Follow us + line + icon vàng mờ */
+.mobile-menu-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 28px calc(18px + env(safe-area-inset-bottom, 0));
+  border-top: 1px solid rgba(142, 123, 103, 0.22);
+  background: var(--menu-surface);
+}
+
+.mobile-menu-follow {
+  font-family: var(--menu-font);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--menu-muted-gold);
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+.mobile-menu-follow-line {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 20px;
+  width: 64px;
+  height: 1px;
+  background: var(--menu-muted-gold);
+  opacity: 0.55;
+  flex-shrink: 1;
+}
+
+.mobile-menu-follow-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-menu-social-list {
+  display: flex;
+  list-style: none;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
+.mobile-menu-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.mobile-menu-social-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
+.mobile-menu-social-icon:hover {
+  border-color: var(--menu-muted-gold);
+  background: rgba(142, 123, 103, 0.12);
+}
+
+/* =====================================================================
+   RESPONSIVE — Large Tablet ≤1400px
+===================================================================== */
+@media (max-width: 1400px) {
+  .contact-form-box {
+    width: min(576px, 45vw);
+    margin-right: 3%;
+  }
+
+  .contact-left {
+    max-width: 42vw;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE — Tablet ≤1100px
+===================================================================== */
+@media (max-width: 1100px) {
+  .hero-title {
+    font-size: 52px;
+    line-height: 68px;
+  }
+
+  .about-cols {
+    flex-direction: column;
+    padding-right: 48px;
+    padding-left: 48px;
+    gap: 48px;
+  }
+
+  .about-mosaic {
+    width: 100%;
+    flex: none;
+    min-height: 480px;
+    height: 480px;
+  }
+
+  .about-main-img {
+    width: 100%;
+  }
+
+  .services-grid {
+    grid-template-rows: 400px 400px;
+  }
+
+  .srv-cell-overlay {
+    padding: 20px;
+  }
+
+  .srv-cell-title {
+    font-size: 24px;
+  }
+
+  .srv-cell-desc {
+    font-size: 14px;
+  }
+
+  .srv-cell-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .contact-us-container {
+    flex-direction: column;
+    gap: 48px;
+    align-items: stretch;
+  }
+
+  .contact-left {
+    max-width: 100%;
+    padding-left: 0;
+  }
+
+  .contact-form-box {
+    width: 100%;
+    max-width: 576px;
+    margin: 0 auto;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE — Mobile ≤768px
+===================================================================== */
+@media (max-width: 768px) {
+  body { padding-top: 0; }
+
+  main {
+    background: var(--dark-bg);
+  }
+
+  img.srv-award {
+    display: none !important;
+  }
+
+  .services-header img.srv-award {
+    display: block !important;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* --- Navbar (Figma: h-[80px] px-[16px] gap-[21px] backdrop-blur-[20px]) --- */
+  .navbar {
+    padding: 0 16px;
+    height: var(--nav-h);
+    gap: 0 21px;
+    column-gap: 21px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: stretch;
+    transition: background 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
+  }
+
+  /* Sau khi scroll qua vùng header: nền + blur (đồng bộ desktop) */
+  .site-header.site-header--scrolled .navbar {
+    background: var(--dark-nav);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Flatten hierarchies for grid positioning */
+  .nav-logo-link {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .nav-logo-link img.mobile-only {
+    height: 24px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+  }
+
+  .nav-right {
+    display: contents !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+
+  .desktop-only,
+  span.desktop-only {
+    display: none !important;
+  }
+
+  .nav-tabs {
+    display: none;
+  }
+
+  .lang-btn {
+    display: none !important;
+  }
+
+  .nav-btn {
+    padding: 0;
+    background: transparent !important;
+  }
+
+  /* Phone button */
+  .nav-btn[href^="tel"] {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex !important;
+    justify-content: flex-end;
+    z-index: 10;
+  }
+
+  .nav-btn[href^="tel"] img.mobile-only {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Hamburger / Dots button */
+  .hamburger-btn {
+    display: flex !important;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .hamburger-btn img.mobile-only {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  /* --- Hero (Figma 289:904 — 800px frame, text không card kính) --- */
+  .hero {
+    height: 800px;
+    min-height: 800px;
+    position: relative;
+    padding-top: var(--nav-h);
+  }
+
+  .hero::before { content: none; }
+
+  .hero-text {
+    gap: 24px;
+    width: min(271px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 0 16px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 45px;
+    letter-spacing: -0.64px;
+    color: var(--text-on-dark);
+    max-width: 271px;
+    margin: 0 auto;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-feature-settings: 'liga' 0, 'lnum' 1, 'pnum' 1;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: #fff;
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* --- About: mobile order = divider → headline → mosaic → timeline --- */
+  .about-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 40px 16px;
+    box-sizing: border-box;
+  }
+
+  .divider-icon-block {
+    order: 1;
+    margin-bottom: 0;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .about-cols {
+    display: contents;
+    padding: 0;
+    gap: 0;
+  }
+
+  .about-text {
+    display: contents;
+    gap: 0;
+  }
+
+  .about-headline {
+    order: 2;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+  }
+
+  .about-mosaic {
+    order: 3;
+    flex: none;
+    width: 100%;
+    min-height: 360px;
+    height: 360px;
+  }
+
+  .timeline-wrap {
+    order: 4;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 32px;
+  }
+
+  .about-img-area {
+    height: 100%;
+  }
+
+  .about-main-img {
+    width: 100%;
+  }
+
+  .about-backdrop-two {
+    padding: 20px 16px;
+  }
+
+  .about-backdrop-text {
+    font-size: 12px;
+    /* Figma: text-[12px] */
+    line-height: 20px;
+    /* Figma: leading-[20px] */
+    color: rgba(255, 255, 255, 0.34);
+    /* Figma: text-[rgba(255,255,255,0.34)] */
+  }
+
+  .timeline-items {
+    gap: 24px;
+  }
+
+  /* Figma: text-[12px] leading-[40px] */
+  .t-name {
+    font-size: 12px;
+    line-height: normal;
+  }
+
+  /* Figma: text-[12px] */
+  .t-num {
+    font-size: 12px;
+  }
+
+  /* --- Services (Figma: gap-[12px] px-[16px] text-[20px]) --- */
+  .services-header {
+    padding: 40px 16px;
+    /* Figma: py-[40px] px-[16px] */
+    gap: 12px;
+    /* Figma: gap-[12px] */
+  }
+
+  /* Figma: text-[20px] leading-[32px] tracking-[-0.4px] */
+  .srv-title {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+    margin-top: 0;
+  }
+
+  /* Figma: text-[12px] color #afafaf */
+  .srv-sub {
+    font-size: 12px;
+    color: #afafaf;
+  }
+
+  /* Services grid — Figma 289:1162: 2×2, gap-px, ô aspect 328/237.87 */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1f;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    gap: 1px;
+    width: 100%;
+  }
+
+  .services-wrap .srv-cell {
+    aspect-ratio: 328 / 237.870697;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .srv-cell-overlay {
+    opacity: 1;
+    padding: 0 9px 10px;
+    background: linear-gradient(180deg, rgba(30, 24, 21, 0) 35%, rgba(30, 24, 21, 0.82) 100%);
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .srv-cell-content {
+    transform: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  /* Prevent scale & video-swap on mobile */
+  .srv-cell:hover .srv-cell-bg {
+    transform: none;
+    opacity: 1;
+  }
+
+  .srv-cell:hover .srv-cell-video {
+    opacity: 0;
+  }
+
+  .srv-cell-title {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.1;
+    letter-spacing: -0.2px;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .srv-cell-desc {
+    display: none !important;
+  }
+
+  .srv-cell-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    margin-bottom: 7px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  /* --- CTA Mid (Figma: gap-[12px] px-[16px] text-[20px] leading-[32px]) --- */
+  .cta-mid {
+    padding: 40px 16px;
+    /* Figma: py-[40px] px-[16px] */
+    gap: 12px;
+    /* Figma: gap-[12px] */
+  }
+
+  /* Figma: text-[20px] leading-[32px] tracking-[-0.4px] */
+  .cta-mid-text {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+  }
+
+  section.contact-us-section {
+    margin-top: 0;
+  }
+
+  /* --- Contact — Figma 289:1177: container h-[878px], form abs top/left, copy abs dưới --- */
+  .contact-us {
+    padding: 0 0 48px;
+    min-height: 878px;
+    align-items: stretch;
+  }
+
+  .contact-us::before {
+    background: rgba(0, 0, 0, 0.51);
+  }
+
+  /* Không dùng flex column; layout absolute giống frame mobile */
+  .contact-us-container {
+    display: block;
+    position: relative;
+    min-height: 878px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .contact-form-box {
+    position: absolute;
+    left: 10px;
+    top: 31.84px;
+    width: calc(100% - 20px);
+    max-width: 356px;
+    margin: 0;
+    padding: 12px 16px 24px;
+    backdrop-filter: blur(17.041px);
+    -webkit-backdrop-filter: blur(17.041px);
+    background: rgba(48, 40, 34, 0.92);
+    border: none;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.45),
+      inset 0 0.852px 0 0 rgba(210, 183, 155, 0.08);
+    z-index: 2;
+  }
+
+  .contact-left {
+    position: absolute;
+    left: 50%;
+    top: 668px;
+    transform: translateX(-50%);
+    width: 210px;
+    max-width: calc(100% - 32px);
+    padding-left: 0;
+    text-align: center;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .contact-subtitle {
+    display: none;
+  }
+
+  .contact-hero-title {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+    color: #ede8e8;
+    margin-bottom: 16px;
+  }
+
+  .contact-hero-title span {
+    font-style: italic;
+  }
+
+  .contact-desc {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #afafaf;
+  }
+
+  .contact-desc br {
+    display: none;
+  }
+
+  /* Figma: text-[24px] leading-[38.991px] tracking-[-0.426px] */
+  .contact-form-box .contact-us-title {
+    font-size: 24px;
+    line-height: 38.991px;
+    letter-spacing: -0.426px;
+  }
+
+  /* Figma: text-[12px] leading-[13.633px] tracking-[0.3408px] */
+  .form-pre-title,
+  .form-post-title {
+    font-size: 12px;
+    line-height: 13.633px;
+    letter-spacing: 0.34px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10.225px 13.633px;
+    font-size: 13px;
+    letter-spacing: 0.213px;
+    background: #1c1b18;
+  }
+
+  .contact-form textarea {
+    min-height: 140px;
+  }
+
+  .submit-btn {
+    border-radius: 11.929px;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    box-shadow: 0 6.817px 27.266px rgba(210, 183, 155, 0.25), 0 1.704px 6.817px rgba(0, 0, 0, 0.3);
+  }
+
+  /* --- Footer --- */
+  .footer-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 16px;
+    text-align: left;
+  }
+
+  .footer-social {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 9px;
+    flex-wrap: nowrap;
+  }
+
+  .footer-bar {
+    background: var(--dark-bg);
+    border-top: none;
+  }
+
+  .footer-logo img {
+    height: 18.126px;
+    width: auto;
+  }
+
+  .footer-follow-text {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    opacity: 0.7;
+  }
+
+  .footer-follow-line {
+    opacity: 0.7;
+  }
+
+  .footer-social-list {
+    margin-left: auto;
+    gap: 14.841px;
+  }
+
+  .footer-social-icon {
+    width: 24.735px;
+    height: 24.735px;
+    background: transparent;
+  }
+
+  .mobile-menu-links{
+    margin-top: 40px;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE — Small Mobile ≤480px
+===================================================================== */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -0.56px;
+  }
+
+  .contact-form-box {
+    padding: 12px 12px 20px;
+  }
+}
