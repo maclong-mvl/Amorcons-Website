@@ -80,6 +80,17 @@ textarea {
   resize: none;
 }
 
+/* AOS: không dùng hiệu ứng trên mobile (đồng bộ max-width 768px + JS disable) */
+@media (max-width: 768px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-property: opacity, transform !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
 /* =====================================================================
    DESIGN TOKENS
 ===================================================================== */
