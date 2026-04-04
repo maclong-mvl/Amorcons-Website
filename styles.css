@@ -1615,7 +1615,7 @@ section.contact-us-section {
 }
 
 /* =====================================================================
-   ABOUT US PAGE — Timeline (Figma Amorcons-Website 251:2458, file R7QKqn8kOqqMcNZv5JHiLO)
+   ABOUT US PAGE — Timeline (Figma 251:2458 + mobile 289:2267, file R7QKqn8kOqqMcNZv5JHiLO)
 ===================================================================== */
 .page-about-us-container {
   max-width: 1920px;
@@ -1844,7 +1844,7 @@ h4.about-projects-year {
 }
 
 /* =====================================================================
-   ABOUT US — Vision & Mission (Figma 238:1894, file R7QKqn8kOqqMcNZv5JHiLO)
+   ABOUT US — Vision & Mission (Figma 238:1894, mobile 289:2502+, file R7QKqn8kOqqMcNZv5JHiLO)
 ===================================================================== */
 .about-vm-section {
   background: var(--menu-surface);
@@ -2360,6 +2360,158 @@ h4.about-projects-year {
     display: block !important;
     width: 24px;
     height: 24px;
+  }
+
+  /* --- About Us: intro + timeline + Vision/Mission (Figma MVL 289:2267) --- */
+  #page-about-us-section .services-header {
+    padding: 40px 16px 32px;
+    gap: 12px;
+  }
+
+  #page-about-us-section .srv-sub {
+    color: #afafaf;
+  }
+
+  .page-about-us-section .page-about-us-container {
+    padding: 0 0 56px;
+  }
+
+  .page-about-us-section .about-projects-timeline {
+    padding: 16px 0 32px;
+    margin-top: 0;
+  }
+
+  .page-about-us-section .about-projects-track.about-projects-track--swiper {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .page-about-us-section .about-projects-swiper {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+  }
+
+  .page-about-us-section .about-projects-year {
+    font-size: 14px;
+    line-height: 1.25;
+    margin: 0 0 40px;
+  }
+
+  .page-about-us-section h4.about-projects-year:after {
+    bottom: -12px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .page-about-us-section .about-projects-card-desc {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+  }
+
+  .page-about-us-section .about-projects-media {
+    height: auto;
+    aspect-ratio: 358 / 127;
+    min-height: 118px;
+    max-height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .page-about-us-section .about-projects-card {
+    max-width: none;
+  }
+
+  .about-vm-section {
+    padding: 40px 0 56px;
+    background: #1e1e1e;
+  }
+
+  .about-vm-inner {
+    gap: 24px;
+  }
+
+  .about-vm-intro {
+    gap: 12px;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .about-vm-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .about-vm-title {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+  }
+
+  .about-vm-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0;
+    padding-bottom: 24px;
+  }
+
+  .about-vm-media {
+    flex: none;
+    width: 100%;
+    max-width: 351px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: content-box;
+  }
+
+  .about-vm-media-frame {
+    aspect-ratio: 351 / 254;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .about-vm-media-frame::before {
+    left: -2%;
+    top: 9%;
+    width: 97%;
+    height: 94%;
+    border-radius: 6px;
+  }
+
+  .about-vm-media-frame img {
+    border-radius: 10px;
+  }
+
+  .about-vm-copy {
+    gap: 46px;
+    padding: 24px 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-vm-block-title {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .about-vm-body {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .about-vm-divider {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .about-vm-block--mission {
+    padding-bottom: 16px;
   }
 
   /* --- Navbar (Figma: h-[80px] px-[16px] gap-[21px] backdrop-blur-[20px]) --- */

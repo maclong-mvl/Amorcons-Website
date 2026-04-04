@@ -223,18 +223,18 @@ if (hamburgerBtn && mobileMenu) {
     });
 }
 
-/** About Us — timeline Swiper (grab cursor, free scroll, lệch trái 20% viewport swiper) */
+/** About Us — timeline Swiper (Figma desktop 251:2458, mobile peek 289:2267) */
 (function initAboutProjectsTimelineSwiper() {
     const el = document.querySelector('.about-projects-swiper');
     if (!el || typeof Swiper === 'undefined') return;
 
-    const offsetBeforeFrom20Pct = () => Math.round(el.offsetWidth * 0.1);
+    const slidesOffsetBeforeResponsive = () =>
+        window.innerWidth < 640 ? 16 : Math.round(el.offsetWidth * 0.1);
 
     const swiper = new Swiper(el, {
-        slidesPerView: 1,
-        spaceBetween: 35,
-        // centeredSlides: true,
-        slidesOffsetBefore: offsetBeforeFrom20Pct(),
+        slidesPerView: 1.08,
+        spaceBetween: 14,
+        slidesOffsetBefore: slidesOffsetBeforeResponsive(),
         freeMode: {
             enabled: true,
             momentum: true,
@@ -257,14 +257,14 @@ if (hamburgerBtn && mobileMenu) {
         },
         on: {
             init(sw) {
-                sw.params.slidesOffsetBefore = offsetBeforeFrom20Pct();
+                sw.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
                 sw.update();
             },
         },
     });
 
     const onLayout = () => {
-        swiper.params.slidesOffsetBefore = offsetBeforeFrom20Pct();
+        swiper.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
         swiper.update();
         if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
     };
