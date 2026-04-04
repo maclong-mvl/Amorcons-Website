@@ -1219,6 +1219,15 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   gap: 10px;
 }
 
+/* Desktop: video ở .services-turnkey-visual; slot ẩn. Mobile: frame được JS chèn vào .is-active .services-turnkey-item-video-slot */
+.services-turnkey-item-video-slot {
+  display: none;
+}
+
+.services-turnkey-item-video-slot:empty {
+  min-height: 0;
+}
+
 li.services-turnkey-item {
   position: relative;
 }
@@ -1517,9 +1526,27 @@ li.services-turnkey-item.is-active::before {
     padding-right: 0;
   }
 
+  /* Video nằm trong mục active (Figma mobile), không còn cột riêng phía trên */
   .services-turnkey-visual {
-    max-width: none;
-    order: -1;
+    display: none;
+  }
+
+  .services-turnkey-item.is-active .services-turnkey-item-video-slot {
+    display: block;
+    width: 100%;
+    margin: 6px 0 14px;
+  }
+
+  .services-turnkey-item-video-slot .services-turnkey-frame {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .services-turnkey-item-video-slot .services-turnkey-frame::before {
+    left: -4%;
+    top: -2%;
+    width: 96%;
+    height: 101%;
   }
 
   .services-turnkey-panel {
@@ -3511,7 +3538,7 @@ h4.about-projects-year {
 
   .page-services-steps-section .about-projects-media {
     height: auto;
-    aspect-ratio: 358 / 127;
+    /* aspect-ratio: 358 / 127; */
     min-height: 118px;
     max-height: 200px;
     overflow: hidden;

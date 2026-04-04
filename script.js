@@ -396,6 +396,24 @@ if (hamburgerBtn && mobileMenu) {
     const turnkeyVideo = document.getElementById('servicesTurnkeyVideo');
     if (!turnkeyList || !turnkeyVideo) return;
 
+    const turnkeyVisual = document.querySelector('.services-page-turnkey .services-turnkey-visual');
+    const turnkeyFrame = turnkeyVideo.closest('.services-turnkey-frame');
+    const turnkeyMobileMq = window.matchMedia('(max-width: 900px)');
+
+    /** Mobile: đặt khung video trong .services-turnkey-item.is-active (Figma). Desktop: giữ trong .services-turnkey-visual */
+    function placeTurnkeyFrameMobile() {
+        if (!turnkeyFrame || !turnkeyVisual) return;
+        if (turnkeyMobileMq.matches) {
+            const slot = turnkeyList.querySelector('.services-turnkey-item.is-active .services-turnkey-item-video-slot');
+            if (slot && !slot.contains(turnkeyFrame)) slot.appendChild(turnkeyFrame);
+        } else if (!turnkeyVisual.contains(turnkeyFrame)) {
+            turnkeyVisual.appendChild(turnkeyFrame);
+        }
+    }
+
+    turnkeyMobileMq.addEventListener('change', placeTurnkeyFrameMobile);
+    placeTurnkeyFrameMobile();
+
     function syncTurnkeyDescVisibility() {
         turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
             const desc = li.querySelector('.services-turnkey-desc');
@@ -446,6 +464,8 @@ if (hamburgerBtn && mobileMenu) {
         turnkeyList.querySelectorAll('.services-turnkey-btn').forEach((b) => {
             b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
         });
+
+        placeTurnkeyFrameMobile();
 
         const applyContent = () => {
             if (videoSrc) {
