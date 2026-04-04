@@ -1553,6 +1553,39 @@ li.services-turnkey-item.is-active::before {
     max-width: none;
     padding-left: 28px;
   }
+
+  /* Tổng thầu — Figma 289:1573 (289:1910–289:1917): 01 = 15px; tên 12px; mô tả 12/20; các bước khác số 12px */
+  .services-turnkey-name {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+
+  .services-turnkey-num {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    min-width: 18px;
+  }
+
+  .services-turnkey-item.is-active .services-turnkey-num {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+
+  .services-turnkey-desc {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    font-weight: 300;
+  }
+
+  .services-turnkey-btn {
+    padding: 10px 0 10px 8px;
+    align-items: center;
+  }
 }
 
 /* =====================================================================
@@ -3521,12 +3554,12 @@ h4.about-projects-year {
 
   .page-services-steps-section .about-projects-year {
     font-size: 10px;
-    line-height: 1.2;
-    letter-spacing: 0.04em;
+    line-height: 16.775px;
+    letter-spacing: 0;
     color: var(--gold-red);
     margin: 0 0 10px;
     text-transform: none;
-    font-weight: 500;
+    font-weight: 600;
     font-family: var(--font-sans);
   }
 
@@ -3713,9 +3746,12 @@ h4.about-projects-year {
     margin-top: 0;
   }
 
-  /* Figma: text-[12px] color #afafaf */
+  /* Figma body-medium: text-[12px] leading-[20px] tracking-[0.25px] color #afafaf */
   .srv-sub {
     font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    font-weight: 300;
     color: #afafaf;
   }
 
@@ -3951,6 +3987,7 @@ h4.about-projects-year {
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.4px;
+    color: #848484;
     opacity: 0.7;
   }
 
@@ -3985,10 +4022,12 @@ h4.about-projects-year {
    RESPONSIVE — Small Mobile ≤480px
 ===================================================================== */
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 28px;
-    line-height: 40px;
-    letter-spacing: -0.56px;
+  .services-turnkey-rail {
+    display: none;
+  }
+
+  li.services-turnkey-item::before {
+    display: none;
   }
 
   section.contact-us-section .contact-form-box {
