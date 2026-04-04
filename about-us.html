@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -138,73 +139,149 @@
             <div class="services-header" data-aos="fade-up" data-aos-duration="750" data-aos-easing="ease-out-cubic">
                 <img class="srv-award" src="./images/icon-title.svg" alt="" aria-hidden="true">
                 <h2 id="about-title" class="srv-title">Kiến tạo không gian sống vượt trên tiêu chuẩn</h2>
-                <p class="srv-sub">Amorcons kết hợp thiết kế, vật liệu và nghệ thuật chế tác để mang đến những công trình mang giá trị lâu dài.</p>
+                <p class="srv-sub">Amorcons kết hợp thiết kế, vật liệu và nghệ thuật chế tác để mang đến những công
+                    trình mang giá trị lâu dài.</p>
             </div>
             <div class="page-about-us-container">
                 <!-- Figma R7QKqn8kOqqMcNZv5JHiLO node 251:2458 — timeline ngang -->
                 <div class="about-projects-timeline" data-aos="fade-up" data-aos-duration="800"
                     data-aos-easing="ease-out-cubic">
                     <h3 class="sr-only" id="about-projects-heading">Cột mốc phát triển Amorcons</h3>
-                    <div class="about-projects-track">
-                        <div class="about-projects-line-decor" aria-hidden="true"></div>
-                        <div class="about-projects-columns" role="list">
-                            <article class="about-projects-card" role="listitem">
-                                <h4 class="about-projects-year">
-                                    <span>2024</span>
-                                </h4>
-                                <div class="about-projects-card-body">
-                                    <div class="about-projects-card-desc">
-                                        <p>Sử dụng thanh thời gian trực quan bằng hình ảnh để kể từ đam mê đến việc
-                                            thành lập công ty</p>
-                                    </div>
-                                    <div class="about-projects-media">
-                                        <img src="./images/about/timeline-2024.jpg" width="854" height="304"
-                                            alt="Không gian bếp và phòng ăn hiện đại — 2024" loading="lazy"
-                                            decoding="async" />
-                                    </div>
+                    <div class="about-projects-track about-projects-track--swiper">
+                        <div class="wrapper-swiper">
+                            <div class="about-projects-line-decor" aria-hidden="true"></div>
+                            <div class="swiper about-projects-swiper" role="region" aria-roledescription="carousel"
+                                aria-label="Timeline dự án Amorcons">
+                                <div class="swiper-wrapper">
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2024</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Sử dụng thanh thời gian trực quan bằng hình ảnh để kể từ đam mê đến
+                                                    việc
+                                                    thành lập công ty</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2024.jpg" width="854" height="304"
+                                                    alt="Không gian bếp và phòng ăn hiện đại — 2024" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2025</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Amorcons được hình thành từ một niềm tin:</p>
+                                                <p>không gian sống không chỉ để ở — mà để phản chiếu phong cách sống và
+                                                    cá
+                                                    tính của chủ nhân.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2025.jpg" width="854" height="304"
+                                                    alt="Quầy bếp và hệ tủ — 2025" loading="lazy" decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2026</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Từ những trải nghiệm trong môi trường kiến trúc quốc tế, chúng tôi
+                                                    nhận ra
+                                                    một khoảng trống tại Việt Nam — nơi nhiều công trình được tạo ra
+                                                    theo lối
+                                                    đại trà, thiếu đi chiều sâu cá nhân và sự tinh tế cần có.</p>
+                                                <p>Amorcons ra đời để theo đuổi một cách tiếp cận khác.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2026.jpg" width="854" height="304"
+                                                    alt="Không gian bếp tối giản — 2026" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2027</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Mở rộng danh mục vật liệu cao cấp và đối tác chế tác trong nước, hoàn
+                                                    thiện
+                                                    chuỗi cung ứng cho từng dự án trọn gói.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-1.jpg" width="854"
+                                                    height="304" alt="Dự án nội thất — 2027" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2028</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Ra mắt studio thiết kế chuyên sâu, đồng hành cùng khách hàng từ ý
+                                                    tưởng đến
+                                                    bàn giao, chuẩn hóa quy trình trải nghiệm.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-2.jpg" width="854"
+                                                    height="304" alt="Không gian sinh hoạt — 2028" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2029</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Phát triển các công trình biểu tượng tại đô thị lớn, tích hợp bền
+                                                    vững và công
+                                                    nghệ nhà thông minh trong từng giải pháp không gian.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-3.png" width="854"
+                                                    height="304" alt="Phòng khách hiện đại — 2029" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year">
+                                            <span>2030</span>
+                                        </h4>
+                                        <div class="about-projects-card-body">
+                                            <div class="about-projects-card-desc">
+                                                <p>Hướng tới hệ sinh thái Amorcons: triển lãm, không gian trải nghiệm và
+                                                    cộng
+                                                    đồng yêu kiến trúc — nơi mỗi công trình kể một câu chuyện riêng.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-4.png" width="854"
+                                                    height="304" alt="Tầm nhìn Amorcons — 2030" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
                                 </div>
-                            </article>
-                            <article class="about-projects-card" role="listitem">
-                                <h4 class="about-projects-year">
-                                    <span>2025</span>
-                                </h4>
-                                <div class="about-projects-card-body">
-                                    <div class="about-projects-card-desc">
-                                        <p>Amorcons được hình thành từ một niềm tin:</p>
-                                        <p>không gian sống không chỉ để ở — mà để phản chiếu phong cách sống và cá
-                                            tính của chủ nhân.</p>
-                                    </div>
-                                    <div class="about-projects-media">
-                                        <img src="./images/about/timeline-2025.jpg" width="854" height="304"
-                                            alt="Quầy bếp và hệ tủ — 2025" loading="lazy" decoding="async" />
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="about-projects-card about-projects-card--has-arrow" role="listitem">
-                                <h4 class="about-projects-year">
-                                    <span>2026</span>
-                                </h4>
-                                <div class="about-projects-card-body">
-                                    <div class="about-projects-card-desc">
-                                        <p>Từ những trải nghiệm trong môi trường kiến trúc quốc tế, chúng tôi nhận ra
-                                            một khoảng trống tại Việt Nam — nơi nhiều công trình được tạo ra theo lối
-                                            đại trà, thiếu đi chiều sâu cá nhân và sự tinh tế cần có.</p>
-                                        <p>Amorcons ra đời để theo đuổi một cách tiếp cận khác.</p>
-                                    </div>
-                                    <div class="about-projects-media">
-                                        <img src="./images/about/timeline-2026.jpg" width="854" height="304"
-                                            alt="Không gian bếp tối giản — 2026" loading="lazy" decoding="async" />
-                                        <span class="about-projects-arrow" aria-hidden="true">
-                                            <img src="./images/about/timeline-arrow.svg" width="40" height="40" alt="" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </article>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section> 
+        </section>
     </main>
 
     <!-- =========================================================
@@ -248,6 +325,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 

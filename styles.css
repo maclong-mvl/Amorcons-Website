@@ -1623,6 +1623,10 @@ section.contact-us-section {
   padding: 0 5% 120px;
 }
 
+.page-about-us-section {
+  overflow-x: hidden;
+}
+
 .about-projects-timeline {
   --about-timeline-year: #f48e77;
   --about-timeline-body: #d4d4d8;
@@ -1637,7 +1641,34 @@ section.contact-us-section {
   padding-top: 4px;
 }
 
-/* Đường timeline + 3 chấm — export SVG từ Figma (Group 7) */
+/* Full-bleed Swiper (viewport) */
+.about-projects-track.about-projects-track--swiper {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-top: 4px;
+}
+
+.wrapper-swiper {
+  position: relative;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.wrapper-swiper:before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  top: 52px;
+  z-index: 0;
+  pointer-events: none;
+  line-height: 0;
+  background: rgba(255, 255, 255, 0.20);
+  width: 100%;
+}
+
+/* Đường timeline ngang — ẩn khi dùng Swiper (chấm từng năm ở h4::after) */
 .about-projects-line-decor {
   position: absolute;
   left: 50%;
@@ -1651,6 +1682,10 @@ section.contact-us-section {
   background: rgba(255, 255, 255, 0.20);
 }
 
+.about-projects-track:has(.about-projects-swiper) .about-projects-line-decor {
+  display: none;
+}
+
 .about-projects-line-decor img {
   display: block;
   width: 100%;
@@ -1658,16 +1693,55 @@ section.contact-us-section {
   object-fit: fill;
 }
 
-.about-projects-columns {
+/* Swiper.js — grab / grabbing: toàn bộ vùng slide phải kế thừa cursor (con mặc định auto che .swiper) */
+.about-projects-swiper {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 35px;
-  align-items: start;
-  list-style: none;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: grab;
+}
+
+.about-projects-swiper .swiper-wrapper,
+.about-projects-swiper .swiper-slide {
+  cursor: grab;
+}
+
+/* Mọi phần tử trong slide kế thừa grab từ slide (text, ảnh không còn cursor mũi tên) */
+.about-projects-swiper .swiper-slide,
+.about-projects-swiper .swiper-slide * {
+  cursor: inherit;
+}
+
+.about-projects-swiper.swiper-grabbing,
+.about-projects-swiper.swiper-grabbing .swiper-wrapper,
+.about-projects-swiper.swiper-grabbing .swiper-slide,
+.about-projects-swiper.swiper-grabbing .swiper-slide * {
+  cursor: grabbing !important;
+}
+
+.about-projects-swiper.swiper-grabbing .swiper-slide * {
+  user-select: none;
+}
+
+.about-projects-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+/* Mỗi card = slide; Swiper gán width theo slidesPerView (3 ≥1024px) */
+.about-projects-swiper .about-projects-card.swiper-slide {
+  height: auto;
+  box-sizing: border-box;
   margin: 0;
-  padding: 0;
+}
+
+.about-projects-swiper img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 h4.about-projects-year:after {
@@ -1687,6 +1761,7 @@ h4.about-projects-year {
 
 .about-projects-card {
   margin: 0;
+  max-width: 642px;
 }
 
 .about-projects-year {
@@ -1739,28 +1814,6 @@ h4.about-projects-year {
   display: block;
 }
 
-/* Mũi tên Figma 275:374 — stroke #FDEEEB (red-50) */
-.about-projects-arrow {
-  position: absolute;
-  right: clamp(12px, 4vw, 24px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  user-select: none;
-}
-
-.about-projects-arrow img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
 @media (max-width: 900px) {
   .page-about-us-container {
     padding: 0 16px 80px;
@@ -1775,22 +1828,9 @@ h4.about-projects-year {
     top: 34px;
   }
 
-  .about-projects-columns {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 16px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 8px;
-    padding-bottom: 12px;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .about-projects-card {
-    flex: 0 0 min(300px, 88vw);
-    scroll-snap-align: start;
+  .about-projects-swiper {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .about-projects-year {

@@ -222,3 +222,43 @@ if (hamburgerBtn && mobileMenu) {
         if (e.key === 'Escape') closeMobileMenu();
     });
 }
+
+/** About Us — timeline Swiper (grab cursor, free scroll) */
+(function initAboutProjectsTimelineSwiper() {
+    const el = document.querySelector('.about-projects-swiper');
+    if (!el || typeof Swiper === 'undefined') return;
+
+    const swiper = new Swiper(el, {
+        slidesPerView: 1,
+        spaceBetween: 35,
+        centeredSlides: true,
+        freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.88,
+        },
+        grabCursor: false,
+        watchOverflow: false,
+        simulateTouch: true,
+        resistance: true,
+        resistanceRatio: 0.85,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 35,
+            },
+        },
+    });
+
+    const onLayout = () => {
+        swiper.update();
+        if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
+    };
+
+    window.addEventListener('load', onLayout);
+    window.addEventListener('resize', onLayout);
+})();
