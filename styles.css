@@ -807,13 +807,48 @@ a.srv-cell:focus-visible {
   box-sizing: border-box;
 }
 
-/* --- Khối 1: Thiết kế riêng biệt + 3 bước (250:1535) --- */
+/* --- Khối 1: Thiết kế riêng biệt + Swiper (giống About timeline 251:2458) --- */
 .services-page-steps-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 80px;
+  gap: 0;
   padding-top: 80px;
+  padding-bottom: 48px;
+}
+
+.page-services-steps-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 5% 120px;
+  box-sizing: border-box;
+}
+
+.services-page-steps-timeline .services-steps-rail-top {
+  max-width: 1600px;
+  margin: 0 auto 8px;
+  width: 100%;
+  transform: translateY(49px);
+}
+
+.services-page-steps-timeline .services-steps-markers {
+  padding: 0 8% 20px;
+}
+
+.services-page-steps-timeline .services-steps-line {
+  margin-bottom: 28px;
+}
+
+div#servicesDesignSteps .wrapper-swiper:before {
+  display: none;
+}
+
+div#servicesDesignSteps h4.about-projects-year:after {
+  display: none;
+}
+
+div#servicesDesignSteps h4.about-projects-year {
+  margin-bottom: 18px;
 }
 
 .services-page-steps-header {
@@ -845,17 +880,11 @@ a.srv-cell:focus-visible {
   color: var(--gold-muted);
 }
 
-.services-steps-track {
-  position: relative;
-  width: 100%;
-}
-
 .services-steps-markers {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
-  padding: 0 8% 20px;
   box-sizing: border-box;
 }
 
@@ -891,41 +920,10 @@ a.srv-cell:focus-visible {
   height: 1px;
   width: calc(100% + min(320px, 20vw));
   max-width: 1920px;
-  margin: 0 auto 36px;
+  margin: 0 auto;
   margin-left: 50%;
   transform: translateX(-50%);
   background: #be966d;
-}
-
-.services-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 35px;
-  width: 100%;
-}
-
-.services-steps-label {
-  font-family: "Montserrat", var(--font-sans);
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 1.2;
-  color: var(--gold-red);
-  margin: 0 0 18px;
-}
-
-.services-steps-media {
-  position: relative;
-  width: 100%;
-  height: 434px;
-  overflow: hidden;
-  background: #111;
-}
-
-.services-steps-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 /* --- Khối 2: Thi công luxury (236:1383) --- */
@@ -1194,21 +1192,26 @@ a.srv-cell:focus-visible {
   }
 
   .services-page-steps-inner {
-    gap: 48px;
     padding-top: 56px;
+    padding-bottom: 32px;
   }
 
-  .services-steps-markers {
+  .page-services-steps-container {
+    padding: 0 16px 80px;
+  }
+
+  .services-page-steps-timeline .services-steps-markers {
     padding: 0 4% 16px;
   }
 
-  .services-steps-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .page-services-steps-section .about-projects-timeline {
+    padding: 32px 14px 48px;
+    margin-top: 0;
   }
 
-  .services-steps-media {
-    height: min(434px, 62vw);
+  .page-services-steps-section .about-projects-swiper {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .services-luxury-head {
@@ -2190,6 +2193,27 @@ section.contact-us-section {
 .about-projects-swiper.swiper .swiper-slide {
   height: auto;
   align-self: stretch;
+}
+
+#servicesDesignSteps .about-projects-swiper .about-projects-card.swiper-slide {
+  position: relative;
+
+}
+
+#servicesDesignSteps .swiper {
+  padding-top: 117px;
+}
+
+#servicesDesignSteps .about-projects-swiper .about-projects-card.swiper-slide::before {
+  content: "";
+  position: absolute;
+  top: -117px;
+  left: 0;
+  width: 33px;
+  height: 33px;
+  z-index: 1;
+  background: url('./images/services/icon-step.svg') no-repeat center center;
+  background-size: contain;
 }
 
 /* Mỗi card = slide; cột flex để .about-projects-card-desc giãn, khối ảnh căn đáy đồng đều */

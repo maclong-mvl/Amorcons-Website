@@ -131,8 +131,9 @@
     </section>
 
     <!-- Khối 1: Thiết kế riêng biệt — Figma 250:1535 -->
-    <section class="services-page-section services-page-steps" style="background-image: url('./images/contact-us/bg.png');"
-      aria-labelledby="services-steps-title">
+    <section class="services-page-section services-page-steps page-services-steps-section"
+      id="page-services-steps-section"
+      style="background-image: url('./images/contact-us/bg.png');" aria-labelledby="services-steps-title">
       <div class="services-page-inner services-page-steps-inner">
         <div class="services-page-steps-header" data-aos="fade-up" data-aos-duration="750"
           data-aos-easing="ease-out-cubic">
@@ -140,34 +141,67 @@
             aria-hidden="true" />
           <h2 id="services-steps-title" class="services-page-title">Thiết kế riêng biệt</h2>
         </div>
+      </div>
 
-        <div class="services-steps-track" data-aos="fade-up" data-aos-duration="800" data-aos-delay="60">
-          <div class="services-steps-markers" aria-hidden="true">
-            <span class="services-step-x"></span>
-            <span class="services-step-x"></span>
-            <span class="services-step-x"></span>
+      <!-- Cùng cấu trúc timeline Swiper như About Us (251:2458) -->
+      <div id="servicesDesignSteps" class="page-services-steps-container">
+        <div class="about-projects-timeline services-page-steps-timeline" data-aos="fade-up"
+          data-aos-duration="800" data-aos-delay="60" data-aos-easing="ease-out-cubic">
+          <h3 class="sr-only" id="services-design-steps-heading">Ba bước thiết kế riêng biệt</h3>
+          <div class="services-steps-rail-top" aria-hidden="true">
+            <div class="services-steps-line"></div>
           </div>
-          <div class="services-steps-line" aria-hidden="true"></div>
-          <div class="services-steps-grid">
-            <div class="services-steps-col">
-              <p class="services-steps-label">Step 1</p>
-              <div class="services-steps-media">
-                <img src="./images/home/services/services-1.jpg" width="640" height="434"
-                  alt="Không gian bếp — bước 1 thiết kế" loading="lazy" decoding="async" />
-              </div>
-            </div>
-            <div class="services-steps-col">
-              <p class="services-steps-label">Step 2</p>
-              <div class="services-steps-media">
-                <img src="./images/home/services/services-2.jpg" width="640" height="434"
-                  alt="Phòng sinh hoạt — bước 2 thiết kế" loading="lazy" decoding="async" />
-              </div>
-            </div>
-            <div class="services-steps-col">
-              <p class="services-steps-label">Step 3</p>
-              <div class="services-steps-media">
-                <img src="./images/home/services/services-3.png" width="640" height="434"
-                  alt="Nội thất hiện đại — bước 3 thiết kế" loading="lazy" decoding="async" />
+          <div class="about-projects-track about-projects-track--swiper">
+            <div class="wrapper-swiper">
+              <div class="about-projects-line-decor" aria-hidden="true"></div>
+              <div class="swiper about-projects-swiper" role="region"
+                aria-roledescription="carousel" aria-labelledby="services-design-steps-heading">
+                <div class="swiper-wrapper">
+                  <article class="about-projects-card swiper-slide">
+                    <h4 class="about-projects-year"><span>Step 1</span></h4>
+                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                      data-aos-easing="ease-out-cubic" data-aos-delay="0"
+                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
+                      <div class="about-projects-card-desc">
+                        <p>Khảo sát không gian, thu thập nhu cầu và định hướng phong cách — nền tảng cho mọi quyết
+                          định thiết kế.</p>
+                      </div>
+                      <div class="about-projects-media">
+                        <img src="./images/home/services/services-1.jpg" width="854" height="304"
+                          alt="Không gian bếp — bước 1 thiết kế" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                  </article>
+                  <article class="about-projects-card swiper-slide">
+                    <h4 class="about-projects-year"><span>Step 2</span></h4>
+                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                      data-aos-easing="ease-out-cubic" data-aos-delay="80"
+                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
+                      <div class="about-projects-card-desc">
+                        <p>Phát triển bản vẽ ý tưởng, moodboard vật liệu và phương án bố cục tinh chỉnh cùng chủ
+                          nhà.</p>
+                      </div>
+                      <div class="about-projects-media">
+                        <img src="./images/home/services/services-2.jpg" width="854" height="304"
+                          alt="Phòng sinh hoạt — bước 2 thiết kế" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                  </article>
+                  <article class="about-projects-card swiper-slide">
+                    <h4 class="about-projects-year"><span>Step 3</span></h4>
+                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                      data-aos-easing="ease-out-cubic" data-aos-delay="160"
+                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
+                      <div class="about-projects-card-desc">
+                        <p>Hoàn thiện thiết kế chi tiết, kỹ thuật thi công và bàn giao hồ sơ trước khi triển khai.</p>
+                      </div>
+                      <div class="about-projects-media">
+                        <img src="./images/home/services/services-3.png" width="854" height="304"
+                          alt="Nội thất hiện đại — bước 3 thiết kế" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
           </div>

@@ -223,49 +223,57 @@ if (hamburgerBtn && mobileMenu) {
     });
 }
 
-/** About Us — timeline Swiper (Figma desktop 251:2458, mobile peek 289:2267) */
+/** Timeline Swiper — About Us + Services (cùng class .about-projects-swiper, Figma 251:2458 / mobile 289:2267) */
 (function initAboutProjectsTimelineSwiper() {
-    const el = document.querySelector('.about-projects-swiper');
-    if (!el || typeof Swiper === 'undefined') return;
+    const nodes = document.querySelectorAll('.about-projects-swiper');
+    if (!nodes.length || typeof Swiper === 'undefined') return;
 
-    const slidesOffsetBeforeResponsive = () =>
-        window.innerWidth < 640 ? 16 : Math.round(el.offsetWidth * 0.1);
+    const swipers = [];
 
-    const swiper = new Swiper(el, {
-        slidesPerView: 1.08,
-        spaceBetween: 14,
-        slidesOffsetBefore: slidesOffsetBeforeResponsive(),
-        freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.88,
-        },
-        grabCursor: true,
-        watchOverflow: false,
-        simulateTouch: true,
-        resistance: true,
-        resistanceRatio: 0.85,
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 24,
+    nodes.forEach((el) => {
+        const slidesOffsetBeforeResponsive = () =>
+            window.innerWidth < 640 ? 16 : Math.round(el.offsetWidth * 0.1);
+
+        const swiper = new Swiper(el, {
+            slidesPerView: 1.08,
+            spaceBetween: 14,
+            slidesOffsetBefore: slidesOffsetBeforeResponsive(),
+            freeMode: {
+                enabled: true,
+                momentum: true,
+                momentumRatio: 0.88,
             },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 35,
+            grabCursor: true,
+            watchOverflow: false,
+            simulateTouch: true,
+            resistance: true,
+            resistanceRatio: 0.85,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 35,
+                },
             },
-        },
-        on: {
-            init(sw) {
-                sw.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
-                sw.update();
+            on: {
+                init(sw) {
+                    sw.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
+                    sw.update();
+                },
             },
-        },
+        });
+
+        swipers.push({ swiper, slidesOffsetBeforeResponsive });
     });
 
     const onLayout = () => {
-        swiper.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
-        swiper.update();
+        swipers.forEach(({ swiper, slidesOffsetBeforeResponsive }) => {
+            swiper.params.slidesOffsetBefore = slidesOffsetBeforeResponsive();
+            swiper.update();
+        });
         if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
     };
 
