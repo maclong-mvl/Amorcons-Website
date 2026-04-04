@@ -806,6 +806,10 @@ a.srv-cell:focus-visible {
   box-sizing: border-box;
 }
 
+.services-page-turnkey-inner {
+  padding: 0 5% 120px;
+}
+
 /* --- Khối 1: Thiết kế riêng biệt + Swiper (giống About timeline 251:2458) --- */
 .services-page-steps-inner {
   display: flex;
@@ -1463,9 +1467,9 @@ li.services-turnkey-item.is-active::before {
   }
 
   .services-luxury-head {
-    align-items: center;
+    align-items: start;
     text-align: center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }
 
   .services-luxury-block {
@@ -2847,6 +2851,19 @@ h4.about-projects-year {
 }
 
 @media (max-width: 768px) {
+  .services-luxury-pagination-aside {
+    display: none;
+  }
+
+  #servicesDesignSteps .swiper {
+    padding-top: 65px;
+  }
+
+  #servicesDesignSteps .about-projects-swiper .about-projects-card.swiper-slide::before {
+    top: -60px;
+    width: 20px;
+    height: 20px;
+  }
 
   /* Giống .contact-us mobile (289:1177): overlay + vùng 878px, form kính trên, media dưới */
   #page-contact-us-section {
@@ -3425,6 +3442,146 @@ h4.about-projects-year {
     font-weight: 400;
   }
 
+  /* --- Services page — Figma mobile MVL / 289:1573 (40px rhythm, 16px gutters, step cards) --- */
+  .page-services {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .page-services>.hero {
+    flex-shrink: 0;
+  }
+
+  .page-services .services-page-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .page-services .services-page-title,
+  .page-services .services-luxury-title {
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.4px;
+  }
+
+  .page-services .services-page-steps-header,
+  .page-services .services-luxury-head,
+  .page-services .services-turnkey-intro {
+    gap: 12px;
+  }
+
+  .page-services .services-page-steps-inner {
+    padding-top: 40px;
+    padding-bottom: 16px;
+  }
+
+  .page-services .page-services-steps-container {
+    padding-bottom: 40px;
+  }
+
+  .page-services-steps-section .about-projects-timeline {
+    padding: 24px 0 32px;
+    margin-top: 0;
+  }
+
+  .page-services-steps-section .about-projects-swiper {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+  }
+
+  .page-services-steps-section .about-projects-year {
+    font-size: 10px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--gold-red);
+    margin: 0 0 10px;
+    text-transform: none;
+    font-weight: 500;
+    font-family: var(--font-sans);
+  }
+
+  .page-services-steps-section .about-projects-card-desc {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+  }
+
+  .page-services-steps-section .about-projects-media {
+    height: auto;
+    aspect-ratio: 358 / 127;
+    min-height: 118px;
+    max-height: 200px;
+    overflow: hidden;
+  }
+
+  .page-services-steps-section .about-projects-card {
+    max-width: none;
+  }
+
+  .page-services .services-page-luxury-inner {
+    padding-top: 40px;
+    padding-bottom: 48px;
+    gap: 32px;
+  }
+
+  /* .page-services .wapper-luxury {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  } */
+
+  .page-services .services-luxury-swiper {
+    height: min(52vh, 420px);
+    min-height: 260px;
+    max-height: 480px;
+  }
+
+  .page-services .services-luxury-sub {
+    font-size: 12px;
+    line-height: 18px;
+    color: #afafaf;
+  }
+
+  .page-services .services-page-turnkey-inner {
+    padding-top: 32px;
+    padding-bottom: 48px;
+    gap: 40px;
+  }
+
+  .page-services .services-turnkey-lead {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .page-services .services-turnkey-panel {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* --- Home (Figma 289:1573 — cột chính gap-[40px], tránh double padding với hero) --- */
+  .page-home {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .page-home>.hero {
+    flex-shrink: 0;
+  }
+
+  .page-home .about-wrap {
+    padding: 0 16px 40px;
+  }
+
+  .page-home .services-header {
+    padding: 40px 16px;
+    gap: 12px;
+  }
+
   /* --- About: mobile order = divider → headline → mosaic → timeline --- */
   .about-wrap {
     display: flex;
@@ -3538,7 +3695,7 @@ h4.about-projects-year {
   /* Services grid — Figma 289:1162: 2×2, gap-px, ô aspect 328/237.87 */
   .services-grid {
     display: grid;
-    grid-template-columns: 1fr 1f;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-auto-rows: auto;
     gap: 1px;
