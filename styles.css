@@ -1732,11 +1732,19 @@ section.contact-us-section {
   align-items: stretch;
 }
 
-/* Mỗi card = slide; Swiper gán width theo slidesPerView (3 ≥1024px) */
-.about-projects-swiper .about-projects-card.swiper-slide {
+/* Cùng hàng: mọi slide cao bằng slide cao nhất; CDN Swiper hay để height:100% — override */
+.about-projects-swiper.swiper .swiper-slide {
   height: auto;
+  align-self: stretch;
+}
+
+/* Mỗi card = slide; cột flex để .about-projects-card-desc giãn, khối ảnh căn đáy đồng đều */
+.about-projects-swiper .about-projects-card.swiper-slide {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   margin: 0;
+  min-height: 0;
 }
 
 .about-projects-swiper img {
@@ -1765,6 +1773,7 @@ h4.about-projects-year {
 }
 
 .about-projects-year {
+  flex-shrink: 0;
   margin: 0 0 55px;
   padding: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -1777,12 +1786,19 @@ h4.about-projects-year {
 
 .about-projects-card-body {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 18px;
+  min-height: 0;
 }
 
 .about-projects-card-desc {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-end;
   margin: 0;
+  min-height: 0;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -1798,9 +1814,10 @@ h4.about-projects-year {
   margin-bottom: 0;
 }
 
-/* Figma: khối ảnh cố định 304px chiều cao */
+/* Figma: khối ảnh cố định 304px chiều cao; flex-shrink 0 để căn đáy đồng bộ các card */
 .about-projects-media {
   position: relative;
+  flex-shrink: 0;
   width: 100%;
   height: 304px;
   overflow: hidden;
@@ -2417,7 +2434,6 @@ h4.about-projects-year {
     aspect-ratio: 358 / 127;
     min-height: 118px;
     max-height: 200px;
-    border-radius: 10px;
     overflow: hidden;
   }
 
@@ -2471,7 +2487,6 @@ h4.about-projects-year {
 
   .about-vm-media-frame {
     aspect-ratio: 351 / 254;
-    border-radius: 10px;
     overflow: hidden;
   }
 
@@ -2481,10 +2496,6 @@ h4.about-projects-year {
     width: 97%;
     height: 94%;
     border-radius: 6px;
-  }
-
-  .about-vm-media-frame img {
-    border-radius: 10px;
   }
 
   .about-vm-copy {
