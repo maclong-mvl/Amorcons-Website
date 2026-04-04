@@ -1590,7 +1590,7 @@ section.contact-us-section {
   padding-bottom: 100px;
 }
 
-#page-contact-us-section{
+#page-contact-us-section {
   padding: 0 5%;
 }
 
@@ -1612,6 +1612,195 @@ section.contact-us-section {
   height: min(70vh, 560px);
   min-height: 280px;
   border: 0;
+}
+
+/* =====================================================================
+   ABOUT US PAGE — Timeline (Figma Amorcons-Website 251:2458, file R7QKqn8kOqqMcNZv5JHiLO)
+===================================================================== */
+.page-about-us-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 5% 120px;
+}
+
+.about-projects-timeline {
+  --about-timeline-year: #f48e77;
+  --about-timeline-body: #d4d4d8;
+  --about-timeline-bg: #1a1a1a;
+}
+
+.about-projects-track {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-top: 4px;
+}
+
+/* Đường timeline + 3 chấm — export SVG từ Figma (Group 7) */
+.about-projects-line-decor {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100vw - 32px, 1920px);
+  height: 1px;
+  top: 55px;
+  z-index: 0;
+  pointer-events: none;
+  line-height: 0;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.about-projects-line-decor img {
+  display: block;
+  width: 100%;
+  height: 7px;
+  object-fit: fill;
+}
+
+.about-projects-columns {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 35px;
+  align-items: start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h4.about-projects-year:after {
+  content: "";
+  background: var(--about-timeline-year);
+  display: block;
+  height: 7px;
+  width: 7px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: -15px;
+}
+
+h4.about-projects-year {
+  position: relative;
+}
+
+.about-projects-card {
+  margin: 0;
+}
+
+.about-projects-year {
+  margin: 0 0 55px;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+  color: var(--about-timeline-year);
+  text-transform: none;
+}
+
+.about-projects-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-projects-card-desc {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--about-timeline-body);
+}
+
+.about-projects-card-desc p {
+  margin: 0 0 10px;
+}
+
+.about-projects-card-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Figma: khối ảnh cố định 304px chiều cao */
+.about-projects-media {
+  position: relative;
+  width: 100%;
+  height: 304px;
+  overflow: hidden;
+  background: #111;
+}
+
+.about-projects-media>img:first-of-type {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mũi tên Figma 275:374 — stroke #FDEEEB (red-50) */
+.about-projects-arrow {
+  position: absolute;
+  right: clamp(12px, 4vw, 24px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-projects-arrow img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .page-about-us-container {
+    padding: 0 16px 80px;
+  }
+
+  .about-projects-timeline {
+    padding: 32px 14px 48px;
+    margin-top: 16px;
+  }
+
+  .about-projects-line-decor {
+    top: 34px;
+  }
+
+  .about-projects-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 8px;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-projects-card {
+    flex: 0 0 min(300px, 88vw);
+    scroll-snap-align: start;
+  }
+
+  .about-projects-year {
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .about-projects-card-desc {
+    line-height: 1.45;
+  }
 }
 
 /* Trang Contact Us — responsive scoped (#page-contact-us-*).
@@ -1667,6 +1856,7 @@ section.contact-us-section {
 }
 
 @media (max-width: 768px) {
+
   /* Giống .contact-us mobile (289:1177): overlay + vùng 878px, form kính trên, media dưới */
   #page-contact-us-section {
     position: relative;
