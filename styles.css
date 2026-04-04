@@ -1001,7 +1001,7 @@ div#servicesDesignSteps h4.about-projects-year {
   box-sizing: border-box;
 }
 
-.services-luxury-swiper .swiper-slide img {
+.services-luxury-swiper .swiper-slide video {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -306,6 +306,17 @@ if (hamburgerBtn && mobileMenu) {
         }
     }
 
+    function syncLuxuryVideos(swiper) {
+        const el = swiper?.el;
+        if (!el) return;
+        el.querySelectorAll('.swiper-slide video').forEach((v) => {
+            v.pause();
+        });
+        const slide = swiper.slides[swiper.activeIndex];
+        const vid = slide?.querySelector('video');
+        if (vid) vid.play().catch(() => {});
+    }
+
     const luxurySlideCount = luxuryRoot
         ? luxuryRoot.querySelectorAll('.swiper-wrapper > .swiper-slide').length
         : 0;
@@ -352,9 +363,11 @@ if (hamburgerBtn && mobileMenu) {
             on: {
                 init(s) {
                     updateLuxuryProgress(s);
+                    syncLuxuryVideos(s);
                 },
                 slideChange(s) {
                     updateLuxuryProgress(s);
+                    syncLuxuryVideos(s);
                 },
             },
         });
@@ -373,7 +386,10 @@ if (hamburgerBtn && mobileMenu) {
 
     window.addEventListener('load', () => {
         if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
-        if (luxurySwiper) luxurySwiper.update();
+        if (luxurySwiper) {
+            luxurySwiper.update();
+            syncLuxuryVideos(luxurySwiper);
+        }
     });
 
     const turnkeyList = document.getElementById('servicesTurnkeyList');
