@@ -284,24 +284,97 @@ if (hamburgerBtn && mobileMenu) {
 /** Services page — luxury Swiper + tổng thầu steps (Figma 223:342) */
 (function initServicesPage() {
     const luxuryRoot = document.querySelector('.services-luxury-swiper');
-    if (luxuryRoot && typeof Swiper !== 'undefined') {
-        const swiper = new Swiper(luxuryRoot, {
+    const luxuryPaginationEl = document.getElementById('servicesLuxuryPagination');
+    let luxurySwiper = null;
+
+    function luxuryProgressIsHorizontal() {
+        return window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function updateLuxuryProgress(swiper) {
+        const fill = document.getElementById('servicesLuxuryProgressFill');
+        if (!fill) return;
+        const n = luxurySlideCount > 0 ? luxurySlideCount : 1;
+        const i = swiper.realIndex;
+        const ratio = n <= 1 ? 1 : (i + 1) / n;
+        if (luxuryProgressIsHorizontal()) {
+            fill.style.height = '100%';
+            fill.style.width = `${ratio * 100}%`;
+        } else {
+            fill.style.width = '100%';
+            fill.style.height = `${ratio * 100}%`;
+        }
+    }
+
+    const luxurySlideCount = luxuryRoot
+        ? luxuryRoot.querySelectorAll('.swiper-wrapper > .swiper-slide').length
+        : 0;
+
+    const luxuryMidDecor =
+        luxurySlideCount >= 3
+            ? `<span class="services-luxury-pagination-mid" aria-hidden="true">
+  <img class="services-luxury-pagination-logo" src="./images/pagination.svg" width="15" height="15" alt="" decoding="async" />
+  <span class="services-luxury-pagination-track">
+    <span class="services-luxury-pagination-track-fill" id="servicesLuxuryProgressFill"></span>
+  </span>
+</span>`
+            : '';
+
+    if (luxuryRoot && luxuryPaginationEl) {
+        const paginationOpts = {
+            el: luxuryPaginationEl,
+            clickable: true,
+        };
+        if (luxurySlideCount >= 3) {
+            paginationOpts.renderBullet = (index, className) => {
+                const bullet = `<span class="${className}" tabindex="0" role="button"></span>`;
+                return index === 1 ? bullet + luxuryMidDecor : bullet;
+            };
+        }
+
+        luxurySwiper = new Swiper(luxuryRoot, {
+            direction: 'vertical',
             loop: true,
             speed: 700,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            simulateTouch: false,
             autoplay: {
-                delay: 5200,
-                disableOnInteraction: false,
+                delay: 3000,
+                pauseOnMouseEnter: true,
             },
-            pagination: {
-                el: luxuryRoot.querySelector('.services-luxury-pagination'),
-                clickable: true,
+            pagination: paginationOpts,
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 1,
+                releaseOnEdges: true,
+            },
+            on: {
+                init(s) {
+                    updateLuxuryProgress(s);
+                },
+                slideChange(s) {
+                    updateLuxuryProgress(s);
+                },
             },
         });
-        window.addEventListener('load', () => {
-            if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
-            swiper.update();
+
+        window.addEventListener('resize', () => {
+            if (luxurySwiper) updateLuxuryProgress(luxurySwiper);
+        });
+
+        luxuryRoot.addEventListener('mouseenter', () => {
+            if (luxurySwiper.mousewheel) luxurySwiper.mousewheel.disable();
+        });
+        luxuryRoot.addEventListener('mouseleave', () => {
+            if (luxurySwiper.mousewheel) luxurySwiper.mousewheel.enable();
         });
     }
+
+    window.addEventListener('load', () => {
+        if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
+        if (luxurySwiper) luxurySwiper.update();
+    });
 
     const turnkeyList = document.getElementById('servicesTurnkeyList');
     const turnkeyImg = document.getElementById('servicesTurnkeyImg');
