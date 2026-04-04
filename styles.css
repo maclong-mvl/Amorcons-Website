@@ -1606,6 +1606,174 @@ section.contact-us-section {
   border: 32px solid rgba(48, 44, 40, 1);
 }
 
+.page-contact-us-map-iframe {
+  display: block;
+  width: 100%;
+  height: min(70vh, 560px);
+  min-height: 280px;
+  border: 0;
+}
+
+/* Trang Contact Us — responsive, scoped (#page-contact-us-*), không ảnh hưởng index */
+@media (max-width: 1200px) {
+  .page-contact-us-container {
+    gap: 56px;
+    padding-bottom: 100px;
+  }
+
+  #page-contact-us-section .page-contact-us-right .contact-form-box {
+    width: min(576px, 100%);
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .page-contact-us-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding-bottom: 80px;
+  }
+
+  .page-contact-us-left,
+  .page-contact-us-right {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .page-contact-us-left-content {
+    justify-content: center;
+  }
+
+  .page-contact-us-photo-1,
+  .page-contact-us-photo-2 {
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #page-contact-us-section .page-contact-us-right .contact-form-box {
+    width: 100%;
+    max-width: 576px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #page-contact-us-map-section {
+    padding-bottom: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  #page-contact-us-section .services-header,
+  #page-contact-us-map-section .services-header {
+    padding-top: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 48px;
+  }
+
+  #page-contact-us-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .page-contact-us-left-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .page-contact-us-photo-1,
+  .page-contact-us-photo-2 {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+  }
+
+  #page-contact-us-section .page-contact-us-right .contact-form-box {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 24px 20px 28px;
+  }
+
+  #page-contact-us-map-section {
+    padding-bottom: 80px;
+  }
+
+  #page-contact-us-map-section .wp-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .page-contact-us-map-content {
+    border-width: 12px;
+  }
+
+  .page-contact-us-map-iframe {
+    height: min(55vh, 420px);
+    min-height: 240px;
+  }
+
+  #page-contact-us-section .contact-form-box .contact-us-title {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.426px;
+  }
+
+  #page-contact-us-section .form-pre-title,
+  #page-contact-us-section .form-post-title {
+    font-size: 12px;
+    line-height: 1.35;
+    letter-spacing: 0.34px;
+  }
+
+  #page-contact-us-section .contact-form input,
+  #page-contact-us-section .contact-form textarea {
+    padding: 10px 14px;
+    font-size: 13px;
+    letter-spacing: 0.213px;
+    background: #1c1b18;
+  }
+
+  #page-contact-us-section .contact-form textarea {
+    min-height: 120px;
+  }
+
+  #page-contact-us-section .submit-btn {
+    border-radius: 12px;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    box-shadow:
+      0 6.817px 27.266px rgba(210, 183, 155, 0.25),
+      0 1.704px 6.817px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  #page-contact-us-section .page-contact-us-right .contact-form-box {
+    padding: 16px 14px 22px;
+  }
+
+  .page-contact-us-map-content {
+    border-width: 8px;
+  }
+
+  .page-contact-us-map-iframe {
+    height: min(50vh, 360px);
+    min-height: 200px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mobile-menu {
     transition: none !important;
@@ -1636,7 +1804,7 @@ section.contact-us-section {
    RESPONSIVE — Large Tablet ≤1400px
 ===================================================================== */
 @media (max-width: 1400px) {
-  .contact-form-box {
+  section.contact-us-section .contact-form-box {
     width: min(576px, 45vw);
     margin-right: 3%;
   }
@@ -1705,7 +1873,7 @@ section.contact-us-section {
     padding-left: 0;
   }
 
-  .contact-form-box {
+  section.contact-us-section .contact-form-box {
     width: 100%;
     max-width: 576px;
     margin: 0 auto;
@@ -2092,7 +2260,7 @@ section.contact-us-section {
     gap: 0;
   }
 
-  .contact-form-box {
+  section.contact-us-section .contact-form-box {
     position: absolute;
     left: 10px;
     top: 31.84px;
@@ -2110,7 +2278,7 @@ section.contact-us-section {
     z-index: 2;
   }
 
-  .contact-left {
+  section.contact-us-section .contact-left {
     position: absolute;
     left: 50%;
     top: 668px;
@@ -2151,33 +2319,33 @@ section.contact-us-section {
   }
 
   /* Figma: text-[24px] leading-[38.991px] tracking-[-0.426px] */
-  .contact-form-box .contact-us-title {
+  section.contact-us-section .contact-form-box .contact-us-title {
     font-size: 24px;
     line-height: 38.991px;
     letter-spacing: -0.426px;
   }
 
   /* Figma: text-[12px] leading-[13.633px] tracking-[0.3408px] */
-  .form-pre-title,
-  .form-post-title {
+  section.contact-us-section .form-pre-title,
+  section.contact-us-section .form-post-title {
     font-size: 12px;
     line-height: 13.633px;
     letter-spacing: 0.34px;
   }
 
-  .contact-form input,
-  .contact-form textarea {
+  section.contact-us-section .contact-form input,
+  section.contact-us-section .contact-form textarea {
     padding: 10.225px 13.633px;
     font-size: 13px;
     letter-spacing: 0.213px;
     background: #1c1b18;
   }
 
-  .contact-form textarea {
+  section.contact-us-section .contact-form textarea {
     min-height: 140px;
   }
 
-  .submit-btn {
+  section.contact-us-section .submit-btn {
     border-radius: 11.929px;
     min-height: 44px;
     font-size: 14px;
@@ -2259,7 +2427,7 @@ section.contact-us-section {
     letter-spacing: -0.56px;
   }
 
-  .contact-form-box {
+  section.contact-us-section .contact-form-box {
     padding: 12px 12px 20px;
   }
 }
