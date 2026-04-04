@@ -2,430 +2,465 @@
 <html lang="vi">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amorcons – Dịch vụ</title>
-  <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" sizes="any" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amorcons – Dịch vụ</title>
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
 
-  <link rel="stylesheet" href="./styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
 
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main Navigation">
-      <a href="./index.html" class="nav-logo-link">
-        <img class="nav-logo desktop-only"
-          src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
-        <img class="nav-logo mobile-only" src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce"
-          alt="Amorcons" />
-      </a>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="./index.html" class="nav-logo-link">
+                <img class="nav-logo desktop-only"
+                    src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
+                <img class="nav-logo mobile-only"
+                    src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
+            </a>
 
-      <ul class="nav-tabs">
-        <li class="nav-item"><a class="nav-tab" href="./index.html">Trang chủ</a></li>
-        <li class="nav-item"><a class="nav-tab active" href="./services.html" aria-current="page">Services Page</a>
-        </li>
-        <li class="nav-item"><a class="nav-tab" href="./about-us.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-tab" href="./contact.html">Liên hệ</a></li>
-      </ul>
-
-      <div class="nav-right">
-        <a href="#" class="nav-btn lang-btn" aria-label="Chọn ngôn ngữ: Tiếng Việt">
-          <img src="https://www.figma.com/api/mcp/asset/c236d5f4-5ec3-420b-854f-2898bedfa44a" alt=""
-            aria-hidden="true" />
-          <span class="nav-btn-label">VN</span>
-        </a>
-        <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
-          <img src="https://www.figma.com/api/mcp/asset/c8bbff4a-f8d6-4430-bf45-7c4032ecbac3" alt="" aria-hidden="true"
-            class="desktop-only" />
-          <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true" class="mobile-only" />
-          <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
-        </a>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"
-          aria-controls="mobileMenu">
-          <img src="./images/header/header-mobile/button-open-menu.svg" alt="" class="mobile-only" />
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation" aria-hidden="true">
-    <div class="mobile-menu-accent" aria-hidden="true">
-      <span class="mobile-menu-accent-line"></span>
-      <div class="mobile-menu-accent-dots">
-        <span></span>
-        <span class="mobile-menu-accent-dot-mid"></span>
-        <span></span>
-      </div>
-      <span class="mobile-menu-accent-line"></span>
-    </div>
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-links">
-        <a class="mobile-menu-link" href="./index.html">Trang Chủ</a>
-        <a class="mobile-menu-link active" href="./services.html">Services Page</a>
-        <a class="mobile-menu-link" href="./about-us.html">About Us</a>
-        <a class="mobile-menu-link" href="./contact.html">Liên Hệ</a>
-      </div>
-      <div class="mobile-menu-lang-row">
-        <span class="mobile-menu-lang-label">Langue</span>
-        <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
-          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="en" aria-pressed="true">Eng</button>
-          <button type="button" class="mobile-menu-lang-btn" data-lang="vi" aria-pressed="false">Vi</button>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu-footer">
-      <div class="mobile-menu-follow-row">
-        <span class="mobile-menu-follow">Follow us</span>
-        <span class="mobile-menu-follow-line" aria-hidden="true"></span>
-      </div>
-      <ul class="mobile-menu-social-list">
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Instagram">
-            <img src="./images/footer/intal.svg" alt="Instagram" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Facebook">
-            <img src="./images/footer/facebook.svg" alt="Facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on YouTube">
-            <img src="./images/footer/youtube.svg" alt="YouTube" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on X">
-            <img src="./images/footer/x.svg" alt="X" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <main class="page-services" id="page-services">
-    <!-- Hero — Figma 223:344 -->
-    <section class="hero" aria-labelledby="hero-title-services">
-      <div class="hero-bg">
-        <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
-          aria-hidden="true"></video>
-        <div class="hero-overlay-top"></div>
-      </div>
-
-      <div class="hero-text" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120"
-        data-aos-easing="ease-out-cubic">
-        <h1 id="hero-title-services" class="hero-title">Kiến tạo không gian <br class="mobile-only"> chạm cảm xúc</h1>
-        <p class="hero-subtitle">
-          Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được cân nhắc và mỗi trải nghiệm đều mang đến
-          đẳng cấp riêng biệt
-        </p>
-      </div>
-    </section>
-
-    <!-- Khối 1: Thiết kế riêng biệt — Figma 250:1535 -->
-    <section class="services-page-section services-page-steps page-services-steps-section"
-      id="page-services-steps-section"
-      style="background-image: url('./images/contact-us/bg.png');" aria-labelledby="services-steps-title">
-      <div class="services-page-inner services-page-steps-inner">
-        <div class="services-page-steps-header" data-aos="fade-up" data-aos-duration="750"
-          data-aos-easing="ease-out-cubic">
-          <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
-            aria-hidden="true" />
-          <h2 id="services-steps-title" class="services-page-title">Thiết kế riêng biệt</h2>
-        </div>
-      </div>
-
-      <!-- Cùng cấu trúc timeline Swiper như About Us (251:2458) -->
-      <div id="servicesDesignSteps" class="page-services-steps-container">
-        <div class="about-projects-timeline services-page-steps-timeline" data-aos="fade-up"
-          data-aos-duration="800" data-aos-delay="60" data-aos-easing="ease-out-cubic">
-          <h3 class="sr-only" id="services-design-steps-heading">Bảy bước thiết kế riêng biệt</h3>
-          <div class="services-steps-rail-top" aria-hidden="true">
-            <div class="services-steps-line"></div>
-          </div>
-          <div class="about-projects-track about-projects-track--swiper">
-            <div class="wrapper-swiper">
-              <div class="about-projects-line-decor" aria-hidden="true"></div>
-              <div class="swiper about-projects-swiper" role="region"
-                aria-roledescription="carousel" aria-labelledby="services-design-steps-heading">
-                <div class="swiper-wrapper">
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 1</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="0"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Khảo sát không gian, thu thập nhu cầu và định hướng phong cách — nền tảng cho mọi quyết
-                          định thiết kế.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/home/services/services-1.jpg" width="854" height="304"
-                          alt="Không gian bếp — bước 1 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 2</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="80"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Phát triển bản vẽ ý tưởng, moodboard vật liệu và phương án bố cục tinh chỉnh cùng chủ
-                          nhà.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/home/services/services-2.jpg" width="854" height="304"
-                          alt="Phòng sinh hoạt — bước 2 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 3</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="160"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Hoàn thiện thiết kế chi tiết, kỹ thuật thi công và bàn giao hồ sơ trước khi triển khai.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/home/services/services-3.png" width="854" height="304"
-                          alt="Nội thất hiện đại — bước 3 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 4</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="240"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Rà soát dự toán, lộ trình thi công và phối hợp nhà cung cấp để đảm bảo chất lượng trong
-                          từng hạng mục.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/home/services/services-4.png" width="854" height="304"
-                          alt="Không gian nội thất — bước 4 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 5</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="320"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Giám sát thi công thô, hệ thống kỹ thuật và hoàn thiện nền trước khi lắp đặt nội thất.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/about/timeline-2024.jpg" width="854" height="304"
-                          alt="Không gian dự án — bước 5 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 6</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="400"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Lắp đặt nội thất, chiếu sáng và hạng mục hoàn thiện cuối theo đúng bản vẽ đã phê duyệt.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/about/timeline-2025.jpg" width="854" height="304"
-                          alt="Không gian bếp — bước 6 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                  <article class="about-projects-card swiper-slide">
-                    <h4 class="about-projects-year"><span>Step 7</span></h4>
-                    <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
-                      data-aos-easing="ease-out-cubic" data-aos-delay="480"
-                      data-aos-anchor="#page-services-steps-section" data-aos-anchor-placement="top-bottom">
-                      <div class="about-projects-card-desc">
-                        <p>Nghiệm thu kỹ thuật, chỉnh sửa tinh và bàn giao cùng hướng dẫn vận hành, bảo trì.</p>
-                      </div>
-                      <div class="about-projects-media">
-                        <img src="./images/about/timeline-2026.jpg" width="854" height="304"
-                          alt="Không gian hoàn thiện — bước 7 thiết kế" loading="lazy" decoding="async" />
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Khối 2: Thi công luxury — Figma 236:1383 -->
-    <section class="services-page-section services-page-luxury" aria-labelledby="services-luxury-title">
-      <div class="services-page-inner services-page-luxury-inner">
-        <div class="services-luxury-head" data-aos="fade-up" data-aos-duration="750">
-          <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
-            aria-hidden="true" />
-          <h2 id="services-luxury-title" class="services-luxury-title">Thi công nội thất hoàn thiện luxury</h2>
-          <p class="services-luxury-sub">Độ chính xác 0.1mm, vật liệu tinh tuyển</p>
-        </div>
-
-        <div class="services-luxury-block" data-aos="fade-up" data-aos-duration="850" data-aos-delay="80">
-          <div class="services-luxury-showcase">
-            <div class="swiper services-luxury-swiper" role="region" aria-roledescription="carousel"
-              aria-label="Hình ảnh thi công luxury">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="./images/home/services/services-2.jpg" alt="Không gian nội thất cao cấp — 1" loading="lazy"
-                    decoding="async" />
-                </div>
-                <div class="swiper-slide">
-                  <img src="./images/home/services/services-3.png" alt="Không gian nội thất cao cấp — 2" loading="lazy"
-                    decoding="async" />
-                </div>
-                <div class="swiper-slide">
-                  <img src="./images/home/services/services-4.png" alt="Không gian nội thất cao cấp — 3" loading="lazy"
-                    decoding="async" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <aside class="services-luxury-pagination-aside" aria-label="Chọn ảnh trong slider luxury">
-            <div id="servicesLuxuryPagination" class="services-luxury-pagination swiper-pagination"></div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- Khối 3: Tổng thầu trọn gói — Figma 250:1625 -->
-    <section class="services-page-section services-page-turnkey" aria-labelledby="services-turnkey-title">
-      <div class="services-page-inner services-page-turnkey-inner">
-        <div class="services-turnkey-intro" data-aos="fade-up" data-aos-duration="750">
-          <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
-            aria-hidden="true" />
-          <h2 id="services-turnkey-title" class="services-page-title services-page-title--muted">Dịch vụ tổng thầu thiết
-            kế thi công trọn gói</h2>
-          <p class="services-turnkey-lead">Amorcons đồng hành trọn hành trình từ ý tưởng đến bàn giao, đảm bảo đồng
-            nhất thẩm mỹ và chất lượng thi công.</p>
-        </div>
-
-        <div class="services-turnkey-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="60">
-          <div class="services-turnkey-visual">
-            <div class="services-turnkey-frame">
-              <img id="servicesTurnkeyImg" src="./images/about/timeline-2024.jpg" width="917" height="687"
-                alt="Hình minh họa quy trình tổng thầu" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <div class="services-turnkey-panel" id="servicesTurnkeyPanel">
-            <div class="services-turnkey-rail" aria-hidden="true"></div>
-            <p class="services-turnkey-desc" id="servicesTurnkeyDesc">Lắng nghe nhu cầu, phong cách sống và kỳ vọng để
-              định hình hướng tiếp cận phù hợp.</p>
-            <ul class="services-turnkey-list" id="servicesTurnkeyList" role="tablist"
-              aria-label="Các bước dịch vụ tổng thầu">
-              <li class="services-turnkey-item is-active" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="true"
-                  id="turnkey-tab-1" data-image="./images/about/timeline-2024.jpg"
-                  data-alt="Tiếp nhận và tư vấn — Amorcons"
-                  data-desc="Lắng nghe nhu cầu, phong cách sống và kỳ vọng để định hình hướng tiếp cận phù hợp.">
-                  <span class="services-turnkey-num">01</span>
-                  <span class="services-turnkey-name">Tiếp nhận &amp; tư vấn</span>
-                </button>
-              </li>
-              <li class="services-turnkey-item" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
-                  id="turnkey-tab-2" data-image="./images/about/timeline-2025.jpg"
-                  data-alt="Đề xuất ý tưởng — Amorcons"
-                  data-desc="Phát triển phương án không gian, moodboard và định hướng vật liệu phù hợp gu thẩm mỹ.">
-                  <span class="services-turnkey-num">02</span>
-                  <span class="services-turnkey-name">Đề xuất ý tưởng</span>
-                </button>
-              </li>
-              <li class="services-turnkey-item" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
-                  id="turnkey-tab-3" data-image="./images/about/timeline-2026.jpg"
-                  data-alt="Thiết kế chi tiết — Amorcons"
-                  data-desc="Bản vẽ kỹ thuật, chi tiết nội thất và phối cảnh rõ ràng cho từng hạng mục.">
-                  <span class="services-turnkey-num">03</span>
-                  <span class="services-turnkey-name">Thiết kế chi tiết</span>
-                </button>
-              </li>
-              <li class="services-turnkey-item" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
-                  id="turnkey-tab-4" data-image="./images/home/services/services-1.jpg"
-                  data-alt="Lựa chọn vật liệu — Amorcons"
-                  data-desc="Tuyển chọn vật liệu cao cấp, mẫu thực tế và báo giá minh bạch theo từng hạng mục.">
-                  <span class="services-turnkey-num">04</span>
-                  <span class="services-turnkey-name">Lựa chọn vật liệu</span>
-                </button>
-              </li>
-              <li class="services-turnkey-item" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
-                  id="turnkey-tab-5" data-image="./images/home/services/services-2.jpg"
-                  data-alt="Thi công và kiểm soát — Amorcons"
-                  data-desc="Thi công chuẩn tiến độ, giám sát kỹ thuật và nghiệm thu từng giai đoạn.">
-                  <span class="services-turnkey-num">05</span>
-                  <span class="services-turnkey-name">Thi công &amp; kiểm soát</span>
-                </button>
-              </li>
-              <li class="services-turnkey-item" role="presentation">
-                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
-                  id="turnkey-tab-6" data-image="./images/home/services/services-3.png"
-                  data-alt="Hoàn thiện và bàn giao — Amorcons"
-                  data-desc="Hoàn thiện cuối cùng, vệ sinh công trình và bàn giao đầy đủ hồ sơ, hướng dẫn sử dụng.">
-                  <span class="services-turnkey-num">06</span>
-                  <span class="services-turnkey-name">Hoàn thiện &amp; bàn giao</span>
-                </button>
-              </li>
+            <ul class="nav-tabs">
+                <li class="nav-item"><a class="nav-tab" href="./index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-tab active" href="./services.html" aria-current="page">Services
+                        Page</a>
+                </li>
+                <li class="nav-item"><a class="nav-tab" href="./about-us.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-tab" href="./contact.html">Liên hệ</a></li>
             </ul>
-          </div>
+
+            <div class="nav-right">
+                <a href="#" class="nav-btn lang-btn" aria-label="Chọn ngôn ngữ: Tiếng Việt">
+                    <img src="https://www.figma.com/api/mcp/asset/c236d5f4-5ec3-420b-854f-2898bedfa44a" alt=""
+                        aria-hidden="true" />
+                    <span class="nav-btn-label">VN</span>
+                </a>
+                <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
+                    <img src="https://www.figma.com/api/mcp/asset/c8bbff4a-f8d6-4430-bf45-7c4032ecbac3" alt=""
+                        aria-hidden="true" class="desktop-only" />
+                    <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true"
+                        class="mobile-only" />
+                    <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
+                </a>
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"
+                    aria-controls="mobileMenu">
+                    <img src="./images/header/header-mobile/button-open-menu.svg" alt="" class="mobile-only" />
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation" aria-hidden="true">
+        <div class="mobile-menu-accent" aria-hidden="true">
+            <span class="mobile-menu-accent-line"></span>
+            <div class="mobile-menu-accent-dots">
+                <span></span>
+                <span class="mobile-menu-accent-dot-mid"></span>
+                <span></span>
+            </div>
+            <span class="mobile-menu-accent-line"></span>
         </div>
-      </div>
-    </section>
-  </main>
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-links">
+                <a class="mobile-menu-link" href="./index.html">Trang Chủ</a>
+                <a class="mobile-menu-link active" href="./services.html">Services Page</a>
+                <a class="mobile-menu-link" href="./about-us.html">About Us</a>
+                <a class="mobile-menu-link" href="./contact.html">Liên Hệ</a>
+            </div>
+            <div class="mobile-menu-lang-row">
+                <span class="mobile-menu-lang-label">Langue</span>
+                <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
+                    <button type="button" class="mobile-menu-lang-btn is-active" data-lang="en"
+                        aria-pressed="true">Eng</button>
+                    <button type="button" class="mobile-menu-lang-btn" data-lang="vi" aria-pressed="false">Vi</button>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="mobile-menu-follow-row">
+                <span class="mobile-menu-follow">Follow us</span>
+                <span class="mobile-menu-follow-line" aria-hidden="true"></span>
+            </div>
+            <ul class="mobile-menu-social-list">
+                <li>
+                    <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Instagram">
+                        <img src="./images/footer/intal.svg" alt="Instagram" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Facebook">
+                        <img src="./images/footer/facebook.svg" alt="Facebook" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on YouTube">
+                        <img src="./images/footer/youtube.svg" alt="YouTube" />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on X">
+                        <img src="./images/footer/x.svg" alt="X" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-  <footer class="footer-bar" data-aos="fade-up" data-aos-duration="700">
-    <div class="footer-bar-inner">
-      <div class="footer-logo">
-        <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
-      </div>
-      <div class="footer-social">
-        <span class="footer-follow-text">Follow us</span>
-        <span class="footer-follow-line" aria-hidden="true"></span>
-        <ul class="footer-social-list">
-          <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on Instagram">
-              <img src="./images/footer/intal.svg" alt="Instagram" />
-            </a>
-          </li>
-          <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on Facebook">
-              <img src="./images/footer/facebook.svg" alt="Facebook" />
-            </a>
-          </li>
-          <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on YouTube">
-              <img src="./images/footer/youtube.svg" alt="YouTube" />
-            </a>
-          </li>
-          <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on X">
-              <img src="./images/footer/x.svg" alt="X" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+    <main class="page-services" id="page-services">
+        <!-- Hero — Figma 223:344 -->
+        <section class="hero" aria-labelledby="hero-title-services">
+            <div class="hero-bg">
+                <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
+                    aria-hidden="true"></video>
+                <div class="hero-overlay-top"></div>
+            </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
+            <div class="hero-text" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120"
+                data-aos-easing="ease-out-cubic">
+                <h1 id="hero-title-services" class="hero-title">Kiến tạo không gian <br class="mobile-only"> chạm cảm
+                    xúc</h1>
+                <p class="hero-subtitle">
+                    Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được cân nhắc và mỗi trải nghiệm đều
+                    mang đến
+                    đẳng cấp riêng biệt
+                </p>
+            </div>
+        </section>
+
+        <!-- Khối 1: Thiết kế riêng biệt — Figma 250:1535 -->
+        <section class="services-page-section services-page-steps page-services-steps-section"
+            id="page-services-steps-section" style="background-image: url('./images/contact-us/bg.png');"
+            aria-labelledby="services-steps-title">
+            <div class="services-page-inner services-page-steps-inner">
+                <div class="services-page-steps-header" data-aos="fade-up" data-aos-duration="750"
+                    data-aos-easing="ease-out-cubic">
+                    <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
+                        aria-hidden="true" />
+                    <h2 id="services-steps-title" class="services-page-title">Thiết kế riêng biệt</h2>
+                </div>
+            </div>
+
+            <!-- Cùng cấu trúc timeline Swiper như About Us (251:2458) -->
+            <div id="servicesDesignSteps" class="page-services-steps-container">
+                <div class="about-projects-timeline services-page-steps-timeline" data-aos="fade-up"
+                    data-aos-duration="800" data-aos-delay="60" data-aos-easing="ease-out-cubic">
+                    <h3 class="sr-only" id="services-design-steps-heading">Bảy bước thiết kế riêng biệt</h3>
+                    <div class="services-steps-rail-top" aria-hidden="true">
+                        <div class="services-steps-line"></div>
+                    </div>
+                    <div class="about-projects-track about-projects-track--swiper">
+                        <div class="wrapper-swiper">
+                            <div class="about-projects-line-decor" aria-hidden="true"></div>
+                            <div class="swiper about-projects-swiper" role="region" aria-roledescription="carousel"
+                                aria-labelledby="services-design-steps-heading">
+                                <div class="swiper-wrapper">
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 1</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="0"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Khảo sát không gian, thu thập nhu cầu và định hướng phong cách — nền
+                                                    tảng cho mọi quyết
+                                                    định thiết kế.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-1.jpg" width="854"
+                                                    height="304" alt="Không gian bếp — bước 1 thiết kế" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 2</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="80"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Phát triển bản vẽ ý tưởng, moodboard vật liệu và phương án bố cục
+                                                    tinh chỉnh cùng chủ
+                                                    nhà.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-2.jpg" width="854"
+                                                    height="304" alt="Phòng sinh hoạt — bước 2 thiết kế" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 3</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="160"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Hoàn thiện thiết kế chi tiết, kỹ thuật thi công và bàn giao hồ sơ
+                                                    trước khi triển khai.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-3.png" width="854"
+                                                    height="304" alt="Nội thất hiện đại — bước 3 thiết kế"
+                                                    loading="lazy" decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 4</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="240"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Rà soát dự toán, lộ trình thi công và phối hợp nhà cung cấp để đảm
+                                                    bảo chất lượng trong
+                                                    từng hạng mục.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/home/services/services-4.png" width="854"
+                                                    height="304" alt="Không gian nội thất — bước 4 thiết kế"
+                                                    loading="lazy" decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 5</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="320"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Giám sát thi công thô, hệ thống kỹ thuật và hoàn thiện nền trước khi
+                                                    lắp đặt nội thất.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2024.jpg" width="854" height="304"
+                                                    alt="Không gian dự án — bước 5 thiết kế" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 6</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="400"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Lắp đặt nội thất, chiếu sáng và hạng mục hoàn thiện cuối theo đúng
+                                                    bản vẽ đã phê duyệt.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2025.jpg" width="854" height="304"
+                                                    alt="Không gian bếp — bước 6 thiết kế" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="about-projects-card swiper-slide">
+                                        <h4 class="about-projects-year"><span>Step 7</span></h4>
+                                        <div class="about-projects-card-body" data-aos="fade-up" data-aos-duration="700"
+                                            data-aos-easing="ease-out-cubic" data-aos-delay="480"
+                                            data-aos-anchor="#page-services-steps-section"
+                                            data-aos-anchor-placement="top-bottom">
+                                            <div class="about-projects-card-desc">
+                                                <p>Nghiệm thu kỹ thuật, chỉnh sửa tinh và bàn giao cùng hướng dẫn vận
+                                                    hành, bảo trì.</p>
+                                            </div>
+                                            <div class="about-projects-media">
+                                                <img src="./images/about/timeline-2026.jpg" width="854" height="304"
+                                                    alt="Không gian hoàn thiện — bước 7 thiết kế" loading="lazy"
+                                                    decoding="async" />
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Khối 2: Thi công luxury — Figma 236:1383 -->
+        <section class="services-page-section services-page-luxury" aria-labelledby="services-luxury-title">
+            <div class="services-page-inner services-page-luxury-inner">
+                <div class="wapper-luxury">
+                    <div class="services-luxury-head" data-aos="fade-up" data-aos-duration="750">
+                        <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
+                            aria-hidden="true" />
+                        <h2 id="services-luxury-title" class="services-luxury-title">Thi công nội thất hoàn thiện luxury
+                        </h2>
+                        <p class="services-luxury-sub">Độ chính xác 0.1mm, vật liệu tinh tuyển</p>
+                    </div>
+                    <aside class="services-luxury-pagination-aside" aria-label="Chọn ảnh trong slider luxury">
+                        <div id="servicesLuxuryPagination" class="services-luxury-pagination swiper-pagination"></div>
+                    </aside>
+                </div>
+
+                <div class="services-luxury-block" data-aos="fade-up" data-aos-duration="850" data-aos-delay="80">
+                    <div class="services-luxury-showcase">
+                        <div class="swiper services-luxury-swiper" role="region" aria-roledescription="carousel"
+                            aria-label="Hình ảnh thi công luxury">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./images/home/services/services-2.jpg"
+                                        alt="Không gian nội thất cao cấp — 1" loading="lazy" decoding="async" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./images/home/services/services-3.png"
+                                        alt="Không gian nội thất cao cấp — 2" loading="lazy" decoding="async" />
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./images/home/services/services-4.png"
+                                        alt="Không gian nội thất cao cấp — 3" loading="lazy" decoding="async" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Khối 3: Tổng thầu trọn gói — Figma 250:1625 -->
+        <section class="services-page-section services-page-turnkey" aria-labelledby="services-turnkey-title">
+            <div class="services-page-inner services-page-turnkey-inner">
+                <div class="services-turnkey-intro" data-aos="fade-up" data-aos-duration="750">
+                    <img class="services-page-icon" src="./images/icon-title.svg" width="50" height="50" alt=""
+                        aria-hidden="true" />
+                    <h2 id="services-turnkey-title" class="services-page-title services-page-title--muted">Dịch vụ tổng
+                        thầu thiết
+                        kế thi công trọn gói</h2>
+                    <p class="services-turnkey-lead">Amorcons đồng hành trọn hành trình từ ý tưởng đến bàn giao, đảm bảo
+                        đồng
+                        nhất thẩm mỹ và chất lượng thi công.</p>
+                </div>
+
+                <div class="services-turnkey-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="60">
+                    <div class="services-turnkey-visual">
+                        <div class="services-turnkey-frame">
+                            <img id="servicesTurnkeyImg" src="./images/about/timeline-2024.jpg" width="917" height="687"
+                                alt="Hình minh họa quy trình tổng thầu" loading="lazy" decoding="async" />
+                        </div>
+                    </div>
+                    <div class="services-turnkey-panel" id="servicesTurnkeyPanel">
+                        <div class="services-turnkey-rail" aria-hidden="true"></div>
+                        <ul class="services-turnkey-list" id="servicesTurnkeyList" role="tablist"
+                            aria-label="Các bước dịch vụ tổng thầu">
+                            <li class="services-turnkey-item is-active" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="true"
+                                    id="turnkey-tab-1" data-image="./images/about/timeline-2024.jpg"
+                                    data-alt="Tiếp nhận và tư vấn — Amorcons">
+                                    <span class="services-turnkey-num">01</span>
+                                    <span class="services-turnkey-name">Tiếp nhận &amp; tư vấn</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-1">Lắng nghe nhu cầu, phong cách sống
+                                    và kỳ vọng để định hình hướng tiếp cận phù hợp.</p>
+                            </li>
+                            <li class="services-turnkey-item" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
+                                    id="turnkey-tab-2" data-image="./images/about/timeline-2025.jpg"
+                                    data-alt="Đề xuất ý tưởng — Amorcons">
+                                    <span class="services-turnkey-num">02</span>
+                                    <span class="services-turnkey-name">Đề xuất ý tưởng</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-2" hidden>Phát triển phương án không
+                                    gian, moodboard và định hướng vật liệu phù hợp gu thẩm mỹ.</p>
+                            </li>
+                            <li class="services-turnkey-item" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
+                                    id="turnkey-tab-3" data-image="./images/about/timeline-2026.jpg"
+                                    data-alt="Thiết kế chi tiết — Amorcons">
+                                    <span class="services-turnkey-num">03</span>
+                                    <span class="services-turnkey-name">Thiết kế chi tiết</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-3" hidden>Bản vẽ kỹ thuật, chi tiết
+                                    nội thất và phối cảnh rõ ràng cho từng hạng mục.</p>
+                            </li>
+                            <li class="services-turnkey-item" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
+                                    id="turnkey-tab-4" data-image="./images/home/services/services-1.jpg"
+                                    data-alt="Lựa chọn vật liệu — Amorcons">
+                                    <span class="services-turnkey-num">04</span>
+                                    <span class="services-turnkey-name">Lựa chọn vật liệu</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-4" hidden>Tuyển chọn vật liệu cao cấp,
+                                    mẫu thực tế và báo giá minh bạch theo từng hạng mục.</p>
+                            </li>
+                            <li class="services-turnkey-item" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
+                                    id="turnkey-tab-5" data-image="./images/home/services/services-2.jpg"
+                                    data-alt="Thi công và kiểm soát — Amorcons">
+                                    <span class="services-turnkey-num">05</span>
+                                    <span class="services-turnkey-name">Thi công &amp; kiểm soát</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-5" hidden>Thi công chuẩn tiến độ, giám
+                                    sát kỹ thuật và nghiệm thu từng giai đoạn.</p>
+                            </li>
+                            <li class="services-turnkey-item" role="presentation">
+                                <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
+                                    id="turnkey-tab-6" data-image="./images/home/services/services-3.png"
+                                    data-alt="Hoàn thiện và bàn giao — Amorcons">
+                                    <span class="services-turnkey-num">06</span>
+                                    <span class="services-turnkey-name">Hoàn thiện &amp; bàn giao</span>
+                                </button>
+                                <p class="services-turnkey-desc" id="turnkey-desc-6" hidden>Hoàn thiện cuối cùng, vệ
+                                    sinh công trình và bàn giao đầy đủ hồ sơ, hướng dẫn sử dụng.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bar" data-aos="fade-up" data-aos-duration="700">
+        <div class="footer-bar-inner">
+            <div class="footer-logo">
+                <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
+            </div>
+            <div class="footer-social">
+                <span class="footer-follow-text">Follow us</span>
+                <span class="footer-follow-line" aria-hidden="true"></span>
+                <ul class="footer-social-list">
+                    <li>
+                        <a href="#" class="footer-social-icon" aria-label="Follow us on Instagram">
+                            <img src="./images/footer/intal.svg" alt="Instagram" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-social-icon" aria-label="Follow us on Facebook">
+                            <img src="./images/footer/facebook.svg" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-social-icon" aria-label="Follow us on YouTube">
+                            <img src="./images/footer/youtube.svg" alt="YouTube" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-social-icon" aria-label="Follow us on X">
+                            <img src="./images/footer/x.svg" alt="X" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

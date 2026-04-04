@@ -930,6 +930,12 @@ div#servicesDesignSteps h4.about-projects-year {
   background: #1e1e1e;
 }
 
+.wapper-luxury {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .services-page-luxury-inner {
   padding-top: 80px;
   padding-bottom: 100px;
@@ -1008,7 +1014,6 @@ div#servicesDesignSteps h4.about-projects-year {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-right: max(8px, 1.5vw);
 }
 
 .services-luxury-pagination.swiper-pagination {
@@ -1020,6 +1025,11 @@ div#servicesDesignSteps h4.about-projects-year {
   align-items: center;
   gap: 16px;
   z-index: 1;
+}
+
+aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagination-bullets,
+.swiper-vertical > .swiper-pagination-bullets {
+  transform: inherit;
 }
 
 /* Logo + thanh tiến trình giữa chuỗi bullet (chèn bằng renderBullet khi ≥3 slide) */
@@ -1182,7 +1192,8 @@ div#servicesDesignSteps h4.about-projects-year {
   letter-spacing: 0.25px;
   color: #d4d4d8;
   margin: 0;
-  padding-left: 8px;
+  padding: 0 0 8px 38px;
+  box-sizing: border-box;
 }
 
 .services-turnkey-list {
@@ -1196,6 +1207,32 @@ div#servicesDesignSteps h4.about-projects-year {
 
 .services-turnkey-item {
   border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+li.services-turnkey-item {
+  position: relative;
+}
+
+li.services-turnkey-item::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  display: block;
+  background: #ffffff5f;
+  position: absolute;
+  left: -34px;
+  top: 26px;
+  transform: translateY(-50%);
+  border-radius: 100%;
+  z-index: 1;
+}
+
+li.services-turnkey-item.is-active::before {
+  background: #fff;
 }
 
 .services-turnkey-btn {
@@ -1212,11 +1249,77 @@ div#servicesDesignSteps h4.about-projects-year {
   color: inherit;
   font: inherit;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.services-turnkey-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.services-turnkey-btn:active {
+  transform: scale(0.992);
+}
+
+@keyframes turnkey-btn-pulse {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(0.985);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.services-turnkey-btn.services-turnkey-btn--pulse {
+  animation: turnkey-btn-pulse 0.42s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .services-turnkey-btn:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
+}
+
+.services-turnkey-frame img {
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+.services-turnkey-frame img.turnkey-content--hide {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-turnkey-btn {
+    transition: none;
+  }
+
+  .services-turnkey-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .services-turnkey-btn:active {
+    transform: none;
+  }
+
+  .services-turnkey-btn.services-turnkey-btn--pulse {
+    animation: none;
+  }
+
+  .services-turnkey-frame img {
+    transition: none;
+  }
+
+  .services-turnkey-frame img.turnkey-content--hide {
+    transform: none;
+  }
 }
 
 .services-turnkey-num {

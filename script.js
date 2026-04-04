@@ -378,16 +378,34 @@ if (hamburgerBtn && mobileMenu) {
 
     const turnkeyList = document.getElementById('servicesTurnkeyList');
     const turnkeyImg = document.getElementById('servicesTurnkeyImg');
-    const turnkeyDesc = document.getElementById('servicesTurnkeyDesc');
-    if (!turnkeyList || !turnkeyImg || !turnkeyDesc) return;
+    if (!turnkeyList || !turnkeyImg) return;
+
+    function syncTurnkeyDescVisibility() {
+        turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
+            const desc = li.querySelector('.services-turnkey-desc');
+            if (desc) desc.hidden = !li.classList.contains('is-active');
+        });
+    }
+
+    const turnkeyMotionOk = () =>
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     turnkeyList.addEventListener('click', (e) => {
         const btn = e.target.closest('.services-turnkey-btn');
         if (!btn || !turnkeyList.contains(btn)) return;
+        if (btn.getAttribute('aria-selected') === 'true') return;
 
         const image = btn.getAttribute('data-image');
         const alt = btn.getAttribute('data-alt') || '';
-        const desc = btn.getAttribute('data-desc') || '';
+
+        if (turnkeyMotionOk()) {
+            btn.classList.add('services-turnkey-btn--pulse');
+            btn.addEventListener(
+                'animationend',
+                () => btn.classList.remove('services-turnkey-btn--pulse'),
+                { once: true },
+            );
+        }
 
         turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
             li.classList.toggle('is-active', li.contains(btn));
@@ -396,10 +414,25 @@ if (hamburgerBtn && mobileMenu) {
             b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
         });
 
-        if (image) {
-            turnkeyImg.src = image;
-            turnkeyImg.alt = alt;
+        const applyContent = () => {
+            if (image) {
+                turnkeyImg.src = image;
+                turnkeyImg.alt = alt;
+            }
+            syncTurnkeyDescVisibility();
+            if (turnkeyMotionOk()) {
+                requestAnimationFrame(() => {
+                    turnkeyImg.classList.remove('turnkey-content--hide');
+                });
+            }
+        };
+
+        if (!turnkeyMotionOk()) {
+            applyContent();
+            return;
         }
-        turnkeyDesc.textContent = desc;
+
+        turnkeyImg.classList.add('turnkey-content--hide');
+        window.setTimeout(applyContent, 220);
     });
 })();
