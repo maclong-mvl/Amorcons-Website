@@ -272,3 +272,53 @@ if (hamburgerBtn && mobileMenu) {
     window.addEventListener('load', onLayout);
     window.addEventListener('resize', onLayout);
 })();
+
+/** Services page — luxury Swiper + tổng thầu steps (Figma 223:342) */
+(function initServicesPage() {
+    const luxuryRoot = document.querySelector('.services-luxury-swiper');
+    if (luxuryRoot && typeof Swiper !== 'undefined') {
+        const swiper = new Swiper(luxuryRoot, {
+            loop: true,
+            speed: 700,
+            autoplay: {
+                delay: 5200,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: luxuryRoot.querySelector('.services-luxury-pagination'),
+                clickable: true,
+            },
+        });
+        window.addEventListener('load', () => {
+            if (typeof AOS !== 'undefined' && AOS.refresh) AOS.refresh();
+            swiper.update();
+        });
+    }
+
+    const turnkeyList = document.getElementById('servicesTurnkeyList');
+    const turnkeyImg = document.getElementById('servicesTurnkeyImg');
+    const turnkeyDesc = document.getElementById('servicesTurnkeyDesc');
+    if (!turnkeyList || !turnkeyImg || !turnkeyDesc) return;
+
+    turnkeyList.addEventListener('click', (e) => {
+        const btn = e.target.closest('.services-turnkey-btn');
+        if (!btn || !turnkeyList.contains(btn)) return;
+
+        const image = btn.getAttribute('data-image');
+        const alt = btn.getAttribute('data-alt') || '';
+        const desc = btn.getAttribute('data-desc') || '';
+
+        turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
+            li.classList.toggle('is-active', li.contains(btn));
+        });
+        turnkeyList.querySelectorAll('.services-turnkey-btn').forEach((b) => {
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+
+        if (image) {
+            turnkeyImg.src = image;
+            turnkeyImg.alt = alt;
+        }
+        turnkeyDesc.textContent = desc;
+    });
+})();

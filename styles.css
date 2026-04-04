@@ -789,6 +789,460 @@ a.srv-cell:focus-visible {
 }
 
 /* =====================================================================
+   SERVICES PAGE — Figma 223:342 (Amorcons-Website)
+===================================================================== */
+.page-services {
+  background: #1e1e1e;
+}
+
+.services-page-section {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.services-page-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 5% 120px;
+  box-sizing: border-box;
+}
+
+/* --- Khối 1: Thiết kế riêng biệt + 3 bước (250:1535) --- */
+.services-page-steps-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding-top: 80px;
+}
+
+.services-page-steps-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+.services-page-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.services-page-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 2.2vw, 30.133px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+  font-feature-settings: "lnum" 1, "pnum" 1;
+  margin: 0;
+}
+
+.services-page-title--muted {
+  color: var(--gold-muted);
+}
+
+.services-steps-track {
+  position: relative;
+  width: 100%;
+}
+
+.services-steps-markers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 8% 20px;
+  box-sizing: border-box;
+}
+
+/* Abstract 207 — dấu X trên timeline (Figma #be966d) */
+.services-step-x {
+  position: relative;
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+}
+
+.services-step-x::before,
+.services-step-x::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  background: #be966d;
+  transform-origin: center;
+}
+
+.services-step-x::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.services-step-x::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.services-steps-line {
+  height: 1px;
+  width: calc(100% + min(320px, 20vw));
+  max-width: 1920px;
+  margin: 0 auto 36px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background: #be966d;
+}
+
+.services-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  width: 100%;
+}
+
+.services-steps-label {
+  font-family: "Montserrat", var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--gold-red);
+  margin: 0 0 18px;
+}
+
+.services-steps-media {
+  position: relative;
+  width: 100%;
+  height: 434px;
+  overflow: hidden;
+  background: #111;
+}
+
+.services-steps-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Khối 2: Thi công luxury (236:1383) --- */
+.services-page-luxury {
+  background: #1e1e1e;
+}
+
+.services-page-luxury-inner {
+  padding-top: 80px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.services-luxury-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 793px;
+}
+
+.services-luxury-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 2.2vw, 30.133px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--gold-muted);
+  margin: 0;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
+.services-luxury-sub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #afafaf;
+  margin: 0;
+}
+
+.services-luxury-showcase {
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.services-luxury-swiper {
+  position: relative;
+  width: 100%;
+  min-height: min(848px, 85vh);
+}
+
+.services-luxury-swiper .swiper-slide {
+  height: auto;
+  min-height: min(848px, 85vh);
+}
+
+.services-luxury-swiper .swiper-slide img {
+  width: 100%;
+  height: min(848px, 85vh);
+  object-fit: cover;
+  display: block;
+}
+
+.services-luxury-pagination.swiper-pagination {
+  position: absolute;
+  right: max(24px, 4vw);
+  top: 50%;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 3;
+}
+
+.services-luxury-pagination .swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+  margin: 0 !important;
+  background: var(--gold);
+  opacity: 0.45;
+  border: 1px solid var(--gold);
+}
+
+.services-luxury-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--gold);
+}
+
+/* --- Khối 3: Tổng thầu (250:1625) --- */
+.services-page-turnkey-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-top: 40px;
+  padding-bottom: 120px;
+}
+
+.services-turnkey-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.services-turnkey-lead {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #fdeeeb;
+  margin: 0;
+  max-width: 640px;
+}
+
+.services-turnkey-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(40px, 8vw, 123px);
+  width: 100%;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .services-turnkey-row {
+    padding-right: 80px;
+  }
+}
+
+.services-turnkey-visual {
+  flex: 1 1 45%;
+  min-width: min(100%, 280px);
+  max-width: 917px;
+}
+
+.services-turnkey-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 917 / 687;
+}
+
+.services-turnkey-frame::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -6%;
+  top: -3%;
+  width: 94%;
+  height: 102%;
+  background: var(--dark-card);
+  pointer-events: none;
+}
+
+.services-turnkey-frame img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-turnkey-panel {
+  position: relative;
+  flex: 1 1 320px;
+  min-width: min(100%, 280px);
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 32px;
+}
+
+.services-turnkey-rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #373737;
+  min-height: 200px;
+}
+
+.services-turnkey-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #d4d4d8;
+  margin: 0;
+  padding-left: 8px;
+}
+
+.services-turnkey-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.services-turnkey-item {
+  border-bottom: none;
+}
+
+.services-turnkey-btn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  width: 100%;
+  padding: 14px 0 14px 8px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.services-turnkey-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.services-turnkey-num {
+  font-family: "Montserrat", var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--gold-red);
+  min-width: 22px;
+}
+
+.services-turnkey-name {
+  font-family: "Montserrat", var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.services-turnkey-item.is-active .services-turnkey-name {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .services-page-inner {
+    padding: 0 16px 80px;
+  }
+
+  .services-page-steps-inner {
+    gap: 48px;
+    padding-top: 56px;
+  }
+
+  .services-steps-markers {
+    padding: 0 4% 16px;
+  }
+
+  .services-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .services-steps-media {
+    height: min(434px, 62vw);
+  }
+
+  .services-luxury-head {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .services-luxury-pagination.swiper-pagination {
+    right: 12px;
+    flex-direction: row;
+    top: auto;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .services-turnkey-row {
+    flex-direction: column;
+    padding-right: 0;
+  }
+
+  .services-turnkey-visual {
+    max-width: none;
+    order: -1;
+  }
+
+  .services-turnkey-panel {
+    max-width: none;
+    padding-left: 28px;
+  }
+}
+
+/* =====================================================================
    CTA MID
 ===================================================================== */
 .cta-mid {
