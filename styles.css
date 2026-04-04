@@ -1118,6 +1118,7 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
 
 .services-turnkey-row {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: clamp(40px, 8vw, 123px);
