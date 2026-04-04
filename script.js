@@ -390,9 +390,25 @@ if (hamburgerBtn && mobileMenu) {
     const turnkeyMotionOk = () =>
         !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    function turnkeyRipple(btn, clientX, clientY) {
+        if (!turnkeyMotionOk()) return;
+        const rect = btn.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        const ripple = document.createElement('span');
+        ripple.className = 'services-turnkey-btn-ripple';
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    }
+
     turnkeyList.addEventListener('click', (e) => {
         const btn = e.target.closest('.services-turnkey-btn');
         if (!btn || !turnkeyList.contains(btn)) return;
+
+        turnkeyRipple(btn, e.clientX, e.clientY);
+
         if (btn.getAttribute('aria-selected') === 'true') return;
 
         const image = btn.getAttribute('data-image');
@@ -420,6 +436,17 @@ if (hamburgerBtn && mobileMenu) {
                 turnkeyImg.alt = alt;
             }
             syncTurnkeyDescVisibility();
+            const activeDesc = btn.closest('.services-turnkey-item')?.querySelector('.services-turnkey-desc');
+            if (activeDesc && turnkeyMotionOk()) {
+                activeDesc.classList.remove('services-turnkey-desc--enter');
+                void activeDesc.offsetWidth;
+                activeDesc.classList.add('services-turnkey-desc--enter');
+                activeDesc.addEventListener(
+                    'animationend',
+                    () => activeDesc.classList.remove('services-turnkey-desc--enter'),
+                    { once: true },
+                );
+            }
             if (turnkeyMotionOk()) {
                 requestAnimationFrame(() => {
                     turnkeyImg.classList.remove('turnkey-content--hide');
