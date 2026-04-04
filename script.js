@@ -377,8 +377,8 @@ if (hamburgerBtn && mobileMenu) {
     });
 
     const turnkeyList = document.getElementById('servicesTurnkeyList');
-    const turnkeyImg = document.getElementById('servicesTurnkeyImg');
-    if (!turnkeyList || !turnkeyImg) return;
+    const turnkeyVideo = document.getElementById('servicesTurnkeyVideo');
+    if (!turnkeyList || !turnkeyVideo) return;
 
     function syncTurnkeyDescVisibility() {
         turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
@@ -411,7 +411,8 @@ if (hamburgerBtn && mobileMenu) {
 
         if (btn.getAttribute('aria-selected') === 'true') return;
 
-        const image = btn.getAttribute('data-image');
+        const videoSrc = btn.getAttribute('data-video');
+        const posterSrc = btn.getAttribute('data-poster') || '';
         const alt = btn.getAttribute('data-alt') || '';
 
         if (turnkeyMotionOk()) {
@@ -431,9 +432,11 @@ if (hamburgerBtn && mobileMenu) {
         });
 
         const applyContent = () => {
-            if (image) {
-                turnkeyImg.src = image;
-                turnkeyImg.alt = alt;
+            if (videoSrc) {
+                turnkeyVideo.src = videoSrc;
+                if (posterSrc) turnkeyVideo.poster = posterSrc;
+                turnkeyVideo.setAttribute('aria-label', alt || 'Video minh họa quy trình tổng thầu');
+                turnkeyVideo.play().catch(() => {});
             }
             syncTurnkeyDescVisibility();
             const activeDesc = btn.closest('.services-turnkey-item')?.querySelector('.services-turnkey-desc');
@@ -449,7 +452,7 @@ if (hamburgerBtn && mobileMenu) {
             }
             if (turnkeyMotionOk()) {
                 requestAnimationFrame(() => {
-                    turnkeyImg.classList.remove('turnkey-content--hide');
+                    turnkeyVideo.classList.remove('turnkey-content--hide');
                 });
             }
         };
@@ -459,7 +462,7 @@ if (hamburgerBtn && mobileMenu) {
             return;
         }
 
-        turnkeyImg.classList.add('turnkey-content--hide');
+        turnkeyVideo.classList.add('turnkey-content--hide');
         window.setTimeout(applyContent, 220);
     });
 })();

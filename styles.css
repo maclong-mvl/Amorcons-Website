@@ -1156,9 +1156,10 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   pointer-events: none;
 }
 
-.services-turnkey-frame img {
+.services-turnkey-frame video {
   position: relative;
   z-index: 1;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1357,13 +1358,13 @@ li.services-turnkey-item.is-active::before {
   outline-offset: 2px;
 }
 
-.services-turnkey-frame img {
+.services-turnkey-frame video {
   transition:
     opacity 0.28s ease,
     transform 0.28s ease;
 }
 
-.services-turnkey-frame img.turnkey-content--hide {
+.services-turnkey-frame video.turnkey-content--hide {
   opacity: 0;
   transform: translateY(6px);
 }
@@ -1403,11 +1404,11 @@ li.services-turnkey-item.is-active::before {
     animation: none;
   }
 
-  .services-turnkey-frame img {
+  .services-turnkey-frame video {
     transition: none;
   }
 
-  .services-turnkey-frame img.turnkey-content--hide {
+  .services-turnkey-frame video.turnkey-content--hide {
     transform: none;
   }
 }
