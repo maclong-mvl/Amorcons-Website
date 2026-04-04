@@ -1266,7 +1266,6 @@ li.services-turnkey-item.is-active::before {
   width: calc(100% - 16px);
   max-width: 220px;
   height: 1px;
-  background: linear-gradient(90deg, #b18151, rgba(177, 129, 81, 0));
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 0.38s cubic-bezier(0.33, 1, 0.68, 1);
