@@ -9,6 +9,8 @@ AOS.init({
     delay: 0,
     disable: function () {
         if (mqReduceMotion.matches) return true;
+        /* Trang Dịch vụ: giữ AOS trên mobile (body.body-services) — các trang khác tắt ≤768px */
+        if (document.body.classList.contains('body-services')) return false;
         return mqAosMobile.matches;
     }
 });

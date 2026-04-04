@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
-<body>
+<body class="body-services">
 
     <header class="site-header">
         <nav class="navbar" aria-label="Main Navigation">
@@ -114,7 +114,8 @@
 
     <main class="page-services" id="page-services">
         <!-- Hero — Figma 223:344 -->
-        <section class="hero" aria-labelledby="hero-title-services">
+        <section class="hero" aria-labelledby="hero-title-services" data-aos="fade" data-aos-duration="900"
+            data-aos-easing="ease-out-cubic">
             <div class="hero-bg">
                 <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
                     aria-hidden="true"></video>
@@ -301,7 +302,8 @@
                         </h2>
                         <p class="services-luxury-sub">Độ chính xác 0.1mm, vật liệu tinh tuyển</p>
                     </div>
-                    <aside class="services-luxury-pagination-aside" aria-label="Chọn ảnh trong slider luxury">
+                    <aside class="services-luxury-pagination-aside" aria-label="Chọn ảnh trong slider luxury"
+                        data-aos="fade-up" data-aos-duration="700" data-aos-delay="140" data-aos-easing="ease-out-cubic">
                         <div id="servicesLuxuryPagination" class="services-luxury-pagination swiper-pagination"></div>
                     </aside>
                 </div>
@@ -350,8 +352,9 @@
                         nhất thẩm mỹ và chất lượng thi công.</p>
                 </div>
 
-                <div class="services-turnkey-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="60">
-                    <div class="services-turnkey-visual">
+                <div class="services-turnkey-row">
+                    <div class="services-turnkey-visual" data-aos="fade-right" data-aos-duration="800"
+                        data-aos-easing="ease-out-cubic">
                         <div class="services-turnkey-frame">
                             <video id="servicesTurnkeyVideo" class="services-turnkey-video"
                                 src="./video/video_banner.mp4" poster="./images/about/timeline-2024.jpg" width="917"
@@ -359,11 +362,14 @@
                                 aria-label="Video minh họa quy trình tổng thầu — bước 1"></video>
                         </div>
                     </div>
-                    <div class="services-turnkey-panel" id="servicesTurnkeyPanel">
+                    <div class="services-turnkey-panel" id="servicesTurnkeyPanel" data-aos="fade-left"
+                        data-aos-duration="800" data-aos-delay="90" data-aos-easing="ease-out-cubic">
                         <div class="services-turnkey-rail" aria-hidden="true"></div>
                         <ul class="services-turnkey-list" id="servicesTurnkeyList" role="tablist"
                             aria-label="Các bước dịch vụ tổng thầu">
-                            <li class="services-turnkey-item is-active" role="presentation">
+                            <li class="services-turnkey-item is-active" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="0" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="true"
                                     id="turnkey-tab-1" data-video="./video/video_banner.mp4"
                                     data-poster="./images/about/timeline-2024.jpg"
@@ -375,7 +381,9 @@
                                 <p class="services-turnkey-desc" id="turnkey-desc-1">Lắng nghe nhu cầu, phong cách sống
                                     và kỳ vọng để định hình hướng tiếp cận phù hợp.</p>
                             </li>
-                            <li class="services-turnkey-item" role="presentation">
+                            <li class="services-turnkey-item" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="70" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
                                     id="turnkey-tab-2" data-video="./video/Minotti_2025_HP.mp4"
                                     data-poster="./images/about/timeline-2025.jpg"
@@ -387,7 +395,9 @@
                                 <p class="services-turnkey-desc" id="turnkey-desc-2" hidden>Phát triển phương án không
                                     gian, moodboard và định hướng vật liệu phù hợp gu thẩm mỹ.</p>
                             </li>
-                            <li class="services-turnkey-item" role="presentation">
+                            <li class="services-turnkey-item" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="140" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
                                     id="turnkey-tab-3" data-video="./video/10135156-uhd_3840_2160_30fps.mp4"
                                     data-poster="./images/about/timeline-2026.jpg"
@@ -399,7 +409,9 @@
                                 <p class="services-turnkey-desc" id="turnkey-desc-3" hidden>Bản vẽ kỹ thuật, chi tiết
                                     nội thất và phối cảnh rõ ràng cho từng hạng mục.</p>
                             </li>
-                            <li class="services-turnkey-item" role="presentation">
+                            <li class="services-turnkey-item" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="210" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
                                     id="turnkey-tab-4" data-video="./video/7578552-uhd_3840_2160_30fps.mp4"
                                     data-poster="./images/home/services/services-1.jpg"
@@ -411,7 +423,9 @@
                                 <p class="services-turnkey-desc" id="turnkey-desc-4" hidden>Tuyển chọn vật liệu cao cấp,
                                     mẫu thực tế và báo giá minh bạch theo từng hạng mục.</p>
                             </li>
-                            <li class="services-turnkey-item" role="presentation">
+                            <li class="services-turnkey-item" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="280" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
                                     id="turnkey-tab-5" data-video="./video/6580022-uhd_4096_2160_25fps.mp4"
                                     data-poster="./images/home/services/services-2.jpg"
@@ -423,7 +437,9 @@
                                 <p class="services-turnkey-desc" id="turnkey-desc-5" hidden>Thi công chuẩn tiến độ, giám
                                     sát kỹ thuật và nghiệm thu từng giai đoạn.</p>
                             </li>
-                            <li class="services-turnkey-item" role="presentation">
+                            <li class="services-turnkey-item" role="presentation" data-aos="fade-up"
+                                data-aos-duration="650" data-aos-delay="350" data-aos-easing="ease-out-cubic"
+                                data-aos-anchor="#servicesTurnkeyPanel" data-aos-anchor-placement="top-bottom">
                                 <button type="button" class="services-turnkey-btn" role="tab" aria-selected="false"
                                     id="turnkey-tab-6" data-video="./video/5384823-uhd_4096_2160_30fps.mp4"
                                     data-poster="./images/home/services/services-3.png"
