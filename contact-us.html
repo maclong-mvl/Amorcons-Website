@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amorcons – Contact Us</title>
+  <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="/" class="nav-logo-link">
+        <img class="nav-logo desktop-only"
+          src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
+        <img class="nav-logo mobile-only" src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce"
+          alt="Amorcons" />
+      </a>
+
+      <ul class="nav-tabs">
+        <li class="nav-item"><a class="nav-tab " href="#">Trang chủ</a></li>
+        <li class="nav-item"><a class="nav-tab" href="#services">Services Page</a></li>
+        <li class="nav-item"><a class="nav-tab" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-tab active" aria-current="page" href="#contact-us">Liên hệ</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="#" class="nav-btn lang-btn" aria-label="Chọn ngôn ngữ: Tiếng Việt">
+          <img src="https://www.figma.com/api/mcp/asset/c236d5f4-5ec3-420b-854f-2898bedfa44a" alt=""
+            aria-hidden="true" />
+          <span class="nav-btn-label">VN</span>
+        </a>
+        <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
+          <img src="https://www.figma.com/api/mcp/asset/c8bbff4a-f8d6-4430-bf45-7c4032ecbac3" alt="" aria-hidden="true"
+            class="desktop-only" />
+          <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true" class="mobile-only" />
+          <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"
+          aria-controls="mobileMenu">
+          <img src="./images/header/header-mobile/button-open-menu.svg" alt="" class="mobile-only" />
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Menu — Figma 295:756 (match screenshot) -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-menu-accent" aria-hidden="true">
+      <span class="mobile-menu-accent-line"></span>
+      <div class="mobile-menu-accent-dots">
+        <span></span>
+        <span class="mobile-menu-accent-dot-mid"></span>
+        <span></span>
+      </div>
+      <span class="mobile-menu-accent-line"></span>
+    </div>
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-links">
+        <a class="mobile-menu-link active" href="#">Trang Chủ</a>
+        <a class="mobile-menu-link" href="#services">Services Page</a>
+        <a class="mobile-menu-link" href="#about">About Us</a>
+        <a class="mobile-menu-link" href="#contact-us">Liên Hệ</a>
+      </div>
+      <div class="mobile-menu-lang-row">
+        <span class="mobile-menu-lang-label">Langue</span>
+        <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
+          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="en" aria-pressed="true">Eng</button>
+          <button type="button" class="mobile-menu-lang-btn" data-lang="vi" aria-pressed="false">Vi</button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu-footer">
+      <div class="mobile-menu-follow-row">
+        <span class="mobile-menu-follow">Follow us</span>
+        <span class="mobile-menu-follow-line" aria-hidden="true"></span>
+      </div>
+      <ul class="mobile-menu-social-list">
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Instagram">
+            <img src="./images/footer/intal.svg" alt="Instagram" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Facebook">
+            <img src="./images/footer/facebook.svg" alt="Facebook" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on YouTube">
+            <img src="./images/footer/youtube.svg" alt="YouTube" />
+          </a>
+        </li>
+        <li>
+          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on X">
+            <img src="./images/footer/x.svg" alt="X" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg">
+        <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
+          aria-hidden="true"></video>
+        <div class="hero-overlay-top"></div>
+      </div>
+
+      <div class="hero-text" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120"
+        data-aos-easing="ease-out-cubic">
+        <h1 id="hero-title" class="hero-title">Kiến tạo không gian <br class="mobile-only"> chạm cảm xúc</h1>
+        <p class="hero-subtitle">
+          Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được cân nhắc và mỗi trải nghiệm đều mang đến
+          đẳng
+          cấp riêng biệt
+        </p>
+      </div>
+    </section>
+
+    <section style="background-image: url('./images/contact-us/bg.png');" class="page-contact-us-section"
+      id="page-contact-us-section" aria-labelledby="contact-title">
+      <div class="services-header aos-init aos-animate" data-aos="fade-up" data-aos-duration="750">
+        <img class="srv-award" src="https://www.figma.com/api/mcp/asset/47347c27-a9ea-4444-aeee-44b34a44b0ac" alt=""
+          aria-hidden="true">
+        <h2 id="services-title" class="srv-title">We help to bring your dream home to reality</h2>
+        <p class="srv-sub">At Inteo, we create inspiring spaces that blend timeless design with modern innovation.</p>
+      </div>
+      <div class="page-contact-us-container">
+        <div class="page-contact-us-left">
+          <div class="page-contact-us-left-content">
+            <img src="./images/contact-us/contact-us-left.jpg" alt="Contact Us Left">
+            <img src="./images/contact-us/contact-us-left-2.jpg" alt="Contact Us Left 2">
+          </div>
+        </div>
+        <div class="page-contact-us-right">
+          <div class="contact-form-box" data-aos="fade-left" data-aos-duration="800" data-aos-delay="80">
+            <p class="form-pre-title">Liên lạc với chúng tôi</p>
+            <h3 class="contact-us-title">Contact us</h3>
+            <p class="form-post-title">Fill out the form below and we'll get back to<br>you with next steps within 24
+              hours.</p>
+
+            <div class="form-dots" aria-hidden="true">
+              <img src="./images/home/contact-us/dot.svg" alt="" />
+            </div>
+
+            <form class="contact-form" action="#" method="POST">
+              <div class="form-group">
+                <label for="name" class="sr-only">Tên*</label>
+                <input type="text" id="name" name="name" placeholder="Tên*" required />
+              </div>
+              <div class="form-group">
+                <label for="email" class="sr-only">Email*</label>
+                <input type="email" id="email" name="email" placeholder="Email*" required />
+              </div>
+              <div class="form-group">
+                <label for="phone" class="sr-only">Điện thoại</label>
+                <input type="tel" id="phone" name="phone" placeholder="Điện thoại" />
+              </div>
+              <div class="form-group">
+                <label for="company" class="sr-only">Công ty</label>
+                <input type="text" id="company" name="company" placeholder="Công ty" />
+              </div>
+              <div class="form-group">
+                <label for="message" class="sr-only">Lời nhắn</label>
+                <textarea id="message" name="message" placeholder="Lời nhắn" rows="4"></textarea>
+              </div>
+              <button type="submit" class="submit-btn">SUBMIT &rarr;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer-bar" data-aos="fade-up" data-aos-duration="700">
+    <div class="footer-bar-inner">
+      <!-- Logo -->
+      <div class="footer-logo">
+        <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
+      </div>
+
+      <!-- Social -->
+      <div class="footer-social">
+        <span class="footer-follow-text">Follow us</span>
+        <span class="footer-follow-line" aria-hidden="true"></span>
+        <ul class="footer-social-list">
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on Instagram">
+              <img src="./images/footer/intal.svg" alt="Instagram" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on Facebook">
+              <img src="./images/footer/facebook.svg" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on YouTube">
+              <img src="./images/footer/youtube.svg" alt="YouTube" />
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-social-icon" aria-label="Follow us on X">
+              <img src="./images/footer/x.svg" alt="X" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
