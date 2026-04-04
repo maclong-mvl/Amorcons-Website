@@ -2409,7 +2409,7 @@ section.contact-us-section {
 .page-contact-us-map-iframe {
   display: block;
   width: 100%;
-  height: min(70vh, 560px);
+  height: min(70vh);
   min-height: 280px;
   border: 0;
 }
