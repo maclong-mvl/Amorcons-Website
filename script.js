@@ -169,6 +169,20 @@ function closeAllLangDropdowns() {
     });
 }
 
+function navigateLangOptionUrl(rawUrl) {
+    const trimmed = (rawUrl || '').trim();
+    if (!trimmed) return false;
+    let targetHref;
+    try {
+        targetHref = new URL(trimmed, window.location.href).href;
+    } catch {
+        return false;
+    }
+    if (targetHref === window.location.href) return false;
+    window.location.assign(trimmed);
+    return true;
+}
+
 function applySiteLang(lang) {
     if (lang !== 'en' && lang !== 'vi') return;
     const isEn = lang === 'en';
@@ -219,12 +233,19 @@ function initDesktopLangDropdown() {
     dropdown.querySelectorAll('.lang-dropdown-option').forEach((opt) => {
         opt.addEventListener('click', (e) => {
             e.stopPropagation();
+            closeAllLangDropdowns();
+            const url = opt.getAttribute('data-url');
+            if (navigateLangOptionUrl(url)) return;
             const lang = opt.getAttribute('data-lang');
             if (lang) applySiteLang(lang);
-            closeAllLangDropdowns();
         });
     });
 }
+
+(function syncLangFromUrlQuery() {
+    const q = new URLSearchParams(window.location.search).get('lang');
+    if (q === 'en' || q === 'vi') applySiteLang(q);
+})();
 
 document.addEventListener('click', () => closeAllLangDropdowns());
 document.addEventListener('keydown', (e) => {
