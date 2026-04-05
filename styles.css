@@ -3000,8 +3000,8 @@ h4.about-projects-year {
   }
 }
 
-/* Laptop ≤1366px: form + ảnh trái không tràn khung */
-@media (max-width: 1366px) {
+/* Laptop ≤1400px: form + ảnh trái không tràn khung */
+@media (max-width: 1800px) and (min-width: 1024px) {
   #page-contact-us-section .page-contact-us-container {
     align-items: flex-start;
     min-width: 0;
