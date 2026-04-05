@@ -154,6 +154,84 @@ window.addEventListener('scroll', updateSiteHeaderScroll, { passive: true });
 window.addEventListener('resize', updateSiteHeaderScroll);
 updateSiteHeaderScroll();
 
+const LANG_FLAG = {
+    en: './images/header/header-desktop/en.svg',
+    vi: './images/header/header-desktop/vn.svg',
+};
+
+function closeAllLangDropdowns() {
+    document.querySelectorAll('[data-lang-dropdown].is-open').forEach((dropdown) => {
+        const panel = dropdown.querySelector('.lang-dropdown-panel');
+        const btn = dropdown.querySelector('.lang-btn');
+        if (panel) panel.hidden = true;
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        dropdown.classList.remove('is-open');
+    });
+}
+
+function applySiteLang(lang) {
+    if (lang !== 'en' && lang !== 'vi') return;
+    const isEn = lang === 'en';
+    const dropdown = document.querySelector('[data-lang-dropdown]');
+    if (dropdown) {
+        const btn = dropdown.querySelector('.lang-btn');
+        const flagImg = dropdown.querySelector('.lang-btn-flag');
+        const label = dropdown.querySelector('.nav-btn-label');
+        if (flagImg) flagImg.src = LANG_FLAG[lang];
+        if (label) label.textContent = isEn ? 'EN' : 'VN';
+        if (btn) {
+            btn.setAttribute(
+                'aria-label',
+                isEn ? 'Chọn ngôn ngữ: English' : 'Chọn ngôn ngữ: Tiếng Việt'
+            );
+        }
+        dropdown.querySelectorAll('.lang-dropdown-option').forEach((opt) => {
+            const on = opt.getAttribute('data-lang') === lang;
+            opt.classList.toggle('is-selected', on);
+            opt.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+    }
+    document.querySelectorAll('.mobile-menu-lang-btn').forEach((b) => {
+        const on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+}
+
+function initDesktopLangDropdown() {
+    const dropdown = document.querySelector('[data-lang-dropdown]');
+    if (!dropdown) return;
+    const trigger = dropdown.querySelector('.lang-btn');
+    const panel = dropdown.querySelector('.lang-dropdown-panel');
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = panel.hidden;
+        closeAllLangDropdowns();
+        if (willOpen) {
+            panel.hidden = false;
+            trigger.setAttribute('aria-expanded', 'true');
+            dropdown.classList.add('is-open');
+        }
+    });
+
+    dropdown.querySelectorAll('.lang-dropdown-option').forEach((opt) => {
+        opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const lang = opt.getAttribute('data-lang');
+            if (lang) applySiteLang(lang);
+            closeAllLangDropdowns();
+        });
+    });
+}
+
+document.addEventListener('click', () => closeAllLangDropdowns());
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllLangDropdowns();
+});
+initDesktopLangDropdown();
+
 // ─── Hamburger Menu Toggle ────────────────────────────────────────
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -211,11 +289,8 @@ if (hamburgerBtn && mobileMenu) {
     const langBtns = mobileMenu.querySelectorAll('.mobile-menu-lang-btn');
     langBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-            langBtns.forEach((b) => {
-                const on = b === btn;
-                b.classList.toggle('is-active', on);
-                b.setAttribute('aria-pressed', on ? 'true' : 'false');
-            });
+            const lang = btn.getAttribute('data-lang');
+            if (lang) applySiteLang(lang);
         });
     });
 

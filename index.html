@@ -35,15 +35,36 @@
       </ul>
 
       <div class="nav-right">
-        <a href="#" class="nav-btn lang-btn" aria-label="Chọn ngôn ngữ: Tiếng Việt">
-          <img src="https://www.figma.com/api/mcp/asset/c236d5f4-5ec3-420b-854f-2898bedfa44a" alt=""
-            aria-hidden="true" />
-          <span class="nav-btn-label">VN</span>
-        </a>
+        <div class="lang-dropdown" data-lang-dropdown>
+          <button type="button" class="nav-btn lang-btn" id="langMenuButton" aria-haspopup="listbox"
+            aria-expanded="false" aria-controls="langMenuList" aria-label="Chọn ngôn ngữ: English">
+            <img class="lang-btn-flag"
+              src="./images/header/header-desktop/icon-lang.svg" alt="language"
+              width="24" height="24" aria-hidden="true" />
+            <span class="nav-btn-label">VN</span>
+          </button>
+          <div class="lang-dropdown-panel" id="langMenuList" role="listbox" aria-label="Ngôn ngữ" hidden>
+            <button type="button" class="lang-dropdown-option is-selected" role="option" data-lang="en"
+              aria-selected="true">
+              <span class="lang-dropdown-flag" aria-hidden="true">
+                <img src="./images/header/header-desktop/en.svg" alt="language"
+                  width="20" height="20" />
+              </span>
+              <span class="lang-dropdown-label">English</span>
+            </button>
+            <button type="button" class="lang-dropdown-option" role="option" data-lang="vi" aria-selected="false">
+              <span class="lang-dropdown-flag" aria-hidden="true">
+                <img src="./images/header/header-desktop/vn.svg" alt="language"
+                  width="20" height="20" />
+              </span>
+              <span class="lang-dropdown-label">Vietnamese</span>
+            </button>
+          </div>
+        </div>
         <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
-          <img src="https://www.figma.com/api/mcp/asset/c8bbff4a-f8d6-4430-bf45-7c4032ecbac3" alt="" aria-hidden="true"
+          <img src="./images/header/header-desktop/phone.svg" alt="phone" aria-hidden="true"
             class="desktop-only" />
-          <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true" class="mobile-only" />
+          <img src="./images/header/header-mobile/phone-mobile.svg" alt="phone" aria-hidden="true" class="mobile-only" />
           <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
         </a>
         <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"

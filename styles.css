@@ -284,6 +284,96 @@ h2.about-headline img.srv-award {
   flex-shrink: 0;
 }
 
+button.nav-btn {
+  border: none;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Desktop language dropdown — Figma 738:4651 */
+.lang-dropdown {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lang-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 200px;
+  margin: 0;
+  padding: 0;
+  background: #27231e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.lang-dropdown-panel[hidden] {
+  display: none !important;
+}
+
+.lang-dropdown-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.lang-dropdown-option:last-child {
+  padding-bottom: 16px;
+}
+
+.lang-dropdown-option:hover,
+.lang-dropdown-option:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+
+.lang-dropdown-option.is-selected {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lang-dropdown-flag {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.lang-dropdown-flag img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  display: block;
+}
+
+.lang-btn .lang-btn-flag {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /* =====================================================================
    HERO
 ===================================================================== */
@@ -3415,7 +3505,7 @@ h4.about-projects-year {
     display: none;
   }
 
-  .lang-btn {
+  .lang-dropdown {
     display: none !important;
   }
 
