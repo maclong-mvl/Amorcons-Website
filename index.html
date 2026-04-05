@@ -21,10 +21,8 @@
   <header class="site-header">
     <nav class="navbar" aria-label="Main Navigation">
       <a href="./index.html" class="nav-logo-link">
-        <img class="nav-logo desktop-only"
-          src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce" alt="Amorcons" />
-        <img class="nav-logo mobile-only" src="https://www.figma.com/api/mcp/asset/5a3bd9ca-a631-466b-ae8e-2834ae3454ce"
-          alt="Amorcons" />
+        <img class="nav-logo desktop-only" src="./images/header/logo.svg" alt="Amorcons" />
+        <img class="nav-logo mobile-only" src="./images/header/logo.svg" alt="Amorcons" />
       </a>
 
       <ul class="nav-tabs">
@@ -37,27 +35,25 @@
       <div class="nav-right">
         <div class="lang-dropdown" data-lang-dropdown>
           <button type="button" class="nav-btn lang-btn" id="langMenuButton" aria-haspopup="listbox"
-            aria-expanded="false" aria-controls="langMenuList" aria-label="Chọn ngôn ngữ: English">
-            <img class="lang-btn-flag"
-              src="./images/header/header-desktop/icon-lang.svg" alt="language"
-              width="24" height="24" aria-hidden="true" />
+            aria-expanded="false" aria-controls="langMenuList" aria-label="Chọn ngôn ngữ: Tiếng Việt">
+            <img class="lang-btn-flag" src="./images/header/header-desktop/icon-lang.svg" alt="language" width="24"
+              height="24" aria-hidden="true" />
             <span class="nav-btn-label">VN</span>
           </button>
           <div class="lang-dropdown-panel" id="langMenuList" role="listbox" aria-label="Ngôn ngữ" hidden>
-            <button type="button" class="lang-dropdown-option is-selected" role="option" data-lang="en"
-              aria-selected="true">
+            <button type="button" class="lang-dropdown-option is-selected" role="option" data-lang="vi"
+              data-url="./index.html?lang=vi" aria-selected="true">
               <span class="lang-dropdown-flag" aria-hidden="true">
-                <img src="./images/header/header-desktop/en.svg" alt="language"
-                  width="20" height="20" />
-              </span>
-              <span class="lang-dropdown-label">English</span>
-            </button>
-            <button type="button" class="lang-dropdown-option" role="option" data-lang="vi" aria-selected="false">
-              <span class="lang-dropdown-flag" aria-hidden="true">
-                <img src="./images/header/header-desktop/vn.svg" alt="language"
-                  width="20" height="20" />
+                <img src="./images/header/header-desktop/vn.svg" alt="language" width="20" height="20" />
               </span>
               <span class="lang-dropdown-label">Vietnamese</span>
+            </button>
+            <button type="button" class="lang-dropdown-option" role="option" data-lang="en"
+              data-url="./index.html?lang=en" aria-selected="false">
+              <span class="lang-dropdown-flag" aria-hidden="true">
+                <img src="./images/header/header-desktop/en.svg" alt="language" width="20" height="20" />
+              </span>
+              <span class="lang-dropdown-label">English</span>
             </button>
           </div>
         </div>
@@ -96,8 +92,8 @@
       <div class="mobile-menu-lang-row">
         <span class="mobile-menu-lang-label">Langue</span>
         <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
-          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="en" aria-pressed="true">Eng</button>
-          <button type="button" class="mobile-menu-lang-btn" data-lang="vi" aria-pressed="false">Vi</button>
+          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="vi" aria-pressed="true">Vi</button>
+          <button type="button" class="mobile-menu-lang-btn" data-lang="en" aria-pressed="false">Eng</button>
         </div>
       </div>
     </div>
