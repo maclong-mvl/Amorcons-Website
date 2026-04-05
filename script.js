@@ -257,7 +257,7 @@ initDesktopLangDropdown();
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const navbarEl = document.querySelector('.navbar');
-const mqMobileNav = window.matchMedia('(max-width: 768px)');
+const mqMobileNav = window.matchMedia('(max-width: 1240px)');
 const hamburgerIcon = hamburgerBtn ? hamburgerBtn.querySelector('img') : null;
 const hamburgerIconOpenSrc = './images/header/header-mobile/button-open-menu.svg';
 const hamburgerIconCloseSrc = './images/header/header-mobile/button-open-menu.svg';

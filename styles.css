@@ -3337,6 +3337,101 @@ h4.about-projects-year {
 }
 
 /* =====================================================================
+   HEADER — ≤1300px: hamburger + overlay menu (tablet / laptop hẹp)
+===================================================================== */
+@media (max-width: 1300px) {
+  .site-header .mobile-only {
+    display: block !important;
+  }
+
+  .site-header .desktop-only,
+  .site-header span.desktop-only {
+    display: none !important;
+  }
+
+  /* --- Navbar (cùng grid như màn ≤768) --- */
+  .navbar {
+    padding: 0 16px;
+    height: var(--nav-h);
+    gap: 0 21px;
+    column-gap: 21px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: stretch;
+    transition: background 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
+  }
+
+  .site-header.site-header--scrolled .navbar {
+    background: var(--dark-nav);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-logo-link {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .nav-logo-link img.mobile-only {
+    height: 24px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+  }
+
+  .nav-right {
+    display: contents !important;
+  }
+
+  .nav-tabs {
+    display: none;
+  }
+
+  .lang-dropdown {
+    display: none !important;
+  }
+
+  .nav-btn {
+    padding: 0;
+    background: transparent !important;
+  }
+
+  .nav-btn[href^="tel"] {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex !important;
+    justify-content: flex-end;
+    z-index: 10;
+  }
+
+  .nav-btn[href^="tel"] img.mobile-only {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .hamburger-btn img.mobile-only {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+}
+
+/* =====================================================================
    RESPONSIVE — Mobile ≤768px
 ===================================================================== */
 @media (max-width: 768px) {
@@ -3504,49 +3599,6 @@ h4.about-projects-year {
     padding-bottom: 16px;
   }
 
-  /* --- Navbar (Figma: h-[80px] px-[16px] gap-[21px] backdrop-blur-[20px]) --- */
-  .navbar {
-    padding: 0 16px;
-    height: var(--nav-h);
-    gap: 0 21px;
-    column-gap: 21px;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    justify-content: stretch;
-    transition: background 0.28s ease, backdrop-filter 0.28s ease, -webkit-backdrop-filter 0.28s ease;
-  }
-
-  /* Sau khi scroll qua vùng header: nền + blur (đồng bộ desktop) */
-  .site-header.site-header--scrolled .navbar {
-    background: var(--dark-nav);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  /* Flatten hierarchies for grid positioning */
-  .nav-logo-link {
-    grid-column: 2;
-    grid-row: 1;
-    display: flex;
-    justify-content: center;
-    z-index: 10;
-  }
-
-  .nav-logo-link img.mobile-only {
-    height: 24px;
-    width: auto;
-    max-width: 110px;
-    object-fit: contain;
-  }
-
-  .nav-right {
-    display: contents !important;
-  }
-
   .mobile-only {
     display: block !important;
   }
@@ -3554,48 +3606,6 @@ h4.about-projects-year {
   .desktop-only,
   span.desktop-only {
     display: none !important;
-  }
-
-  .nav-tabs {
-    display: none;
-  }
-
-  .lang-dropdown {
-    display: none !important;
-  }
-
-  .nav-btn {
-    padding: 0;
-    background: transparent !important;
-  }
-
-  /* Phone button */
-  .nav-btn[href^="tel"] {
-    grid-column: 3;
-    grid-row: 1;
-    display: flex !important;
-    justify-content: flex-end;
-    z-index: 10;
-  }
-
-  .nav-btn[href^="tel"] img.mobile-only {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Hamburger / Dots button */
-  .hamburger-btn {
-    display: flex !important;
-    grid-column: 1;
-    grid-row: 1;
-    padding: 0;
-    z-index: 10;
-  }
-
-  .hamburger-btn img.mobile-only {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
   }
 
   /* --- Hero (Figma 289:904 — 800px frame, text không card kính) --- */
