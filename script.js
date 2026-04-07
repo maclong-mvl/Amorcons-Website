@@ -186,6 +186,8 @@ function navigateLangOptionUrl(rawUrl) {
 function applySiteLang(lang) {
     if (lang !== 'en' && lang !== 'vi') return;
     const isEn = lang === 'en';
+    document.documentElement.setAttribute('lang', lang);
+
     const dropdown = document.querySelector('[data-lang-dropdown]');
     if (dropdown) {
         const btn = dropdown.querySelector('.lang-btn');
@@ -209,6 +211,38 @@ function applySiteLang(lang) {
         const on = b.getAttribute('data-lang') === lang;
         b.classList.toggle('is-active', on);
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    // Contact form copy (placeholders / labels)
+    const copy =
+        lang === 'en'
+            ? {
+                  name: 'Name*',
+                  email: 'Email*',
+                  phone: 'Phone',
+                  company: 'Company',
+                  message: 'Message',
+              }
+            : {
+                  name: 'Tên*',
+                  email: 'Email*',
+                  phone: 'Điện thoại',
+                  company: 'Công ty',
+                  message: 'Lời nhắn',
+              };
+
+    document.querySelectorAll('form.contact-form').forEach((form) => {
+        const setField = (id, text) => {
+            const input = form.querySelector(`#${id}`);
+            if (input) input.setAttribute('placeholder', text);
+            const labelEl = form.querySelector(`label[for="${id}"]`);
+            if (labelEl) labelEl.textContent = text;
+        };
+        setField('name', copy.name);
+        setField('email', copy.email);
+        setField('phone', copy.phone);
+        setField('company', copy.company);
+        setField('message', copy.message);
     });
 }
 
@@ -600,3 +634,72 @@ if (hamburgerBtn && mobileMenu) {
         window.setTimeout(applyContent, 220);
     });
 })();
+
+// ─── Contact forms: show success message (vi/en) ────────────────────────
+function getCurrentLang() {
+    const q = new URLSearchParams(window.location.search).get('lang');
+    if (q === 'en' || q === 'vi') return q;
+    const htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    if (htmlLang.startsWith('en')) return 'en';
+    return 'vi';
+}
+
+function getContactSuccessCopy(lang) {
+    if (lang === 'en') {
+        return {
+            title: 'Submission successful!',
+            body: "We’ve received your information and will contact you as soon as possible.",
+        };
+    }
+    return {
+        title: 'Gửi yêu cầu thành công!',
+        body: 'Chúng tôi đã nhận được thông tin của bạn và sẽ liên hệ trong thời gian sớm nhất.',
+    };
+}
+
+function showContactFormSuccess(form) {
+    const lang = getCurrentLang();
+    const copy = getContactSuccessCopy(lang);
+
+    const host =
+        form.closest('.contact-form-box') ||
+        form.parentElement ||
+        form;
+
+    let toast = host.querySelector('.contact-form-success');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'contact-form-success';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        host.appendChild(toast);
+    }
+
+    toast.innerHTML = `
+    <div class="contact-form-success__title">${copy.title}</div>
+    <div class="contact-form-success__body">${copy.body}</div>
+  `.trim();
+
+    toast.classList.add('is-visible');
+
+    window.clearTimeout(toast.__hideTimer);
+    toast.__hideTimer = window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+    }, 4200);
+}
+
+document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+        // Let native validation run; if invalid, show built-in messages.
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            form.reportValidity?.();
+            return;
+        }
+
+        // Valid → show success UI (no real submit for static site)
+        e.preventDefault();
+        showContactFormSuccess(form);
+        form.reset();
+    });
+});
