@@ -19,6 +19,7 @@ figcaption,
 footer,
 nav {
   display: block;
+  font-family: 'Google Sans Flex', sans-serif;
 }
 
 /* Content Width Limit */
@@ -191,6 +192,7 @@ textarea {
 
 /* Figma: px-[12px] py-[14px] flex flex-col h-full items-center justify-center */
 .nav-tab {
+  font-family: 'Google Sans Flex', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,7 +242,7 @@ h2.about-headline img.srv-award {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
   flex-shrink: 0;
 }
 
@@ -441,6 +443,7 @@ button.nav-btn {
 }
 
 .hero-subtitle {
+  font-family: 'Google Sans Flex', sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -1756,21 +1759,29 @@ li.services-turnkey-item.is-active::before {
   padding-left: 5%;
 }
 
+/* Trang chủ: desktop/tablet ≥769px luôn hiện cột copy; ẩn chỉ trong @media (max-width: 768px) */
+@media (min-width: 769px) {
+  section.contact-us-section .contact-left {
+    display: revert;
+  }
+}
+
 .contact-subtitle {
   font-family: 'Google Sans Flex', sans-serif;
   display: flex;
   align-items: center;
   gap: 16px;
   font-size: 14px;
-  color: rgba(177, 129, 81, 1);
+  color: #F8B2A2;
   letter-spacing: 0.1em;
   margin-bottom: 24px;
+  font-weight: 300;
 }
 
 .contact-subtitle .line {
   width: 48px;
   height: 1px;
-  background: rgba(177, 129, 81, 1);
+  background: #F8B2A2;
 }
 
 .contact-hero-title {
@@ -1830,7 +1841,7 @@ h2.contact-us-title {
   line-height: 36.16px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: rgba(177, 129, 81, 1);
+  color: #F8B2A2;
 
 }
 
@@ -1911,31 +1922,48 @@ section.contact-us-section {
 }
 
 .contact-form textarea {
-  resize: vertical;
+  resize: none;
   min-height: 120px;
 }
 
+/* Submit — Figma Contact: Fill × Hug ~44px, radius 11.93px, space-between, gradient 4 stops + 2 shadows */
 .submit-btn {
-  background: linear-gradient(90deg, #d3b48f 0%, #a4764b 100%);
   color: #1a1a1a;
   border: none;
-  padding: 16px;
+  padding: 12px 20px;
+  min-height: 44px;
   font-family: 'Google Sans Flex', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  gap: 10px;
   align-items: center;
-  gap: 8px;
-  transition: filter 0.3s ease;
-  margin-top: 8px;
-  border-radius: 8px;
+  transition: filter 0.25s ease;
+  margin-top: 0;
+  border-radius: 11.93px;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #d2b79b, #c8a882, #e8d4bc, #c4a07b);
+  box-shadow:
+    0 1.7px 6.82px rgba(0, 0, 0, 0.3),
+    0 6.82px 27.27px rgba(210, 183, 155, 0.25);
+}
+
+.submit-btn-text,
+.submit-btn-arrow {
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.contact-form .submit-btn {
+  width: 100%;
 }
 
 .submit-btn:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.06) saturate(1.04);
 }
 
 /* =====================================================================
@@ -2003,7 +2031,7 @@ section.contact-us-section {
 }
 
 .footer-social-icon:hover {
-  border-color: rgba(177, 129, 81, 1);
+  border-color: #F8B2A2;
   background: rgba(177, 129, 81, 0.1);
   box-shadow: 0 0 10px rgba(177, 129, 81, 0.25);
 }
@@ -3199,19 +3227,13 @@ h4.about-projects-year {
   }
 
   #page-contact-us-section .contact-form textarea {
+    resize: none;
     min-height: 140px;
   }
 
   #page-contact-us-section .submit-btn {
-    border-radius: 11.929px;
+    border-radius: 11.93px;
     min-height: 44px;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 0.25px;
-    text-transform: uppercase;
-    box-shadow:
-      0 6.817px 27.266px rgba(210, 183, 155, 0.25),
-      0 1.704px 6.817px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -3336,6 +3358,10 @@ h4.about-projects-year {
   }
 }
 
+.nav-logo-link {
+  width: 190px;
+  display: block;
+}
 /* =====================================================================
    HEADER — ≤1300px: hamburger + overlay menu (tablet / laptop hẹp)
 ===================================================================== */
@@ -3349,8 +3375,16 @@ h4.about-projects-year {
     display: none !important;
   }
 
+
   /* --- Navbar (cùng grid như màn ≤768) --- */
+  /* Full-bleed viewport: bỏ left:50% + translateX (chỉ desktop >1300px giữ căn giữa kiểu đó) — tránh rãnh trống bên phải trên mobile/tablet */
   .navbar {
+    left: 0;
+    right: 0;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    transform: none;
     padding: 0 16px;
     height: var(--nav-h);
     gap: 0 21px;
@@ -3435,12 +3469,27 @@ h4.about-projects-year {
    RESPONSIVE — Mobile ≤768px
 ===================================================================== */
 @media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    background: var(--dark-bg);
+  }
+
   body {
     padding-top: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  header,
+  footer {
+    max-width: 100%;
   }
 
   main {
+    max-width: 100%;
     background: var(--dark-bg);
+    min-width: 0;
   }
 
   img.srv-award {
@@ -3990,39 +4039,57 @@ h4.about-projects-year {
 
   section.contact-us-section {
     margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
-  /* --- Contact — Figma 289:1177: container h-[878px], form abs top/left, copy abs dưới --- */
+  /* Contact mobile: đã ẩn .contact-left — bỏ min-height 878px + form absolute (tránh “đoạn” nền trống dưới form) */
   .contact-us {
-    padding: 0 0 48px;
-    min-height: 878px;
-    align-items: stretch;
+    display: block;
+    padding: 24px 0 48px;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-image: url('./images/contact-us/contact-us-mobile.jpg');
+    background-size: cover;
+    background-position: left top;
+    background-repeat: no-repeat;
   }
 
   .contact-us::before {
     background: rgba(0, 0, 0, 0.51);
   }
 
-  /* Không dùng flex column; layout absolute giống frame mobile */
   .contact-us-container {
     display: block;
     position: relative;
-    min-height: 878px;
+    min-height: 0;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     margin: 0;
-    padding: 0;
-    gap: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  /* Form luồng bình thường, không absolute — chiều cao section = nội dung form (+ cắt tràn do AOS) */
+  section.contact-us-section .contact-form {
+    gap: 12px;
   }
 
   section.contact-us-section .contact-form-box {
-    position: absolute;
-    left: 10px;
-    top: 31.84px;
-    width: calc(100% - 20px);
-    max-width: 356px;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
     margin: 0;
-    padding: 12px 16px 24px;
+    padding: 12px 16px 16px;
     backdrop-filter: blur(17.041px);
     -webkit-backdrop-filter: blur(17.041px);
     background: rgba(48, 40, 34, 0.92);
@@ -4033,17 +4100,9 @@ h4.about-projects-year {
     z-index: 2;
   }
 
+  /* Chỉ mobile ≤768px: ẩn cột copy trái trên trang chủ, desktop/tablet rộng vẫn hiện */
   section.contact-us-section .contact-left {
-    position: absolute;
-    left: 50%;
-    top: 668px;
-    transform: translateX(-50%);
-    width: 210px;
-    max-width: calc(100% - 32px);
-    padding-left: 0;
-    text-align: center;
-    margin: 0;
-    z-index: 1;
+    display: none;
   }
 
   .contact-subtitle {
@@ -4097,17 +4156,13 @@ h4.about-projects-year {
   }
 
   section.contact-us-section .contact-form textarea {
-    min-height: 140px;
+    resize: none;
+    min-height: 120px;
   }
 
   section.contact-us-section .submit-btn {
-    border-radius: 11.929px;
+    border-radius: 11.93px;
     min-height: 44px;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 0.25px;
-    text-transform: uppercase;
-    box-shadow: 0 6.817px 27.266px rgba(210, 183, 155, 0.25), 0 1.704px 6.817px rgba(0, 0, 0, 0.3);
   }
 
   /* --- Footer --- */
