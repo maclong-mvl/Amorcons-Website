@@ -909,9 +909,10 @@ button.nav-btn {
 
 .srv-modal-dialog {
   position: relative;
+  z-index: 600;
   width: min(1920px, 100%);
-  height: min(1100px, 100vh);
-  max-height: 100vh;
+  height: min(1100px, 100dvh);
+  max-height: 100dvh;
   background: transparent;
   overflow: hidden;
 }
@@ -1049,17 +1050,57 @@ button.nav-btn {
 }
 
 @media (max-width: 900px) {
+  .srv-modal {
+    padding: 0;
+  }
+
   .srv-modal-grid {
     grid-template-columns: 1fr;
     min-height: 0;
   }
 
   .srv-modal-media {
-    min-height: 240px;
+    min-height: 0;
   }
 
   .srv-modal-rail {
     width: 52px;
+  }
+
+  .srv-modal-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+}
+
+@media (max-width: 480px) {
+  .srv-modal-rail {
+    width: 48px;
+    padding: 12px;
+    gap: 18px;
+  }
+
+  .srv-modal-rail-stack {
+    gap: 18px;
+  }
+
+  .srv-modal-rail-track {
+    height: 88px;
+  }
+}
+
+@supports (height: 100svh) {
+  .srv-modal-dialog {
+    height: min(1100px, 100svh);
+    max-height: 100svh;
+  }
+
+  @media (max-width: 900px) {
+    .srv-modal-dialog {
+      height: 100svh;
+      max-height: 100svh;
+    }
   }
 }
 
@@ -3366,13 +3407,11 @@ h4.about-projects-year {
     width: auto;
     max-width: none;
   }
+  .page-contact-us-right{
+    padding: 0 16px;
+  }
 
   #page-contact-us-section .page-contact-us-right .contact-form-box {
-    position: absolute;
-    left: 10px;
-    top: 31.84px;
-    width: calc(100% - 20px);
-    max-width: 356px;
     margin: 0;
     padding: 12px 16px 24px;
     backdrop-filter: blur(17.041px);
