@@ -9,8 +9,6 @@ AOS.init({
     delay: 0,
     disable: function () {
         if (mqReduceMotion.matches) return true;
-        /* Trang Dịch vụ: giữ AOS trên mobile (body.body-services) — các trang khác tắt ≤768px */
-        if (document.body.classList.contains('body-services')) return false;
         return mqAosMobile.matches;
     }
 });
@@ -35,6 +33,144 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
         });
     }
 });
+
+// Services popup (modal) open/close
+(function initServicesPopup() {
+    const modal = document.getElementById('srvModal');
+    if (!modal) return;
+
+    const dialog = modal.querySelector('.srv-modal-dialog');
+    const imgEl = document.getElementById('srvModalImg');
+    const videoEl = document.getElementById('srvModalVideo');
+
+    let lastActiveEl = null;
+    let escHandlerBound = false;
+
+    function setModalOpen(open) {
+        if (open) {
+            modal.hidden = false;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        } else {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.hidden = true;
+            document.body.style.overflow = '';
+        }
+    }
+
+    function stopModalVideo() {
+        if (!videoEl) return;
+        try {
+            videoEl.pause();
+        } catch {}
+        // Reset so it doesn't keep buffering in background
+        videoEl.removeAttribute('src');
+        videoEl.load?.();
+    }
+
+    function openFromCell(cell) {
+        lastActiveEl = document.activeElement;
+
+        const bgImg = cell.querySelector('.srv-cell-bg');
+        const bgSrc = bgImg?.getAttribute('src') || '';
+
+        const vid = cell.querySelector('.srv-cell-video');
+        const vidSrc = vid?.getAttribute('src') || '';
+
+        if (imgEl) {
+            if (bgSrc) imgEl.src = bgSrc;
+            else imgEl.removeAttribute('src');
+        }
+
+        stopModalVideo();
+        if (videoEl && vidSrc) {
+            videoEl.src = vidSrc;
+            videoEl.load();
+        }
+
+        setModalOpen(true);
+
+        // Let layout paint before attempting to play (avoids some autoplay blocks)
+        window.setTimeout(() => {
+            if (videoEl && vidSrc) {
+                videoEl.play().catch(() => {});
+            }
+            const closeBtn = modal.querySelector('.srv-modal-rail-close');
+            closeBtn?.focus?.();
+        }, 40);
+
+        if (!escHandlerBound) {
+            escHandlerBound = true;
+            document.addEventListener('keydown', (e) => {
+                if (!modal.hidden && e.key === 'Escape') closeModal();
+            });
+        }
+    }
+
+    function closeModal() {
+        stopModalVideo();
+        setModalOpen(false);
+        // Restore focus
+        if (lastActiveEl && typeof lastActiveEl.focus === 'function') {
+            try {
+                lastActiveEl.focus();
+            } catch {}
+        }
+        lastActiveEl = null;
+    }
+
+    // Close handlers
+    modal.querySelectorAll('[data-srv-modal-close]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal();
+        });
+    });
+
+    // Click outside dialog closes (backdrop already handled via [data-srv-modal-close])
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Open popup from each srv-cell
+    document.querySelectorAll('.srv-cell').forEach((cell) => {
+        cell.addEventListener('click', (e) => {
+            // allow other modifiers without trapping
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault?.();
+            openFromCell(cell);
+        });
+
+        // Keyboard accessibility for role="button"
+        cell.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            openFromCell(cell);
+        });
+    });
+
+    // Basic focus trap inside dialog
+    if (dialog) {
+        dialog.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            const focusables = dialog.querySelectorAll(
+                'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            );
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+    }
+})();
 
 // Timeline Switcher Logic
 const timelineItems = document.querySelectorAll('.timeline-item');
@@ -186,6 +322,8 @@ function navigateLangOptionUrl(rawUrl) {
 function applySiteLang(lang) {
     if (lang !== 'en' && lang !== 'vi') return;
     const isEn = lang === 'en';
+    document.documentElement.setAttribute('lang', lang);
+
     const dropdown = document.querySelector('[data-lang-dropdown]');
     if (dropdown) {
         const btn = dropdown.querySelector('.lang-btn');
@@ -209,6 +347,38 @@ function applySiteLang(lang) {
         const on = b.getAttribute('data-lang') === lang;
         b.classList.toggle('is-active', on);
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    // Contact form copy (placeholders / labels)
+    const copy =
+        lang === 'en'
+            ? {
+                  name: 'Name*',
+                  email: 'Email*',
+                  phone: 'Phone',
+                  company: 'Company',
+                  message: 'Message',
+              }
+            : {
+                  name: 'Tên*',
+                  email: 'Email*',
+                  phone: 'Điện thoại',
+                  company: 'Công ty',
+                  message: 'Lời nhắn',
+              };
+
+    document.querySelectorAll('form.contact-form').forEach((form) => {
+        const setField = (id, text) => {
+            const input = form.querySelector(`#${id}`);
+            if (input) input.setAttribute('placeholder', text);
+            const labelEl = form.querySelector(`label[for="${id}"]`);
+            if (labelEl) labelEl.textContent = text;
+        };
+        setField('name', copy.name);
+        setField('email', copy.email);
+        setField('phone', copy.phone);
+        setField('company', copy.company);
+        setField('message', copy.message);
     });
 }
 
@@ -600,3 +770,72 @@ if (hamburgerBtn && mobileMenu) {
         window.setTimeout(applyContent, 220);
     });
 })();
+
+// ─── Contact forms: show success message (vi/en) ────────────────────────
+function getCurrentLang() {
+    const q = new URLSearchParams(window.location.search).get('lang');
+    if (q === 'en' || q === 'vi') return q;
+    const htmlLang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    if (htmlLang.startsWith('en')) return 'en';
+    return 'vi';
+}
+
+function getContactSuccessCopy(lang) {
+    if (lang === 'en') {
+        return {
+            title: 'Submission successful!',
+            body: "We’ve received your information and will contact you as soon as possible.",
+        };
+    }
+    return {
+        title: 'Gửi yêu cầu thành công!',
+        body: 'Chúng tôi đã nhận được thông tin của bạn và sẽ liên hệ trong thời gian sớm nhất.',
+    };
+}
+
+function showContactFormSuccess(form) {
+    const lang = getCurrentLang();
+    const copy = getContactSuccessCopy(lang);
+
+    const host =
+        form.closest('.contact-form-box') ||
+        form.parentElement ||
+        form;
+
+    let toast = host.querySelector('.contact-form-success');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'contact-form-success';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        host.appendChild(toast);
+    }
+
+    toast.innerHTML = `
+    <div class="contact-form-success__title">${copy.title}</div>
+    <div class="contact-form-success__body">${copy.body}</div>
+  `.trim();
+
+    toast.classList.add('is-visible');
+
+    window.clearTimeout(toast.__hideTimer);
+    toast.__hideTimer = window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+    }, 4200);
+}
+
+document.querySelectorAll('form.contact-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+        // Let native validation run; if invalid, show built-in messages.
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            form.reportValidity?.();
+            return;
+        }
+
+        // Valid → show success UI (no real submit for static site)
+        e.preventDefault();
+        showContactFormSuccess(form);
+        form.reset();
+    });
+});
