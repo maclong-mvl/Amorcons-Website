@@ -1506,6 +1506,20 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   width: 1px;
   background: #373737;
   min-height: 200px;
+  --turnkey-rail-scale: 0;
+}
+
+.services-turnkey-rail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 1);
+  transform-origin: 0 0;
+  transform: scaleY(var(--turnkey-rail-scale));
+  transition: transform 0.28s ease;
 }
 
 .services-turnkey-desc {

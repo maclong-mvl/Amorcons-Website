@@ -667,6 +667,8 @@ if (hamburgerBtn && mobileMenu) {
     const turnkeyVisual = document.querySelector('.services-page-turnkey .services-turnkey-visual');
     const turnkeyFrame = turnkeyVideo.closest('.services-turnkey-frame');
     const turnkeyMobileMq = window.matchMedia('(max-width: 900px)');
+    const turnkeyPanel = document.getElementById('servicesTurnkeyPanel');
+    const turnkeyRail = turnkeyPanel ? turnkeyPanel.querySelector('.services-turnkey-rail') : null;
 
     /** Mobile: đặt khung video trong .services-turnkey-item.is-active (Figma). Desktop: giữ trong .services-turnkey-visual */
     function placeTurnkeyFrameMobile() {
@@ -705,13 +707,26 @@ if (hamburgerBtn && mobileMenu) {
         ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
     }
 
-    turnkeyList.addEventListener('click', (e) => {
-        const btn = e.target.closest('.services-turnkey-btn');
+    function updateTurnkeyRailProgressByBtn(btn) {
+        if (!turnkeyRail || !btn) return;
+        const listRect = turnkeyList.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+        const y = (btnRect.top + btnRect.height / 2) - listRect.top;
+        const ratio = listRect.height > 0 ? y / listRect.height : 0;
+        const clamped = Math.max(0, Math.min(1, ratio));
+        turnkeyRail.style.setProperty('--turnkey-rail-scale', String(clamped));
+    }
+
+    function activateTurnkeyBtn(btn, opts = {}) {
         if (!btn || !turnkeyList.contains(btn)) return;
+        const { withRipple = false, clientX = 0, clientY = 0 } = opts;
 
-        turnkeyRipple(btn, e.clientX, e.clientY);
+        if (withRipple) turnkeyRipple(btn, clientX, clientY);
 
-        if (btn.getAttribute('aria-selected') === 'true') return;
+        if (btn.getAttribute('aria-selected') === 'true') {
+            updateTurnkeyRailProgressByBtn(btn);
+            return;
+        }
 
         const videoSrc = btn.getAttribute('data-video');
         const posterSrc = btn.getAttribute('data-poster') || '';
@@ -733,6 +748,7 @@ if (hamburgerBtn && mobileMenu) {
             b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
         });
 
+        updateTurnkeyRailProgressByBtn(btn);
         placeTurnkeyFrameMobile();
 
         const applyContent = () => {
@@ -768,7 +784,96 @@ if (hamburgerBtn && mobileMenu) {
 
         turnkeyVideo.classList.add('turnkey-content--hide');
         window.setTimeout(applyContent, 220);
+    }
+
+    turnkeyList.addEventListener('click', (e) => {
+        const btn = e.target.closest('.services-turnkey-btn');
+        if (!btn || !turnkeyList.contains(btn)) return;
+        activateTurnkeyBtn(btn, { withRipple: true, clientX: e.clientX, clientY: e.clientY });
     });
+
+    // ScrollMagic: pin section + scroll-driven active step + rail progress
+    if (turnkeyPanel && typeof window.ScrollMagic !== 'undefined') {
+        const controller = new window.ScrollMagic.Controller();
+        const btns = Array.from(turnkeyList.querySelectorAll('.services-turnkey-btn'));
+        const turnkeySection = document.querySelector('.services-page-turnkey');
+
+        // Desktop/tablet only: pin the panel so user can keep scrolling to scrub steps.
+        const allowPin = () => !window.matchMedia('(max-width: 900px)').matches;
+
+        const getDuration = () => {
+            // Enough scroll distance to scrub through all steps while pinned.
+            // Use scrollHeight (includes expanded desc) so progress doesn't stop early.
+            const base = Math.max(turnkeyList.scrollHeight, turnkeyPanel.offsetHeight);
+            // Add a little extra to make the last step easier to reach.
+            return Math.max(1, Math.round(base * 1.15));
+        };
+
+        let pinScene = null;
+        let progressScene = null;
+
+        function buildScenes() {
+            if (!btns.length) return;
+
+            // Destroy old scenes if any
+            try {
+                pinScene?.destroy(true);
+                progressScene?.destroy(true);
+            } catch {}
+            pinScene = null;
+            progressScene = null;
+
+            const duration = getDuration();
+
+            if (turnkeySection && allowPin()) {
+                pinScene = new window.ScrollMagic.Scene({
+                    triggerElement: turnkeySection,
+                    triggerHook: 0,
+                    duration,
+                })
+                    .setPin(turnkeySection, { pushFollowers: true })
+                    .addTo(controller);
+            }
+
+            progressScene = new window.ScrollMagic.Scene({
+                triggerElement: turnkeySection || turnkeyList,
+                triggerHook: 0,
+                duration,
+            })
+                .on('progress', (e) => {
+                    const n = btns.length;
+                    const idx = Math.min(n - 1, Math.max(0, Math.floor(e.progress * n)));
+                    const btn = btns[idx];
+                    if (btn) activateTurnkeyBtn(btn, { withRipple: false });
+                })
+                .on('enter', (e) => {
+                    // When entering from top, ensure first step; from bottom, ensure last step
+                    const dir = e?.scrollDirection;
+                    const btn = dir === 'REVERSE' ? btns[btns.length - 1] : btns[0];
+                    if (btn) activateTurnkeyBtn(btn, { withRipple: false });
+                })
+                .on('leave', (e) => {
+                    // When leaving, lock to edge step based on direction
+                    const dir = e?.scrollDirection;
+                    const btn = dir === 'REVERSE' ? btns[0] : btns[btns.length - 1];
+                    if (btn) activateTurnkeyBtn(btn, { withRipple: false });
+                })
+                .addTo(controller);
+        }
+
+        const refresh = () => {
+            buildScenes();
+            controller.update(true);
+        };
+
+        window.addEventListener('resize', refresh);
+        window.addEventListener('load', refresh);
+        refresh();
+    }
+
+    // Ensure rail matches initial active step
+    const initialBtn = turnkeyList.querySelector('.services-turnkey-btn[aria-selected="true"]');
+    if (initialBtn) updateTurnkeyRailProgressByBtn(initialBtn);
 })();
 
 // ─── Contact forms: show success message (vi/en) ────────────────────────
