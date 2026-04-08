@@ -81,9 +81,9 @@ textarea {
   resize: none;
 }
 
-/* AOS: không dùng hiệu ứng trên mobile (trừ trang Dịch vụ: body.body-services + JS) */
+/* AOS: không dùng hiệu ứng trên mobile */
 @media (max-width: 768px) {
-  body:not(.body-services) [data-aos] {
+  [data-aos] {
     opacity: 1 !important;
     transform: none !important;
     transition-property: opacity, transform !important;
