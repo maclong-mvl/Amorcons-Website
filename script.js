@@ -36,6 +36,144 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
     }
 });
 
+// Services popup (modal) open/close
+(function initServicesPopup() {
+    const modal = document.getElementById('srvModal');
+    if (!modal) return;
+
+    const dialog = modal.querySelector('.srv-modal-dialog');
+    const imgEl = document.getElementById('srvModalImg');
+    const videoEl = document.getElementById('srvModalVideo');
+
+    let lastActiveEl = null;
+    let escHandlerBound = false;
+
+    function setModalOpen(open) {
+        if (open) {
+            modal.hidden = false;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        } else {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.hidden = true;
+            document.body.style.overflow = '';
+        }
+    }
+
+    function stopModalVideo() {
+        if (!videoEl) return;
+        try {
+            videoEl.pause();
+        } catch {}
+        // Reset so it doesn't keep buffering in background
+        videoEl.removeAttribute('src');
+        videoEl.load?.();
+    }
+
+    function openFromCell(cell) {
+        lastActiveEl = document.activeElement;
+
+        const bgImg = cell.querySelector('.srv-cell-bg');
+        const bgSrc = bgImg?.getAttribute('src') || '';
+
+        const vid = cell.querySelector('.srv-cell-video');
+        const vidSrc = vid?.getAttribute('src') || '';
+
+        if (imgEl) {
+            if (bgSrc) imgEl.src = bgSrc;
+            else imgEl.removeAttribute('src');
+        }
+
+        stopModalVideo();
+        if (videoEl && vidSrc) {
+            videoEl.src = vidSrc;
+            videoEl.load();
+        }
+
+        setModalOpen(true);
+
+        // Let layout paint before attempting to play (avoids some autoplay blocks)
+        window.setTimeout(() => {
+            if (videoEl && vidSrc) {
+                videoEl.play().catch(() => {});
+            }
+            const closeBtn = modal.querySelector('.srv-modal-rail-close');
+            closeBtn?.focus?.();
+        }, 40);
+
+        if (!escHandlerBound) {
+            escHandlerBound = true;
+            document.addEventListener('keydown', (e) => {
+                if (!modal.hidden && e.key === 'Escape') closeModal();
+            });
+        }
+    }
+
+    function closeModal() {
+        stopModalVideo();
+        setModalOpen(false);
+        // Restore focus
+        if (lastActiveEl && typeof lastActiveEl.focus === 'function') {
+            try {
+                lastActiveEl.focus();
+            } catch {}
+        }
+        lastActiveEl = null;
+    }
+
+    // Close handlers
+    modal.querySelectorAll('[data-srv-modal-close]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal();
+        });
+    });
+
+    // Click outside dialog closes (backdrop already handled via [data-srv-modal-close])
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Open popup from each srv-cell
+    document.querySelectorAll('.srv-cell').forEach((cell) => {
+        cell.addEventListener('click', (e) => {
+            // allow other modifiers without trapping
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault?.();
+            openFromCell(cell);
+        });
+
+        // Keyboard accessibility for role="button"
+        cell.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            openFromCell(cell);
+        });
+    });
+
+    // Basic focus trap inside dialog
+    if (dialog) {
+        dialog.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            const focusables = dialog.querySelectorAll(
+                'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            );
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+    }
+})();
+
 // Timeline Switcher Logic
 const timelineItems = document.querySelectorAll('.timeline-item');
 const mainVideo = document.querySelector('.about-main-img');
