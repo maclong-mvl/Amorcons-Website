@@ -670,6 +670,25 @@ if (hamburgerBtn && mobileMenu) {
     const turnkeyPanel = document.getElementById('servicesTurnkeyPanel');
     const turnkeyRail = turnkeyPanel ? turnkeyPanel.querySelector('.services-turnkey-rail') : null;
 
+    function updateTurnkeyRailMetrics() {
+        if (!turnkeyPanel) return;
+        const panelRect = turnkeyPanel.getBoundingClientRect();
+        const btnsAll = Array.from(turnkeyList.querySelectorAll('.services-turnkey-btn'));
+        if (!btnsAll.length) return;
+
+        const firstRect = btnsAll[0].getBoundingClientRect();
+        const lastRect = btnsAll[btnsAll.length - 1].getBoundingClientRect();
+        const firstY = (firstRect.top + firstRect.height / 2) - panelRect.top;
+        const lastY = (lastRect.top + lastRect.height / 2) - panelRect.top;
+
+        // With CSS line top fixed at 0, rail height should reach the last dot.
+        const height = Math.max(1, Math.round(lastY));
+        const start = Math.max(0, Math.round(firstY) + 20);
+        turnkeyPanel.style.setProperty('--turnkey-rail-height', `${height}px`);
+        turnkeyPanel.style.setProperty('--turnkey-rail-progress-start', `${start}px`);
+        // left is controlled by CSS (left: 0)
+    }
+
     /** Mobile: đặt khung video trong .services-turnkey-item.is-active (Figma). Desktop: giữ trong .services-turnkey-visual */
     function placeTurnkeyFrameMobile() {
         if (!turnkeyFrame || !turnkeyVisual) return;
@@ -683,6 +702,9 @@ if (hamburgerBtn && mobileMenu) {
 
     turnkeyMobileMq.addEventListener('change', placeTurnkeyFrameMobile);
     placeTurnkeyFrameMobile();
+    window.addEventListener('resize', updateTurnkeyRailMetrics);
+    window.addEventListener('load', updateTurnkeyRailMetrics);
+    updateTurnkeyRailMetrics();
 
     function syncTurnkeyDescVisibility() {
         turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li) => {
@@ -708,13 +730,19 @@ if (hamburgerBtn && mobileMenu) {
     }
 
     function updateTurnkeyRailProgressByBtn(btn) {
-        if (!turnkeyRail || !btn) return;
-        const listRect = turnkeyList.getBoundingClientRect();
+        if (!turnkeyPanel || !btn) return;
+        updateTurnkeyRailMetrics();
+        const panelRect = turnkeyPanel.getBoundingClientRect();
         const btnRect = btn.getBoundingClientRect();
-        const y = (btnRect.top + btnRect.height / 2) - listRect.top;
-        const ratio = listRect.height > 0 ? y / listRect.height : 0;
+        const y = (btnRect.top + btnRect.height / 2) - panelRect.top;
+
+        const cs = getComputedStyle(turnkeyPanel);
+        const height = parseFloat(cs.getPropertyValue('--turnkey-rail-height')) || 1;
+        const start = parseFloat(cs.getPropertyValue('--turnkey-rail-progress-start')) || 0;
+        const denom = Math.max(1, height - start);
+        const ratio = (y - start) / denom;
         const clamped = Math.max(0, Math.min(1, ratio));
-        turnkeyRail.style.setProperty('--turnkey-rail-scale', String(clamped));
+        turnkeyPanel.style.setProperty('--turnkey-rail-scale', String(clamped));
     }
 
     function activateTurnkeyBtn(btn, opts = {}) {
@@ -748,7 +776,18 @@ if (hamburgerBtn && mobileMenu) {
             b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
         });
 
+        // Mark items "done" (passed) so per-item progress line can stay visible.
+        const btnsAll = Array.from(turnkeyList.querySelectorAll('.services-turnkey-btn'));
+        const activeIdx = btnsAll.indexOf(btn);
+        if (activeIdx >= 0) {
+            turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li, i) => {
+                li.classList.toggle('is-done', i < activeIdx);
+            });
+        }
+
         updateTurnkeyRailProgressByBtn(btn);
+        // One more layout-synced update (active state can change heights).
+        requestAnimationFrame(() => updateTurnkeyRailProgressByBtn(btn));
         placeTurnkeyFrameMobile();
 
         const applyContent = () => {
@@ -798,15 +837,28 @@ if (hamburgerBtn && mobileMenu) {
         const btns = Array.from(turnkeyList.querySelectorAll('.services-turnkey-btn'));
         const turnkeySection = document.querySelector('.services-page-turnkey');
 
-        // Desktop/tablet only: pin the panel so user can keep scrolling to scrub steps.
+        // Desktop/tablet only: pin the section so user can keep scrolling to scrub steps.
         const allowPin = () => !window.matchMedia('(max-width: 900px)').matches;
 
         const getDuration = () => {
             // Enough scroll distance to scrub through all steps while pinned.
             // Use scrollHeight (includes expanded desc) so progress doesn't stop early.
             const base = Math.max(turnkeyList.scrollHeight, turnkeyPanel.offsetHeight);
-            // Add a little extra to make the last step easier to reach.
-            return Math.max(1, Math.round(base * 1.15));
+            // Ensure enough scroll distance to reach the LAST item reliably.
+            // If duration is too short, Scene progress may never hit 1.0 → last step won't activate.
+            const viewportH = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1);
+            const perStep = Math.round(viewportH * 0.55); // scroll budget per step while pinned
+            const bySteps = Math.max(1, perStep * Math.max(1, btns.length - 1));
+            return Math.max(1, Math.round(base * 1.25), bySteps);
+        };
+
+        const getTriggerOffsetAtSectionEnd = () => {
+            // Start pinning when we reach the "end" of the section (bottom aligns with viewport bottom).
+            // scrollY_at_end = sectionTop + sectionHeight - viewportHeight
+            // In ScrollMagic terms, we emulate this by offsetting from the section's start.
+            if (!turnkeySection) return 0;
+            const viewportH = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1);
+            return Math.max(0, Math.round(turnkeySection.offsetHeight - viewportH));
         };
 
         let pinScene = null;
@@ -824,11 +876,13 @@ if (hamburgerBtn && mobileMenu) {
             progressScene = null;
 
             const duration = getDuration();
+            const offset = getTriggerOffsetAtSectionEnd();
 
             if (turnkeySection && allowPin()) {
                 pinScene = new window.ScrollMagic.Scene({
                     triggerElement: turnkeySection,
                     triggerHook: 0,
+                    offset,
                     duration,
                 })
                     .setPin(turnkeySection, { pushFollowers: true })
@@ -838,11 +892,13 @@ if (hamburgerBtn && mobileMenu) {
             progressScene = new window.ScrollMagic.Scene({
                 triggerElement: turnkeySection || turnkeyList,
                 triggerHook: 0,
+                offset,
                 duration,
             })
                 .on('progress', (e) => {
                     const n = btns.length;
-                    const idx = Math.min(n - 1, Math.max(0, Math.floor(e.progress * n)));
+                    // map [0..1] to [0..n-1] reliably (so last index is reachable)
+                    const idx = Math.min(n - 1, Math.max(0, Math.round(e.progress * (n - 1))));
                     const btn = btns[idx];
                     if (btn) activateTurnkeyBtn(btn, { withRipple: false });
                 })
@@ -859,6 +915,27 @@ if (hamburgerBtn && mobileMenu) {
                     if (btn) activateTurnkeyBtn(btn, { withRipple: false });
                 })
                 .addTo(controller);
+
+            // Optional: use GSAP for smoother micro transitions when steps change.
+            // (Requirement mentions GSAP; this keeps existing logic intact while adding animation polish.)
+            if (typeof window.gsap !== 'undefined') {
+                let lastSelected = -1;
+                progressScene.off?.('progress.gsapTurnkey'); // if supported by ScrollMagic build
+                progressScene.on('progress.gsapTurnkey', (e) => {
+                    const n = btns.length;
+                    const idx = Math.min(n - 1, Math.max(0, Math.round(e.progress * (n - 1))));
+                    if (idx === lastSelected) return;
+                    lastSelected = idx;
+                    const activeItem = btns[idx]?.closest('.services-turnkey-item');
+                    if (activeItem) {
+                        window.gsap.fromTo(
+                            activeItem,
+                            { opacity: 0.92, y: 6 },
+                            { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out', overwrite: true }
+                        );
+                    }
+                });
+            }
         }
 
         const refresh = () => {
