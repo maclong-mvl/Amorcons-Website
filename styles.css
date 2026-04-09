@@ -1492,20 +1492,37 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   max-width: 480px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   padding-left: 32px;
+  --turnkey-rail-scale: 0;
+  --turnkey-rail-height: 1px;
+  --turnkey-rail-progress-start: 0px;
 }
 
-.services-turnkey-rail {
+/* Vertical progress line (replaces .services-turnkey-rail element) */
+.services-turnkey-panel::before {
+  content: "";
   position: absolute;
   left: 0;
-  height: 85%;
   top: 50%;
   transform: translateY(-50%);
-  bottom: 0;
+  height: 100%;
   width: 1px;
   background: #373737;
-  min-height: 200px;
+  pointer-events: none;
+}
+
+.services-turnkey-panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scaleY(var(--turnkey-rail-scale));
+  transform-origin: 0 0;
+  height: calc(32% + var(--turnkey-rail-height) - var(--turnkey-rail-progress-start));
+  width: 1px;
+  background: rgba(255, 255, 255, 1);
+  transition: transform 0.28s ease;
+  pointer-events: none;
 }
 
 .services-turnkey-desc {
@@ -1534,6 +1551,10 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   align-items: stretch;
   gap: 10px;
   margin-bottom: 24px;
+  /* per-item progress line (enabled via .is-done / .is-active) */
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: -32px 0;
 }
 
 /* Desktop: video ở .services-turnkey-visual; slot ẩn. Mobile: frame được JS chèn vào .is-active .services-turnkey-item-video-slot */
@@ -1549,22 +1570,41 @@ li.services-turnkey-item {
   position: relative;
 }
 
-li.services-turnkey-item::before {
+li.services-turnkey-item::after {
   content: "";
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   display: block;
-  background: #ffffff5f;
+  background: rgba(255, 255, 255, 0.38);
   position: absolute;
   left: -34px;
-  top: 26px;
+  top: 14px;
   transform: translateY(-50%);
-  border-radius: 100%;
+  border-radius: 999px;
   z-index: 1;
+  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-li.services-turnkey-item.is-active::before {
+li.services-turnkey-item.is-active::after {
   background: #fff;
+  transform: translateY(-50%) scale(1.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+/* Apply same "active dot" style for items already scrolled/passed */
+li.services-turnkey-item.is-done::after {
+  background: #fff;
+  transform: translateY(-50%) scale(1.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+/* show line for items already passed / current */
+li.services-turnkey-item.is-done {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));
+}
+
+li.services-turnkey-item.is-active {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85));
 }
 
 .services-turnkey-btn {
@@ -4516,7 +4556,7 @@ h4.about-projects-year {
     display: none;
   }
 
-  li.services-turnkey-item::before {
+  li.services-turnkey-item::after {
     display: none;
   }
 
