@@ -682,9 +682,15 @@ if (hamburgerBtn && mobileMenu) {
         const lastY = (lastRect.top + lastRect.height / 2) - panelRect.top;
 
         // With CSS line top fixed at 0, rail height should reach the last dot.
-        const height = Math.max(1, Math.round(lastY));
-        const start = Math.max(0, Math.round(firstY) + 20);
-        turnkeyPanel.style.setProperty('--turnkey-rail-height', `${height}px`);
+        // Clamp start/end to avoid negative/zero heights when layout shifts.
+        const BIAS_START_PX = 20;
+        const rawStart = firstY + BIAS_START_PX;
+        const rawEnd = lastY;
+
+        const end = Math.max(1, rawEnd);
+        const start = Math.max(0, Math.min(rawStart, end - 1));
+
+        turnkeyPanel.style.setProperty('--turnkey-rail-height', `${end}px`);
         turnkeyPanel.style.setProperty('--turnkey-rail-progress-start', `${start}px`);
         // left is controlled by CSS (left: 0)
     }
@@ -781,7 +787,8 @@ if (hamburgerBtn && mobileMenu) {
         const activeIdx = btnsAll.indexOf(btn);
         if (activeIdx >= 0) {
             turnkeyList.querySelectorAll('.services-turnkey-item').forEach((li, i) => {
-                li.classList.toggle('is-done', i < activeIdx);
+                // Mark all items up to current as "done" (scrolled/passed)
+                li.classList.toggle('is-done', i <= activeIdx);
             });
         }
 

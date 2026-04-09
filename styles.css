@@ -1505,7 +1505,7 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  height: var(--turnkey-rail-height);
+  height: 100%;
   width: 1px;
   background: #373737;
   pointer-events: none;
@@ -1515,10 +1515,10 @@ aside.services-luxury-pagination-aside .swiper-pagination-vertical.swiper-pagina
   content: "";
   position: absolute;
   left: 0;
-  top: var(--turnkey-rail-progress-start);
+  top: 0;
   transform: scaleY(var(--turnkey-rail-scale));
   transform-origin: 0 0;
-  height: calc(10px + var(--turnkey-rail-height) - var(--turnkey-rail-progress-start));
+  height: calc(32% + var(--turnkey-rail-height) - var(--turnkey-rail-progress-start));
   width: 1px;
   background: rgba(255, 255, 255, 1);
   transition: transform 0.28s ease;
@@ -1578,7 +1578,7 @@ li.services-turnkey-item::after {
   background: rgba(255, 255, 255, 0.38);
   position: absolute;
   left: -34px;
-  top: 26px;
+  top: 14px;
   transform: translateY(-50%);
   border-radius: 999px;
   z-index: 1;
@@ -1586,6 +1586,13 @@ li.services-turnkey-item::after {
 }
 
 li.services-turnkey-item.is-active::after {
+  background: #fff;
+  transform: translateY(-50%) scale(1.35);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+/* Apply same "active dot" style for items already scrolled/passed */
+li.services-turnkey-item.is-done::after {
   background: #fff;
   transform: translateY(-50%) scale(1.35);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
