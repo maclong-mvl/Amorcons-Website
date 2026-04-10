@@ -255,6 +255,7 @@
       <!-- 2×2 grid — mỗi ô là liên kết sang trang dịch vụ (đổi href khi có URL thật) -->
       <div class="services-grid">
         <div class="srv-cell" role="button" tabindex="0" data-href="./thiet-ke-khong-gian.html"
+          data-srv-slides='[{"type":"image","src":"./images/home/services/services-1.jpg"},{"type":"video","src":"./video/7578552-uhd_3840_2160_30fps.mp4","poster":"./images/home/services/services-1.jpg"},{"type":"video","src":"./video/Minotti_2025_HP.mp4","poster":"./images/home/services/services-2.jpg"}]'
           aria-label="Thiết kế không gian — xem chi tiết dịch vụ" data-aos="zoom-in-up" data-aos-duration="750"
           data-aos-delay="0">
           <img src="./images/home/services/services-1.jpg" alt="" class="srv-cell-bg" />
@@ -269,6 +270,7 @@
           </div>
         </div>
         <div class="srv-cell" role="button" tabindex="0" data-href="./thiet-ke-noi-that.html"
+          data-srv-slides='[{"type":"video","src":"./video/6580022-uhd_4096_2160_25fps.mp4","poster":"./images/home/services/services-2.jpg"},{"type":"image","src":"./images/home/services/services-2.jpg"},{"type":"video","src":"./video/video_banner.mp4","poster":"./images/home/services/services-1.jpg"}]'
           aria-label="Thiết kế nội thất — xem chi tiết dịch vụ" data-aos="zoom-in-up" data-aos-duration="750"
           data-aos-delay="100">
           <img src="./images/home/services/services-2.jpg" alt="" class="srv-cell-bg" />
@@ -283,6 +285,7 @@
           </div>
         </div>
         <div class="srv-cell" role="button" tabindex="0" data-href="./thiet-ke-xay-dung.html"
+          data-srv-slides='[{"type":"image","src":"./images/home/services/services-3.png"},{"type":"video","src":"./video/5384823-uhd_4096_2160_30fps.mp4","poster":"./images/home/services/services-3.png"},{"type":"image","src":"./images/home/services/services-4.png"}]'
           aria-label="Thiết kế xây dựng — xem chi tiết dịch vụ" data-aos="zoom-in-up" data-aos-duration="750"
           data-aos-delay="200">
           <img src="./images/home/services/services-3.png" alt="" class="srv-cell-bg" />
@@ -297,6 +300,7 @@
           </div>
         </div>
         <div class="srv-cell" role="button" tabindex="0" data-href="./tu-van-quy-hoach.html"
+          data-srv-slides='[{"type":"video","src":"./video/18531413-uhd_3840_2160_60fps.mp4","poster":"./images/home/services/services-4.png"},{"type":"image","src":"./images/home/services/services-4.png"},{"type":"video","src":"./video/10135156-uhd_3840_2160_30fps.mp4","poster":"./images/home/services/services-1.jpg"}]'
           aria-label="Tư vấn và quy hoạch — xem chi tiết dịch vụ" data-aos="zoom-in-up" data-aos-duration="750"
           data-aos-delay="300">
           <img src="./images/home/services/services-4.png" alt="" class="srv-cell-bg" />
@@ -426,27 +430,31 @@
   <!-- Services popup (opened by clicking .srv-cell) -->
   <div class="srv-modal" id="srvModal" aria-hidden="true" hidden>
     <div class="srv-modal-backdrop" data-srv-modal-close></div>
-    <div class="srv-modal-dialog" role="dialog" aria-modal="true" aria-label="Xem dịch vụ">
+    <div class="srv-modal-dialog" role="dialog" aria-modal="true" aria-label="Xem dịch vụ" id="srvModalDialog">
+      <p class="sr-only" id="srvModalLive" aria-live="polite"></p>
       <div class="srv-modal-grid">
         <!-- Left control rail (Figma node 535:1393) -->
         <div class="srv-modal-rail" aria-hidden="false">
           <button class="srv-modal-rail-close" type="button" aria-label="Đóng" data-srv-modal-close>
             <span aria-hidden="true">×</span>
           </button>
-          <div class="srv-modal-rail-stack" aria-hidden="true">
-            <span class="srv-modal-dot is-active"></span>
-            <span class="srv-modal-dot"></span>
+          <div class="srv-modal-rail-stack">
+            <div id="srvModalDots" class="srv-modal-dots" role="tablist" aria-label="Chọn nội dung"></div>
             <img class="services-luxury-pagination-logo" src="./images/pagination-w.svg" width="15" height="15" alt=""
               decoding="async" />
-            <span class="srv-modal-rail-track"><span class="srv-modal-rail-fill"></span></span>
-            <span class="srv-modal-dot srv-modal-dot--hollow"></span>
+            <span class="srv-modal-rail-track" aria-hidden="true"><span class="srv-modal-rail-fill"
+                id="srvModalRailFill"></span></span>
           </div>
         </div>
 
-        <div class="srv-modal-media" aria-hidden="true">
+        <div class="srv-modal-media" id="srvModalMedia" aria-hidden="true">
           <img class="srv-modal-media-img" id="srvModalImg" alt="" decoding="async" />
           <video class="srv-modal-media-video" id="srvModalVideo" muted loop playsinline></video>
           <div class="srv-modal-media-shade" aria-hidden="true"></div>
+          <button type="button" class="srv-modal-arrow srv-modal-arrow--prev" id="srvModalPrev"
+            aria-label="Slide trước">‹</button>
+          <button type="button" class="srv-modal-arrow srv-modal-arrow--next" id="srvModalNext"
+            aria-label="Slide sau">›</button>
         </div>
       </div>
     </div>

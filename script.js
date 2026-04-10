@@ -34,17 +34,66 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
     }
 });
 
-// Services popup (modal) open/close
+// Services popup (modal): slideshow per .srv-cell via data-srv-slides JSON, fallback to bg + video
 (function initServicesPopup() {
     const modal = document.getElementById('srvModal');
     if (!modal) return;
 
-    const dialog = modal.querySelector('.srv-modal-dialog');
+    const dialog = document.getElementById('srvModalDialog') || modal.querySelector('.srv-modal-dialog');
     const imgEl = document.getElementById('srvModalImg');
     const videoEl = document.getElementById('srvModalVideo');
+    const mediaEl = document.getElementById('srvModalMedia');
+    const dotsEl = document.getElementById('srvModalDots');
+    const railFill = document.getElementById('srvModalRailFill');
+    const btnPrev = document.getElementById('srvModalPrev');
+    const btnNext = document.getElementById('srvModalNext');
+    const liveEl = document.getElementById('srvModalLive');
+
+    const DIALOG_LABEL_DEFAULT = 'Xem dịch vụ';
+    const IMAGE_AUTO_ADVANCE_MS = 3000;
 
     let lastActiveEl = null;
-    let escHandlerBound = false;
+    let keyHandlerBound = false;
+    let slides = [];
+    let currentIndex = 0;
+    let touchStartX = null;
+    let imageAdvanceTimer = null;
+
+    function clearImageAdvanceTimer() {
+        if (imageAdvanceTimer != null) {
+            window.clearTimeout(imageAdvanceTimer);
+            imageAdvanceTimer = null;
+        }
+    }
+
+    function getSlidesFromCell(cell) {
+        const raw = cell.getAttribute('data-srv-slides');
+        if (raw) {
+            try {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed) && parsed.length) {
+                    return parsed
+                        .map((item) => {
+                            if (!item || typeof item !== 'object') return null;
+                            const type = item.type === 'video' ? 'video' : 'image';
+                            const src = typeof item.src === 'string' ? item.src.trim() : '';
+                            if (!src) return null;
+                            const poster = typeof item.poster === 'string' ? item.poster.trim() : '';
+                            return { type, src, poster: poster || undefined };
+                        })
+                        .filter(Boolean);
+                }
+            } catch (e) {
+                console.warn('data-srv-slides: invalid JSON', e);
+            }
+        }
+        const out = [];
+        const bgSrc = cell.querySelector('.srv-cell-bg')?.getAttribute('src')?.trim() || '';
+        const vidSrc = cell.querySelector('.srv-cell-video')?.getAttribute('src')?.trim() || '';
+        if (bgSrc) out.push({ type: 'image', src: bgSrc });
+        if (vidSrc) out.push({ type: 'video', src: vidSrc, poster: bgSrc || undefined });
+        return out;
+    }
 
     function setModalOpen(open) {
         if (open) {
@@ -65,54 +114,172 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
         try {
             videoEl.pause();
         } catch {}
-        // Reset so it doesn't keep buffering in background
         videoEl.removeAttribute('src');
+        videoEl.removeAttribute('poster');
         videoEl.load?.();
     }
 
-    function openFromCell(cell) {
-        lastActiveEl = document.activeElement;
+    function updateRailFill() {
+        if (!railFill || !slides.length) return;
+        const pct = ((currentIndex + 1) / slides.length) * 100;
+        railFill.style.height = `${pct}%`;
+    }
 
-        const bgImg = cell.querySelector('.srv-cell-bg');
-        const bgSrc = bgImg?.getAttribute('src') || '';
+    function announceSlide() {
+        if (!liveEl || !slides.length) return;
+        liveEl.textContent = `Slide ${currentIndex + 1} trên ${slides.length}`;
+    }
 
-        const vid = cell.querySelector('.srv-cell-video');
-        const vidSrc = vid?.getAttribute('src') || '';
+    function renderDots() {
+        if (!dotsEl) return;
+        dotsEl.innerHTML = '';
+        slides.forEach((_, i) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'srv-modal-dot-btn' + (i === currentIndex ? ' is-active' : '');
+            btn.setAttribute('role', 'tab');
+            btn.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+            btn.setAttribute('aria-label', `Slide ${i + 1}`);
+            btn.addEventListener('click', () => showSlide(i));
+            dotsEl.appendChild(btn);
+        });
+    }
 
-        if (imgEl) {
-            if (bgSrc) imgEl.src = bgSrc;
-            else imgEl.removeAttribute('src');
-        }
+    function syncDotsActive() {
+        if (!dotsEl) return;
+        dotsEl.querySelectorAll('.srv-modal-dot-btn').forEach((b, i) => {
+            b.classList.toggle('is-active', i === currentIndex);
+            b.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+        });
+    }
+
+    function showSlide(index) {
+        if (!slides.length || !mediaEl) return;
+        clearImageAdvanceTimer();
+        currentIndex = ((index % slides.length) + slides.length) % slides.length;
+        const slide = slides[currentIndex];
 
         stopModalVideo();
-        if (videoEl && vidSrc) {
-            videoEl.src = vidSrc;
-            videoEl.load();
+
+        if (slide.type === 'image') {
+            mediaEl.classList.remove('is-video-mode');
+            mediaEl.classList.add('is-image-mode');
+            if (imgEl) {
+                imgEl.src = slide.src;
+                imgEl.alt = '';
+            }
+        } else {
+            mediaEl.classList.remove('is-image-mode');
+            mediaEl.classList.add('is-video-mode');
+            if (imgEl) {
+                if (slide.poster) {
+                    imgEl.src = slide.poster;
+                    imgEl.alt = '';
+                } else {
+                    imgEl.removeAttribute('src');
+                }
+            }
+            if (videoEl) {
+                if (slide.poster) videoEl.setAttribute('poster', slide.poster);
+                videoEl.src = slide.src;
+                videoEl.load();
+            }
+        }
+
+        updateRailFill();
+        syncDotsActive();
+        announceSlide();
+
+        if (slide.type === 'video' && videoEl) {
+            window.setTimeout(() => {
+                videoEl.play().catch(() => {});
+            }, 40);
+        } else if (slide.type === 'image' && slides.length > 1) {
+            imageAdvanceTimer = window.setTimeout(() => {
+                imageAdvanceTimer = null;
+                step(1);
+            }, IMAGE_AUTO_ADVANCE_MS);
+        }
+    }
+
+    function step(delta) {
+        showSlide(currentIndex + delta);
+    }
+
+    function onModalKeydown(e) {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') {
+            closeModal();
+            return;
+        }
+        if (slides.length <= 1) return;
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            step(-1);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            step(1);
+        }
+    }
+
+    function openFromCell(cell) {
+        const list = getSlidesFromCell(cell);
+        if (!list.length) return;
+
+        lastActiveEl = document.activeElement;
+        slides = list;
+        currentIndex = 0;
+
+        const titleEl = cell.querySelector('.srv-cell-title');
+        if (dialog && titleEl?.textContent?.trim()) {
+            dialog.setAttribute('aria-label', titleEl.textContent.trim());
+        }
+
+        renderDots();
+        showSlide(0);
+
+        const multi = slides.length > 1;
+        if (btnPrev) {
+            btnPrev.hidden = !multi;
+            btnPrev.tabIndex = multi ? 0 : -1;
+        }
+        if (btnNext) {
+            btnNext.hidden = !multi;
+            btnNext.tabIndex = multi ? 0 : -1;
         }
 
         setModalOpen(true);
 
-        // Let layout paint before attempting to play (avoids some autoplay blocks)
         window.setTimeout(() => {
-            if (videoEl && vidSrc) {
-                videoEl.play().catch(() => {});
-            }
-            const closeBtn = modal.querySelector('.srv-modal-rail-close');
-            closeBtn?.focus?.();
+            modal.querySelector('.srv-modal-rail-close')?.focus?.();
         }, 40);
 
-        if (!escHandlerBound) {
-            escHandlerBound = true;
-            document.addEventListener('keydown', (e) => {
-                if (!modal.hidden && e.key === 'Escape') closeModal();
-            });
+        if (!keyHandlerBound) {
+            keyHandlerBound = true;
+            document.addEventListener('keydown', onModalKeydown);
         }
     }
 
     function closeModal() {
+        clearImageAdvanceTimer();
         stopModalVideo();
+        slides = [];
+        currentIndex = 0;
+        if (dotsEl) dotsEl.innerHTML = '';
+        if (mediaEl) mediaEl.classList.remove('is-image-mode', 'is-video-mode');
+        if (railFill) railFill.style.height = '';
+        if (imgEl) imgEl.removeAttribute('src');
+        if (dialog) dialog.setAttribute('aria-label', DIALOG_LABEL_DEFAULT);
+        if (liveEl) liveEl.textContent = '';
+        if (btnPrev) {
+            btnPrev.hidden = false;
+            btnPrev.tabIndex = 0;
+        }
+        if (btnNext) {
+            btnNext.hidden = false;
+            btnNext.tabIndex = 0;
+        }
         setModalOpen(false);
-        // Restore focus
         if (lastActiveEl && typeof lastActiveEl.focus === 'function') {
             try {
                 lastActiveEl.focus();
@@ -121,7 +288,6 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
         lastActiveEl = null;
     }
 
-    // Close handlers
     modal.querySelectorAll('[data-srv-modal-close]').forEach((el) => {
         el.addEventListener('click', (e) => {
             e.preventDefault();
@@ -129,21 +295,19 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
         });
     });
 
-    // Click outside dialog closes (backdrop already handled via [data-srv-modal-close])
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
 
-    // Open popup from each srv-cell
+    btnPrev?.addEventListener('click', () => step(-1));
+    btnNext?.addEventListener('click', () => step(1));
+
     document.querySelectorAll('.srv-cell').forEach((cell) => {
         cell.addEventListener('click', (e) => {
-            // allow other modifiers without trapping
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
             e.preventDefault?.();
             openFromCell(cell);
         });
-
-        // Keyboard accessibility for role="button"
         cell.addEventListener('keydown', (e) => {
             if (e.key !== 'Enter' && e.key !== ' ') return;
             e.preventDefault();
@@ -151,7 +315,6 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
         });
     });
 
-    // Basic focus trap inside dialog
     if (dialog) {
         dialog.addEventListener('keydown', (e) => {
             if (e.key !== 'Tab') return;
@@ -169,6 +332,32 @@ document.querySelectorAll('.srv-cell').forEach(cell => {
                 first.focus();
             }
         });
+    }
+
+    if (mediaEl) {
+        mediaEl.addEventListener(
+            'touchstart',
+            (e) => {
+                if (modal.hidden || slides.length <= 1) return;
+                touchStartX = e.touches[0]?.clientX ?? null;
+            },
+            { passive: true }
+        );
+        mediaEl.addEventListener(
+            'touchend',
+            (e) => {
+                if (touchStartX == null || modal.hidden || slides.length <= 1) return;
+                const endX = e.changedTouches[0]?.clientX;
+                const start = touchStartX;
+                touchStartX = null;
+                if (endX == null) return;
+                const dx = endX - start;
+                if (Math.abs(dx) < 48) return;
+                if (dx < 0) step(1);
+                else step(-1);
+            },
+            { passive: true }
+        );
     }
 })();
 

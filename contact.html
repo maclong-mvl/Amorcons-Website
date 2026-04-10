@@ -1,284 +1,545 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amorcons – Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amorcons – Contact Us</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-    rel="stylesheet">
+    <link
+      rel="icon"
+      href="./images/favicon.svg"
+      type="image/svg+xml"
+      sizes="any"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+  </head>
 
-  <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" sizes="any" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet" />
-
-  <link rel="stylesheet" href="./styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-</head>
-
-<body>
-
-  <header class="site-header">
-    <nav class="navbar" aria-label="Main Navigation">
-      <a href="./index.html" class="nav-logo-link">
-        <img class="nav-logo desktop-only" src="./images/header/logo.svg" alt="Amorcons" />
-        <img class="nav-logo mobile-only" src="./images/header/logo.svg" alt="Amorcons" />
-      </a>
-
-      <ul class="nav-tabs">
-        <li class="nav-item"><a class="nav-tab" href="./index.html">Trang chủ</a></li>
-        <li class="nav-item"><a class="nav-tab" href="./services.html">Services Page</a></li>
-        <li class="nav-item"><a class="nav-tab" href="./about-us.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-tab active" href="./contact.html" aria-current="page">Liên hệ</a></li>
-      </ul>
-
-      <div class="nav-right">
-        <div class="lang-dropdown" data-lang-dropdown>
-          <button type="button" class="nav-btn lang-btn" id="langMenuButton" aria-haspopup="listbox"
-            aria-expanded="false" aria-controls="langMenuList" aria-label="Chọn ngôn ngữ: Tiếng Việt">
-            <img class="lang-btn-flag" src="./images/header/header-desktop/icon-lang.svg" alt="" width="24" height="24"
-              aria-hidden="true" />
-            <span class="nav-btn-label">VN</span>
-          </button>
-          <div class="lang-dropdown-panel" id="langMenuList" role="listbox" aria-label="Ngôn ngữ" hidden>
-            <button type="button" class="lang-dropdown-option is-selected" role="option" data-lang="vi"
-              data-url="./contact.html?lang=vi" aria-selected="true">
-              <span class="lang-dropdown-flag" aria-hidden="true">
-                <img src="./images/header/header-desktop/vn.svg" alt="" width="20" height="20" />
-              </span>
-              <span class="lang-dropdown-label">Vietnamese</span>
-            </button>
-            <button type="button" class="lang-dropdown-option" role="option" data-lang="en"
-              data-url="./contact.html?lang=en" aria-selected="false">
-              <span class="lang-dropdown-flag" aria-hidden="true">
-                <img src="./images/header/header-desktop/en.svg" alt="" width="20" height="20" />
-              </span>
-              <span class="lang-dropdown-label">English</span>
-            </button>
-          </div>
-        </div>
-        <a href="tel:4205118744" class="nav-btn" aria-label="Liên hệ điện thoại">
-          <img src="./images/header/header-desktop/phone.svg" alt="" aria-hidden="true" class="desktop-only" />
-          <img src="./images/header/header-mobile/phone-mobile.svg" alt="" aria-hidden="true" class="mobile-only" />
-          <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="./index.html" class="nav-logo-link">
+          <img
+            class="nav-logo desktop-only"
+            src="./images/header/logo.svg"
+            alt="Amorcons"
+          />
+          <img
+            class="nav-logo mobile-only"
+            src="./images/header/logo.svg"
+            alt="Amorcons"
+          />
         </a>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng" aria-expanded="false"
-          aria-controls="mobileMenu">
-          <img src="./images/header/header-mobile/button-open-menu.svg" alt="" class="mobile-only" />
-        </button>
-      </div>
-    </nav>
-  </header>
 
-  <!-- Mobile Navigation Menu — Figma 295:756 (match screenshot) -->
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile Navigation" aria-hidden="true">
-    <div class="mobile-menu-accent" aria-hidden="true">
-      <span class="mobile-menu-accent-line"></span>
-      <div class="mobile-menu-accent-dots">
-        <span></span>
-        <span class="mobile-menu-accent-dot-mid"></span>
-        <span></span>
-      </div>
-      <span class="mobile-menu-accent-line"></span>
-    </div>
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-links">
-        <a class="mobile-menu-link" href="./index.html">Trang chủ</a>
-        <a class="mobile-menu-link" href="./services.html">Services Page</a>
-        <a class="mobile-menu-link" href="./about-us.html">About Us</a>
-        <a class="mobile-menu-link active" href="./contact.html" aria-current="page">Liên hệ</a>
-      </div>
-      <div class="mobile-menu-lang-row">
-        <span class="mobile-menu-lang-label">Langue</span>
-        <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
-          <button type="button" class="mobile-menu-lang-btn is-active" data-lang="vi" aria-pressed="true">Vi</button>
-          <button type="button" class="mobile-menu-lang-btn" data-lang="en" aria-pressed="false">Eng</button>
-        </div>
-      </div>
-    </div>
-    <div class="mobile-menu-footer">
-      <div class="mobile-menu-follow-row">
-        <span class="mobile-menu-follow">Follow us</span>
-        <span class="mobile-menu-follow-line" aria-hidden="true"></span>
-      </div>
-      <ul class="mobile-menu-social-list">
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Instagram">
-            <img src="./images/footer/intal.svg" alt="Instagram" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on Facebook">
-            <img src="./images/footer/facebook.svg" alt="Facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on YouTube">
-            <img src="./images/footer/youtube.svg" alt="YouTube" />
-          </a>
-        </li>
-        <li>
-          <a href="#" class="mobile-menu-social-icon" aria-label="Follow us on X">
-            <img src="./images/footer/x.svg" alt="X" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+        <ul class="nav-tabs">
+          <li class="nav-item">
+            <a class="nav-tab" href="./index.html">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-tab" href="./services.html">Services Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-tab" href="./about-us.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-tab active" href="./contact.html" aria-current="page"
+              >Liên hệ</a
+            >
+          </li>
+        </ul>
 
-  <main>
-    <!-- =========================================================
-         HERO
-    ========================================================= -->
-    <section class="hero" aria-labelledby="hero-title" data-aos="fade" data-aos-duration="900"
-      data-aos-easing="ease-out-cubic">
-      <div class="hero-bg">
-        <video class="hero-bg-img" src="./video/video_banner.mp4" autoplay muted loop playsinline
-          aria-hidden="true"></video>
-        <div class="hero-overlay-top"></div>
-      </div>
-
-      <div class="hero-text" data-aos="fade-up" data-aos-duration="900" data-aos-delay="160"
-        data-aos-easing="ease-out-cubic">
-        <h1 id="hero-title" class="hero-title">Kiến tạo không gian <br class="mobile-only"> chạm cảm xúc</h1>
-        <p class="hero-subtitle">
-          Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được cân nhắc và mỗi trải nghiệm đều mang đến
-          đẳng
-          cấp riêng biệt
-        </p>
-      </div>
-    </section>
-
-    <section style="background-image: url('./images/contact-us/bg.png');" class="page-contact-us-section"
-      id="page-contact-us-section" aria-labelledby="contact-title">
-      <div class="services-header" data-aos="fade-up" data-aos-duration="750" data-aos-easing="ease-out-cubic">
-        <img class="srv-award" src="./images/icon-title.svg" alt="" aria-hidden="true">
-        <h2 id="contact-title" class="srv-title">We help to bring your dream home to reality</h2>
-        <p class="srv-sub">At Inteo, we create inspiring spaces that blend timeless design with modern innovation.</p>
-      </div>
-      <div class="page-contact-us-container">
-        <div class="page-contact-us-left" data-aos="fade-right" data-aos-duration="850"
-          data-aos-easing="ease-out-cubic">
-          <div class="page-contact-us-left-content">
-            <img class="page-contact-us-photo-1" src="./images/contact-us/contact-us-left.jpg" alt="Contact Us Left">
-            <img class="page-contact-us-photo-2" src="./images/contact-us/contact-us-left-2.jpg"
-              alt="Contact Us Left 2">
-          </div>
-        </div>
-        <div class="page-contact-us-right">
-          <div class="contact-form-box" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100"
-            data-aos-easing="ease-out-cubic">
-            <p class="form-pre-title">Liên lạc với chúng tôi</p>
-            <h3 class="contact-us-title">Contact us</h3>
-            <p class="form-post-title">Fill out the form below and we'll get back to<br>you with next steps within 24
-              hours.</p>
-
-            <div class="form-dots" aria-hidden="true">
-              <img src="./images/home/contact-us/dot.svg" alt="" />
-            </div>
-
-            <form class="contact-form" action="#" method="POST">
-              <div class="form-group">
-                <label for="name" class="sr-only">Tên*</label>
-                <input type="text" id="name" name="name" placeholder="Tên*" required />
-              </div>
-              <div class="form-group">
-                <label for="email" class="sr-only">Email*</label>
-                <input type="email" id="email" name="email" placeholder="Email*" required />
-              </div>
-              <div class="form-group">
-                <label for="phone" class="sr-only">Điện thoại</label>
-                <input type="tel" id="phone" name="phone" placeholder="Điện thoại" />
-              </div>
-              <div class="form-group">
-                <label for="company" class="sr-only">Công ty</label>
-                <input type="text" id="company" name="company" placeholder="Công ty" />
-              </div>
-              <div class="form-group">
-                <label for="message" class="sr-only">Lời nhắn</label>
-                <textarea id="message" name="message" placeholder="Lời nhắn" rows="4"></textarea>
-              </div>
-              <button type="submit" class="submit-btn">
-                <span class="submit-btn-text">SUBMIT</span>
-                <span class="submit-btn-arrow" aria-hidden="true">&rarr;</span>
+        <div class="nav-right">
+          <div class="lang-dropdown" data-lang-dropdown>
+            <button
+              type="button"
+              class="nav-btn lang-btn"
+              id="langMenuButton"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="langMenuList"
+              aria-label="Chọn ngôn ngữ: Tiếng Việt"
+            >
+              <img
+                class="lang-btn-flag"
+                src="./images/header/header-desktop/icon-lang.svg"
+                alt=""
+                width="24"
+                height="24"
+                aria-hidden="true"
+              />
+              <span class="nav-btn-label">VN</span>
+            </button>
+            <div
+              class="lang-dropdown-panel"
+              id="langMenuList"
+              role="listbox"
+              aria-label="Ngôn ngữ"
+              hidden
+            >
+              <button
+                type="button"
+                class="lang-dropdown-option is-selected"
+                role="option"
+                data-lang="vi"
+                data-url="./contact.html?lang=vi"
+                aria-selected="true"
+              >
+                <span class="lang-dropdown-flag" aria-hidden="true">
+                  <img
+                    src="./images/header/header-desktop/vn.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />
+                </span>
+                <span class="lang-dropdown-label">Vietnamese</span>
               </button>
-            </form>
+              <button
+                type="button"
+                class="lang-dropdown-option"
+                role="option"
+                data-lang="en"
+                data-url="./contact.html?lang=en"
+                aria-selected="false"
+              >
+                <span class="lang-dropdown-flag" aria-hidden="true">
+                  <img
+                    src="./images/header/header-desktop/en.svg"
+                    alt=""
+                    width="20"
+                    height="20"
+                  />
+                </span>
+                <span class="lang-dropdown-label">English</span>
+              </button>
+            </div>
+          </div>
+          <a
+            href="tel:4205118744"
+            class="nav-btn"
+            aria-label="Liên hệ điện thoại"
+          >
+            <img
+              src="./images/header/header-desktop/phone.svg"
+              alt=""
+              aria-hidden="true"
+              class="desktop-only"
+            />
+            <img
+              src="./images/header/header-mobile/phone-mobile.svg"
+              alt=""
+              aria-hidden="true"
+              class="mobile-only"
+            />
+            <span class="nav-btn-label desktop-only">(420) 511-8744 x729</span>
+          </a>
+          <button
+            class="hamburger-btn"
+            id="hamburgerBtn"
+            aria-label="Mở menu điều hướng"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <img
+              src="./images/header/header-mobile/button-open-menu.svg"
+              alt=""
+              class="mobile-only"
+            />
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu — Figma 295:756 (match screenshot) -->
+    <nav
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Mobile Navigation"
+      aria-hidden="true"
+    >
+      <div class="mobile-menu-accent" aria-hidden="true">
+        <span class="mobile-menu-accent-line"></span>
+        <div class="mobile-menu-accent-dots">
+          <span></span>
+          <span class="mobile-menu-accent-dot-mid"></span>
+          <span></span>
+        </div>
+        <span class="mobile-menu-accent-line"></span>
+      </div>
+      <div class="mobile-menu-inner">
+        <div class="mobile-menu-links">
+          <a class="mobile-menu-link" href="./index.html">Trang chủ</a>
+          <a class="mobile-menu-link" href="./services.html">Services Page</a>
+          <a class="mobile-menu-link" href="./about-us.html">About Us</a>
+          <a
+            class="mobile-menu-link active"
+            href="./contact.html"
+            aria-current="page"
+            >Liên hệ</a
+          >
+        </div>
+        <div class="mobile-menu-lang-row">
+          <span class="mobile-menu-lang-label">Langue</span>
+          <div class="mobile-menu-lang" role="group" aria-label="Chọn ngôn ngữ">
+            <button
+              type="button"
+              class="mobile-menu-lang-btn is-active"
+              data-lang="vi"
+              aria-pressed="true"
+            >
+              Vi
+            </button>
+            <button
+              type="button"
+              class="mobile-menu-lang-btn"
+              data-lang="en"
+              aria-pressed="false"
+            >
+              Eng
+            </button>
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="page-contact-us-map-section" id="page-contact-us-map-section" aria-labelledby="map-title">
-      <div class="wp-container">
-        <div class="services-header" data-aos="fade-up" data-aos-duration="750" data-aos-easing="ease-out-cubic">
-          <img class="srv-award" src="./images/icon-title.svg" alt="" aria-hidden="true">
-          <h2 id="map-title" class="srv-title">We help to bring your <em>dream home</em> to reality</h2>
-          <p class="srv-sub">At Inteo, we create inspiring spaces that blend timeless design with modern innovation.</p>
+      <div class="mobile-menu-footer">
+        <div class="mobile-menu-follow-row">
+          <span class="mobile-menu-follow">Follow us</span>
+          <span class="mobile-menu-follow-line" aria-hidden="true"></span>
         </div>
-        <div class="page-contact-us-map-container">
-          <div class="page-contact-us-map-content" data-aos="fade-up" data-aos-duration="850" data-aos-delay="120"
-            data-aos-easing="ease-out-cubic">
-            <iframe class="page-contact-us-map-iframe"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.439681530383!2d105.85108487540412!3d21.024446387425317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab8c1de2fed3%3A0x7384afeeb8d43e2b!2zS2jhuqNpIEjhu5MgQ2jhuqNpIEjhu5M!5e0!3m2!1svi!2s!4v1743714087094!5m2!1svi!2s"
-              width="100%" height="560" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="Bản đồ văn phòng"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- =========================================================
-       FOOTER
-  ========================================================= -->
-  <footer class="footer-bar" data-aos="fade-up" data-aos-duration="700">
-    <div class="footer-bar-inner">
-      <!-- Logo -->
-      <div class="footer-logo">
-        <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
-      </div>
-
-      <!-- Social -->
-      <div class="footer-social">
-        <span class="footer-follow-text">Follow us</span>
-        <span class="footer-follow-line" aria-hidden="true"></span>
-        <ul class="footer-social-list">
+        <ul class="mobile-menu-social-list">
           <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on Instagram">
+            <a
+              href="#"
+              class="mobile-menu-social-icon"
+              aria-label="Follow us on Instagram"
+            >
               <img src="./images/footer/intal.svg" alt="Instagram" />
             </a>
           </li>
           <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on Facebook">
+            <a
+              href="#"
+              class="mobile-menu-social-icon"
+              aria-label="Follow us on Facebook"
+            >
               <img src="./images/footer/facebook.svg" alt="Facebook" />
             </a>
           </li>
           <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on YouTube">
+            <a
+              href="#"
+              class="mobile-menu-social-icon"
+              aria-label="Follow us on YouTube"
+            >
               <img src="./images/footer/youtube.svg" alt="YouTube" />
             </a>
           </li>
           <li>
-            <a href="#" class="footer-social-icon" aria-label="Follow us on X">
+            <a
+              href="#"
+              class="mobile-menu-social-icon"
+              aria-label="Follow us on X"
+            >
               <img src="./images/footer/x.svg" alt="X" />
             </a>
           </li>
         </ul>
       </div>
-    </div>
-  </footer>
+    </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="script.js"></script>
-</body>
+    <main>
+      <!-- =========================================================
+         HERO
+    ========================================================= -->
+      <section
+        class="hero"
+        aria-labelledby="hero-title"
+        data-aos="fade"
+        data-aos-duration="900"
+        data-aos-easing="ease-out-cubic"
+      >
+        <div class="hero-bg">
+          <video
+            class="hero-bg-img"
+            src="./video/video_banner.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-hidden="true"
+          ></video>
+          <div class="hero-overlay-top"></div>
+        </div>
 
+        <div
+          class="hero-text"
+          data-aos="fade-up"
+          data-aos-duration="900"
+          data-aos-delay="160"
+          data-aos-easing="ease-out-cubic"
+        >
+          <h1 id="hero-title" class="hero-title">
+            Kiến tạo không gian <br class="mobile-only" />
+            chạm cảm xúc
+          </h1>
+          <p class="hero-subtitle">
+            Chúng tôi tạo nên không gian sống tinh tế, nơi từng chi tiết được
+            cân nhắc và mỗi trải nghiệm đều mang đến đẳng cấp riêng biệt
+          </p>
+        </div>
+      </section>
+
+      <section
+        style="background-image: url('./images/contact-us/bg.png')"
+        class="page-contact-us-section"
+        id="page-contact-us-section"
+        aria-labelledby="contact-title"
+      >
+        <div
+          class="services-header"
+          data-aos="fade-up"
+          data-aos-duration="750"
+          data-aos-easing="ease-out-cubic"
+        >
+          <img
+            class="srv-award"
+            src="./images/icon-title.svg"
+            alt=""
+            aria-hidden="true"
+          />
+          <h2 id="contact-title" class="srv-title">
+            We help to bring your dream home to reality
+          </h2>
+          <p class="srv-sub">
+            At Inteo, we create inspiring spaces that blend timeless design with
+            modern innovation.
+          </p>
+        </div>
+        <div class="page-contact-us-container">
+          <div
+            class="page-contact-us-left"
+            data-aos="fade-right"
+            data-aos-duration="850"
+            data-aos-easing="ease-out-cubic"
+          >
+            <div class="page-contact-us-left-content">
+              <img
+                class="page-contact-us-photo-1"
+                src="./images/contact-us/contact-us-left.jpg"
+                alt="Contact Us Left"
+              />
+              <img
+                class="page-contact-us-photo-2"
+                src="./images/contact-us/contact-us-left-2.jpg"
+                alt="Contact Us Left 2"
+              />
+            </div>
+          </div>
+          <div class="page-contact-us-right">
+            <div
+              class="contact-form-box"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="100"
+              data-aos-easing="ease-out-cubic"
+            >
+              <p class="form-pre-title">Liên lạc với chúng tôi</p>
+              <h3 class="contact-us-title">Contact us</h3>
+              <p class="form-post-title">
+                Fill out the form below and we'll get back to<br />you with next
+                steps within 24 hours.
+              </p>
+
+              <div class="form-dots" aria-hidden="true">
+                <img src="./images/home/contact-us/dot.svg" alt="" />
+              </div>
+
+              <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                  <label for="name" class="sr-only">Tên*</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Tên*"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email" class="sr-only">Email*</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email*"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="sr-only">Điện thoại</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Điện thoại"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="company" class="sr-only">Công ty</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Công ty"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message" class="sr-only">Lời nhắn</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Lời nhắn"
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                  <span class="submit-btn-text">SUBMIT</span>
+                  <span class="submit-btn-arrow" aria-hidden="true"
+                    >&rarr;</span
+                  >
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="page-contact-us-map-section"
+        id="page-contact-us-map-section"
+        aria-labelledby="map-title"
+      >
+        <div class="wp-container">
+          <div
+            class="services-header"
+            data-aos="fade-up"
+            data-aos-duration="750"
+            data-aos-easing="ease-out-cubic"
+          >
+            <img
+              class="srv-award"
+              src="./images/icon-title.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <h2 id="map-title" class="srv-title">
+              We help to bring your <em>dream home</em> to reality
+            </h2>
+            <p class="srv-sub">
+              At Inteo, we create inspiring spaces that blend timeless design
+              with modern innovation.
+            </p>
+          </div>
+          <div class="page-contact-us-map-container">
+            <div
+              class="page-contact-us-map-content"
+              data-aos="fade-up"
+              data-aos-duration="850"
+              data-aos-delay="120"
+              data-aos-easing="ease-out-cubic"
+            >
+              <iframe
+                class="page-contact-us-map-iframe"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.8868617102926!2d105.86318798512463!3d20.997171838971486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135add09c5daa7b%3A0xb977de42fa0f8ce3!2sCentury%20Tower!5e0!3m2!1sen!2s!4v1775795091959!5m2!1sen!2s"
+                width="100%"
+                height="560"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Bản đồ văn phòng"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+    <footer class="footer-bar" data-aos="fade-up" data-aos-duration="700">
+      <div class="footer-bar-inner">
+        <!-- Logo -->
+        <div class="footer-logo">
+          <img src="./images/footer/logo-footer.svg" alt="AMORCONS" />
+        </div>
+
+        <!-- Social -->
+        <div class="footer-social">
+          <span class="footer-follow-text">Follow us</span>
+          <span class="footer-follow-line" aria-hidden="true"></span>
+          <ul class="footer-social-list">
+            <li>
+              <a
+                href="#"
+                class="footer-social-icon"
+                aria-label="Follow us on Instagram"
+              >
+                <img src="./images/footer/intal.svg" alt="Instagram" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="footer-social-icon"
+                aria-label="Follow us on Facebook"
+              >
+                <img src="./images/footer/facebook.svg" alt="Facebook" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="footer-social-icon"
+                aria-label="Follow us on YouTube"
+              >
+                <img src="./images/footer/youtube.svg" alt="YouTube" />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="footer-social-icon"
+                aria-label="Follow us on X"
+              >
+                <img src="./images/footer/x.svg" alt="X" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
